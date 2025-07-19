@@ -1,2 +1,3 @@
-# homelab
-Serving my home
+# Homelab
+
+WIP with the goal of a kubernetes homelab
