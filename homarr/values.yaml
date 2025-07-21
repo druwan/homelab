@@ -1,0 +1,5 @@
+replicaCount: 2
+env:
+  TZ: "Europe/Stockholm"
+service:
+  type: LoadBalancer
