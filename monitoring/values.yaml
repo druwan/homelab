@@ -1,0 +1,2 @@
+grafana:
+  adminPassword: super-secret-prom-operator
