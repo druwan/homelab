@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: jellyfin
+  name: jellyfin
+  namespace: jellyfin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jellyfin
+  template:
+    metadata:
+      labels:
+        app: jellyfin
+    spec:
+      containers:
+        - image: ghcr.io/jellyfin/jellyfin
+          name: jellyfin
+          ports:
+            - containerPort: 8096
+          volumeMounts:
+            - mountPath: /config
+              name: jellyfin-config
+            - mountPath: /cache
+              name: jellyfin-cache
+            - mountPath: /media
+              name: media
+      volumes:
+        - name: jellyfin-config
+          persistentVolumeClaim:
+            claimName: jellyfin-config
+        - name: jellyfin-cache
+          persistentVolumeClaim:
+            claimName: jellyfin-cache
+        - name: media
+          hostPath:
+            path: /home/druwan/media
+            type: Directory
