@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: linkding
 resources:
   - ../../base/linkding
-  - ./test-secret.yaml
+  - ./linkding-container-env-secret.yaml
