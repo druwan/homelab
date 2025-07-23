@@ -4,3 +4,4 @@ namespace: linkding
 resources:
   - ../../base/linkding
   - ./linkding-container-env-secret.yaml
+  - ./ingress.yaml
