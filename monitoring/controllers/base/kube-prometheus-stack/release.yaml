@@ -27,3 +27,9 @@ spec:
   values:
     grafana:
       adminPassword: druwan
+      ingress:
+        enabled: true
+        ingressClassName: traefik
+        hosts:
+          - grafana.christophervestman.com
+        tls: []
