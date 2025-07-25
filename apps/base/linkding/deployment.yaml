@@ -19,7 +19,7 @@ spec:
         runAsUser: 33
         runsAsGroup: 33
       containers:
-        - image: sissbruecker/linkding:1.36.0
+        - image: sissbruecker/linkding:1.41.0
           name: linkding
           ports:
             - containerPort: 9090
