@@ -21,7 +21,7 @@ Note: Have to research if the apps even are wise to run in a kubernetes cluster,
 - [N8N](https://n8n.io/)
 - [Paperless-ngx](https://docs.paperless-ngx.com/)
 - PostgreSQL with PostGIS extension (Will be replaced with something like [cloudnative-pg](https://cloudnative-pg.io/))
-- [Prometheus Community kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#get-helm-repository-info)
+- [Prometheus Community kube-prometheus-stack ✅](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#get-helm-repository-info)
 - [Traefik](https://doc.traefik.io/traefik/getting-started/) - Honestly, I really dislike using this app. My implementation led to alot of alot of verbose compose files. Hopefully, this was just a mistake by my end.
 - [WallOs](https://github.com/ellite/Wallos)
 - [WatchTower](https://github.com/containrrr/watchtower) - Assume this will be *replaced* with GitOps principles
