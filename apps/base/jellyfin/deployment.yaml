@@ -20,7 +20,7 @@ spec:
         runAsUser: 33
         runAsGroup: 33
       containers:
-        - image: ghcr.io/jellyfin/jellyfin
+        - image: ghcr.io/jellyfin/jellyfin:10.10.6
           name: jellyfin
           ports:
             - containerPort: 8096
