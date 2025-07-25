@@ -19,5 +19,5 @@ spec:
                 - secretRef:
                     name: renovate-bot-container-env
                 - configMapRef:
-                    name: renovate-configMap
+                    name: renovate-configmap
           restartPolicy: Never
