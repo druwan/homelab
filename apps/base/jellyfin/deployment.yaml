@@ -15,11 +15,17 @@ spec:
       labels:
         app: jellyfin
     spec:
+      securityContext:
+        fsGroup: 33
+        runAsUser: 33
+        runAsGroup: 33
       containers:
         - image: ghcr.io/jellyfin/jellyfin
           name: jellyfin
           ports:
             - containerPort: 8096
+          securityContext:
+            allowPrivilegeEscalation: false
           volumeMounts:
             - mountPath: /config
               name: jellyfin-config
@@ -30,10 +36,10 @@ spec:
       volumes:
         - name: jellyfin-config
           persistentVolumeClaim:
-            claimName: jellyfin-config
+            claimName: jellyfin-config-pvc
         - name: jellyfin-cache
           persistentVolumeClaim:
-            claimName: jellyfin-cache
+            claimName: jellyfin-cache-pvc
         - name: media
           hostPath:
             path: /home/druwan/media

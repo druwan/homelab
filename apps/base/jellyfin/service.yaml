@@ -12,4 +12,4 @@ spec:
       targetPort: 8096
   selector:
     app: jellyfin
-  type: LoadBalancer
+  type: ClusterIP
