@@ -13,10 +13,11 @@ I'm using a `GMKtec G3 Plus, Intel Twin Lake N150 512GB SSD 16GB RAM` running Ar
 Note: Have to research if the apps even are wise to run in a kubernetes cluster, I belive I've read somewhere that Homessistant would be a bad example app to run in Kubernetes. Why? I don't know and I can't remember if that was true or not, but it seems like I will have to figure out that myself.
 
 - [Arr stack](https://trash-guides.info/)
-- [Jellyfin](https://jellyfin.org/docs/general/installation/container) + [Jellyseer](https://docs.jellyseerr.dev/getting-started/docker?docker-methods=docker-compose)
+- [Jellyfin ✅](https://jellyfin.org/docs/general/installation/container) + [Jellyseer](https://docs.jellyseerr.dev/getting-started/docker?docker-methods=docker-compose)
 - [Homessistant](https://www.home-assistant.io/)
 - [Homepage](https://gethomepage.dev/installation/k8s/) or [Glances](https://github.com/glanceapp/glance/) TBD
-- [Mealie](https://docs.mealie.io/)
+- [Linkding ✅](https://linkding.link/)
+- [Mealie ✅](https://docs.mealie.io/)
 - [N8N](https://n8n.io/)
 - [Paperless-ngx](https://docs.paperless-ngx.com/)
 - PostgreSQL with PostGIS extension (Will be replaced with something like [cloudnative-pg](https://cloudnative-pg.io/))
