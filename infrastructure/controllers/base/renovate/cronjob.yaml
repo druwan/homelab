@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: renovate
+  namespace: renovate
+spec:
+  schedule: "0 * * * *" # Every Hour
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: renovate
+              image: renovate/renovate:latest
+              args:
+                - druwan/homelab
+              envFrom:
+                - secretRef:
+                    name: renovate-bot-container-env
+                - configMapRef:
+                    name: renovate-configMap
+          restartPolicy: Never
