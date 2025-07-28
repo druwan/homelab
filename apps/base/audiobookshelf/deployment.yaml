@@ -26,9 +26,9 @@ spec:
             - containerPort: 3005
           securityContext:
             allowPrivilegeEscalation: false
-          envFrom:
-            - secretRef:
-                name: audiobookshelf-container-env
+          # envFrom:
+          #   - secretRef:
+          #       name: audiobookshelf-container-env
           env:
             - name: TZ
               value: Europe/Stockholm
