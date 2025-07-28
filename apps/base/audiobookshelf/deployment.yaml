@@ -24,14 +24,12 @@ spec:
           name: audiobookshelf
           ports:
             - containerPort: 3005
+              protocol: TCP
           securityContext:
             allowPrivilegeEscalation: false
-          # envFrom:
-          #   - secretRef:
-          #       name: audiobookshelf-container-env
-          env:
-            - name: TZ
-              value: Europe/Stockholm
+          envFrom:
+            - configMapRef:
+                name: audiobookshelf-configmap
           volumeMounts:
             - mountPath: /audiobooks
               name: audiobookshelf-audiobooks
