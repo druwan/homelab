@@ -1,0 +1,19 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: jetstack
+  namespace: cert-manager
+spec:
+  interval: 24h
+  url: https://charts.jetstack.io
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: porkbun-webhook
+  namespace: cert-manager
+spec:
+  interval: 12h
+  url: https://mdonoughe.github.io/porkbun-webhook
+  ref:
+    branch: main
