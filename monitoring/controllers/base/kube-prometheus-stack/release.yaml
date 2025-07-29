@@ -37,6 +37,6 @@ spec:
         hosts:
           - grafana.christophervestman.com
         tls:
-          - secretName: grafana-tls-secret
+          - secretName: grafana-tls
             hosts:
               - grafana.christophervestman.com
