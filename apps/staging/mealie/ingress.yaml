@@ -12,6 +12,7 @@ spec:
   tls:
     - hosts:
         - mealie.christophervestman.com
+      secretName: mealie-tls
   rules:
     - host: mealie.christophervestman.com
       http:
