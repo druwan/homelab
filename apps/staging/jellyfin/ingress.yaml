@@ -3,8 +3,16 @@ kind: Ingress
 metadata:
   name: jellyfin
   namespace: jellyfin
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   ingressClassName: traefik
+  tls:
+    - hosts:
+        - jellyfin.christophervestman.com
+      secretName: jellyfin-tls
   rules:
     - host: jellyfin.christophervestman.com
       http:
