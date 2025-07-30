@@ -15,10 +15,6 @@ spec:
       labels:
         app: wallos
     spec:
-      securityContext:
-        fsGroup: 82
-        runAsUser: 82
-        runAsGroup: 82
       containers:
         - name: wallos
           image: bellamy/wallos:3.3.1
