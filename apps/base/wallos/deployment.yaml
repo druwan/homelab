@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wallos
+  namespace: wallos
+  labels:
+    app: wallos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wallos
+  template:
+    metadata:
+      labels:
+        app: wallos
+    spec:
+      # securityContext:
+      #   fsGroup:
+      #   runAsUser:
+      #   runAsGroup:
+      containers:
+        - name: wallos
+          image: bellamy/wallos:3.3.1
+          ports:
+            - containerPort: 8282
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+          volumeMounts:
+            - name: wallos-storage
+              mountPath: /var/www/html/db
+              subPath: db
+            - name: wallos-storage
+              mountPath: /var/www/html/images/uploads/logos
+              subPath: logos
+      volumes:
+        - name: wallos-storage
+          persistentVolumeClaim:
+            claimName: wallos-pvc
+      restartPolicy: Always
