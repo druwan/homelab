@@ -24,7 +24,7 @@ Previously I had Debian 12 (Bookworm) installed and while that was working great
 - PostgreSQL with PostGIS extension (Will be replaced with something like [cloudnative-pg](https://cloudnative-pg.io/))
 - [Prometheus Community kube-prometheus-stack ✅](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#get-helm-repository-info)
 - [Traefik ✅](https://doc.traefik.io/traefik/getting-started/) - ~Honestly, I really dislike using this app with docker-compose as I believe the implementation led to alot of verbose compose files. Hopefully, this was just a mistake by my end~. Bit different implementation in Kubernetes, so this seems OK for now :).
-- [WallOs](https://github.com/ellite/Wallos)
+- [WallOs ✅](https://github.com/ellite/Wallos)
 - [WatchTower ✅](https://github.com/containrrr/watchtower) - Assume this will be *replaced* with GitOps principles. Replaced by renovate :)
 
 ### Using Porkbun-webhook for ACME DNS01 Solver
