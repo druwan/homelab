@@ -23,4 +23,4 @@ spec:
               service:
                 name: wallos
                 port:
-                  number: 8282
+                  number: 80

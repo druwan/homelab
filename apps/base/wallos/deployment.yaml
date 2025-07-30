@@ -19,7 +19,7 @@ spec:
         - name: wallos
           image: bellamy/wallos:3.3.1
           ports:
-            - containerPort: 8282
+            - containerPort: 80
           env:
             - name: TZ
               value: Europe/Stockholm

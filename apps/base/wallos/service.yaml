@@ -5,7 +5,7 @@ metadata:
   namespace: wallos
 spec:
   ports:
-    - port: 8282
+    - port: 80
   selector:
     app: wallos
   type: ClusterIP
