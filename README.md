@@ -25,77 +25,77 @@ My apps I currently use via Docker Compose.
     </tr>
     <tr>
         <td></td>
-        <td>[Arr Stack](https://trash-guides.info/)</td>
+        <td><a href="https://trash-guides.info">Arr Stack</a></td>
         <td>Standard PVR/Downloader stack</td>
     </tr>
     <tr>
         <td></td>
-        <td>[AudioBookshelf ✅](https://www.audiobookshelf.org/)</td>
+        <td><a href="https://www.audiobookshelf.org/">AudioBookshelf ✅</a></td>
         <td>Installed as part of the KubeCraft Homelab course.</td>
     </tr>
     <tr>
         <td></td>
-        <td>[Jellyfin ✅](https://jellyfin.org/docs/general/installation/container)</td>
+        <td><a href="https://jellyfin.org/docs/general/installation/container">Jellyfin ✅</a></td>
         <td>Media server</td>
     </tr>
     <tr>
         <td></td>
-        <td>[Jellyseer](https://docs.jellyfineerr.dev/getting-started/docker?docker-methods=docker-compose)</td>
+        <td><a href="https://docs.jellyfineerr.dev/getting-started/docker?docker-methods=docker-compose">Jellyseer</a></td>
         <td>Jellyfin request manager</td>
     </tr>
     <tr>
         <td></td>
-        <td>[Home Assistant](https://www.home-assistant.io/)</td>
+        <td><a href="https://www.home-assistant.io/">Home Assistant</a></td>
         <td>Smart home management</td>
     </tr>
     <tr>
         <td></td>
-        <td>[Homepage](https://gethomepage.dev/installation/k8s/) Or [Glances](https://github.com/glanceapp/glance/) — TBD</td>
-        <td></td>
+        <td><a href="https://gethomepage.dev/installation/k8s/">Homepage</a> Or <a href="https://github.com/glanceapp/glance/">Glances</a></td>
+        <td>TBD</td>
     </tr>
     <tr>
         <td></td>
-        <td>[Linkding ✅](https://linkding.link/)</td>
+        <td><a href="https://linkding.link/">Linkding ✅</a></td>
         <td>Bookmark manager</td>
     </tr>
     <tr>
         <td></td>
-        <td>[Mealie ✅](https://docs.mealie.io/)</td>
+        <td><a href="https://docs.mealie.io/">Mealie ✅</a></td>
         <td>Recipe manager</td>
     </tr>
     <tr>
         <td></td>
-        <td>[n8n](https://n8n.io/)</td>
+        <td><a href="https://n8n.io/">n8n<a/></td>
         <td>Workflow automation</td>
     </tr>
     <tr>
         <td></td>
-        <td>[Paperless-ngx](https://docs.paperless-ngx.com/)</td>
+        <td><a href="https://docs.paperless-ngx.com/">Paperless-ngx</a></td>
         <td>Document management</td>
     </tr>
     <tr>
         <td></td>
-        <td>[cloudnative-pg ✅](https://cloudnative-pg.io/)</td>
+        <td><a href="https://cloudnative-pg.io/">cloudnative-pg ✅</a></td>
         <td>PostgreSQL with PostGIS</td>
     </tr>
     <tr>
         <td></td>
-        <td>[kube-prometheus-stack ✅](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#get-helm-repository-info)</td>
+        <td><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#get-helm-repository-info">kube-prometheus-stack ✅</a></td>
         <td>Monitoring stack</td>
     </tr>
     <tr>
         <td></td>
-        <td>[Traefik ✅](https://doc.traefik.io/traefik/getting-started/)</td>
+        <td><a href="https://doc.traefik.io/traefik/getting-started/">Traefik ✅</a></td>
         <td>I initially disliked using Traefik with Docker Compose due to overly verbose files, which was likely due to misconfiguration. Kubernetes seems to offer a much cleaner setup.</td>
     </tr>
     <tr>
         <td></td>
-        <td>[Wallos ✅](https://github.com/ellite/Wallos)</td>
+        <td><a href="https://github.com/ellite/Wallos">Wallos ✅</a></td>
         <td>Subscriptions Dashboard</td>
     </tr>
     <tr>
         <td></td>
-        <td>[Watchtower ✅](https://github.com/containrrr/watchtower)</td>
+        <td><a href="https://github.com/containrrr/watchtower">Watchtower ✅</a></td>
         <td>Replaced by Renovate/GitOps</td>
     </tr>
 </table>
