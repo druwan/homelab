@@ -17,11 +17,11 @@ Previously, I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howev
 ## Apps
 
 My apps I currently use via Docker Compose.
-<table>
+<table style="width:100%">
     <tr>
-        <td></td>
-        <td>URL</td>
-        <td>Comment</td>
+        <th style="width:25%"></td>
+        <th style="width:25%">URL</td>
+        <th style="width:50%">Comment</td>
     </tr>
     <tr>
         <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/sonarr-radarr.svg"></td>
