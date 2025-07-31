@@ -19,7 +19,7 @@ Previously, I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howev
 My apps I currently use via Docker Compose.
 <table style="width:100%">
     <tr>
-        <th style="width:25%"></td>
+        <th style="width:25%">Logo</td>
         <th style="width:25%">URL</td>
         <th style="width:50%">Comment</td>
     </tr>
