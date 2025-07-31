@@ -14,7 +14,7 @@ Previously, I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howev
 
 ---
 
-## Apps I currently run with docker compose
+## Apps
 
 My apps I currently use via Docker Compose.
 
