@@ -17,21 +17,88 @@ Previously, I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howev
 ## Apps
 
 My apps I currently use via Docker Compose.
-
-[Arr stack](https://trash-guides.info/)
-[AudioBookshelf ✅](https://www.audiobookshelf.org/) - Installed as part of the KubeCraft Homelab course.
-[Jellyfin ✅](https://jellyfin.org/docs/general/installation/container) + [Jellyseer](https://docs.Jellyfineerr.dev/getting-started/docker?docker-methods=docker-compose)
-[Homessistant](https://www.home-assistant.io/)
-[Homepage](https://gethomepage.dev/installation/k8s/) or [Glances](https://github.com/glanceapp/glance/) TBD
-[Linkding ✅](https://linkding.link/) - Installed as part of the KubeCraft Homelab course.
-[Mealie ✅](https://docs.mealie.io/)
-[N8N](https://n8n.io/)
-[Paperless-ngx](https://docs.paperless-ngx.com/)
-[cloudnative-pg ✅](https://cloudnative-pg.io/) - PostgreSQL (with PostGIS)
-[Prometheus Community kube-prometheus-stack ✅](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#get-helm-repository-info)
-[Traefik ✅](https://doc.traefik.io/traefik/getting-started/) - I initially disliked using Traefik with Docker Compose due to overly verbose files, which was likely due to misconfiguration. Kubernetes seems to offer a much cleaner setup.
-[WallOs ✅](https://github.com/ellite/Wallos)
-[WatchTower ✅](https://github.com/containrrr/watchtower) - ~Assume this will be *replaced* with GitOps principles.~ Replaced by renovate :)
+<table>
+    <tr>
+        <td></td>
+        <td>URL</td>
+        <td>Comment</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[Arr Stack](https://trash-guides.info/)</td>
+        <td>Standard PVR/Downloader stack</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[AudioBookshelf ✅](https://www.audiobookshelf.org/)</td>
+        <td>Installed as part of the KubeCraft Homelab course.</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[Jellyfin ✅](https://jellyfin.org/docs/general/installation/container)</td>
+        <td>Media server</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[Jellyseer](https://docs.jellyfineerr.dev/getting-started/docker?docker-methods=docker-compose)</td>
+        <td>Jellyfin request manager</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[Home Assistant](https://www.home-assistant.io/)</td>
+        <td>Smart home management</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[Homepage](https://gethomepage.dev/installation/k8s/) Or [Glances](https://github.com/glanceapp/glance/) — TBD</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[Linkding ✅](https://linkding.link/)</td>
+        <td>Bookmark manager</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[Mealie ✅](https://docs.mealie.io/)</td>
+        <td>Recipe manager</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[n8n](https://n8n.io/)</td>
+        <td>Workflow automation</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[Paperless-ngx](https://docs.paperless-ngx.com/)</td>
+        <td>Document management</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[cloudnative-pg ✅](https://cloudnative-pg.io/)</td>
+        <td>PostgreSQL with PostGIS</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[kube-prometheus-stack ✅](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#get-helm-repository-info)</td>
+        <td>Monitoring stack</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[Traefik ✅](https://doc.traefik.io/traefik/getting-started/)</td>
+        <td>I initially disliked using Traefik with Docker Compose due to overly verbose files, which was likely due to misconfiguration. Kubernetes seems to offer a much cleaner setup.</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[Wallos ✅](https://github.com/ellite/Wallos)</td>
+        <td>Subscriptions Dashboard</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>[Watchtower ✅](https://github.com/containrrr/watchtower)</td>
+        <td>Replaced by Renovate/GitOps</td>
+    </tr>
+</table>
 
 ---
 
