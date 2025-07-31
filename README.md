@@ -24,29 +24,19 @@ My apps I currently use via Docker Compose.
         <td>Comment</td>
     </tr>
     <tr>
-        <td></td>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/sonarr-radarr.svg"></td>
         <td><a href="https://trash-guides.info">Arr Stack</a></td>
         <td>Standard PVR/Downloader stack</td>
     </tr>
     <tr>
-        <td></td>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/audiobookshelf.svg"></td>
         <td><a href="https://www.audiobookshelf.org/">AudioBookshelf ✅</a></td>
         <td>Installed as part of the KubeCraft Homelab course.</td>
     </tr>
     <tr>
-        <td></td>
-        <td><a href="https://jellyfin.org/docs/general/installation/container">Jellyfin ✅</a></td>
-        <td>Media server</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td><a href="https://docs.jellyfineerr.dev/getting-started/docker?docker-methods=docker-compose">Jellyseer</a></td>
-        <td>Jellyfin request manager</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td><a href="https://www.home-assistant.io/">Home Assistant</a></td>
-        <td>Smart home management</td>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/postgresql.svg"></td>
+        <td><a href="https://cloudnative-pg.io/">CloudNativePG ✅</a></td>
+        <td>PostgreSQL with PostGIS</td>
     </tr>
     <tr>
         <td></td>
@@ -54,47 +44,57 @@ My apps I currently use via Docker Compose.
         <td>TBD</td>
     </tr>
     <tr>
-        <td></td>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/home-assistant.svg"></td>
+        <td><a href="https://www.home-assistant.io/">Home Assistant</a></td>
+        <td>Smart home management</td>
+    </tr>
+    <tr>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyfin.svg"></td>
+        <td><a href="https://jellyfin.org/docs/general/installation/container">Jellyfin ✅</a></td>
+        <td>Media server</td>
+    </tr>
+    <tr>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyseerr.svg"></td>
+        <td><a href="https://docs.jellyfineerr.dev/getting-started/docker?docker-methods=docker-compose">Jellyseer</a></td>
+        <td>Jellyfin request manager</td>
+    </tr>
+    <tr>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/grafana.svg"></td>
+        <td><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#get-helm-repository-info">Kube Prometheus Stack ✅</a></td>
+        <td>Monitoring stack</td>
+    </tr>
+    <tr>
+        <td><img width="32" src="https://raw.githubusercontent.com/sissbruecker/linkding/refs/heads/master/assets/logo.svg"></td>
         <td><a href="https://linkding.link/">Linkding ✅</a></td>
         <td>Bookmark manager</td>
     </tr>
     <tr>
-        <td></td>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/mealie.svg"></td>
         <td><a href="https://docs.mealie.io/">Mealie ✅</a></td>
         <td>Recipe manager</td>
     </tr>
     <tr>
-        <td></td>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/n8n.svg"></td>
         <td><a href="https://n8n.io/">n8n<a/></td>
         <td>Workflow automation</td>
     </tr>
     <tr>
-        <td></td>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/paperless-ngx.svg"></td>
         <td><a href="https://docs.paperless-ngx.com/">Paperless-ngx</a></td>
         <td>Document management</td>
     </tr>
     <tr>
-        <td></td>
-        <td><a href="https://cloudnative-pg.io/">cloudnative-pg ✅</a></td>
-        <td>PostgreSQL with PostGIS</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#get-helm-repository-info">kube-prometheus-stack ✅</a></td>
-        <td>Monitoring stack</td>
-    </tr>
-    <tr>
-        <td></td>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/traefik.svg"></td>
         <td><a href="https://doc.traefik.io/traefik/getting-started/">Traefik ✅</a></td>
         <td>I initially disliked using Traefik with Docker Compose due to overly verbose files, which was likely due to misconfiguration. Kubernetes seems to offer a much cleaner setup.</td>
     </tr>
     <tr>
-        <td></td>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wallos.svg"></td>
         <td><a href="https://github.com/ellite/Wallos">Wallos ✅</a></td>
         <td>Subscriptions Dashboard</td>
     </tr>
     <tr>
-        <td></td>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/mend-renovate.svg"></td>
         <td><a href="https://github.com/containrrr/watchtower">Watchtower ✅</a></td>
         <td>Replaced by Renovate/GitOps</td>
     </tr>
