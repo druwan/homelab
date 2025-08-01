@@ -16,7 +16,7 @@ Previously, I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howev
 
 ## Apps
 
-My apps I currently use via Docker Compose.
+My apps I currently use via Docker Compose & Kubernetes migration progress.
 <table style="width:100%">
     <tr>
         <th style="width:25%">Logo</td>
