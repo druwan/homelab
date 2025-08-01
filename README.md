@@ -64,7 +64,7 @@ My apps I currently use via Docker Compose.
         <td>Monitoring stack</td>
     </tr>
     <tr>
-        <td><img width="32" src="https://raw.githubusercontent.com/sissbruecker/linkding/refs/heads/master/assets/logo.svg"></td>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/linkding.svg"></td>
         <td><a href="https://linkding.link/">Linkding ✅</a></td>
         <td>Bookmark manager</td>
     </tr>
