@@ -94,7 +94,7 @@ My apps I currently use via Docker Compose & Kubernetes migration progress.
         <td>Subscriptions Dashboard</td>
     </tr>
     <tr>
-        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/mend-renovate.svg"></td>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/watchtower.svg"></td>
         <td><a href="https://github.com/containrrr/watchtower">Watchtower ✅</a></td>
         <td>Replaced by Renovate/GitOps</td>
     </tr>
