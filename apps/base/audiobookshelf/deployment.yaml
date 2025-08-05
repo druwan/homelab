@@ -20,7 +20,7 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
       containers:
-        - image: ghcr.io/advplyr/audiobookshelf:2.26.3
+        - image: ghcr.io/advplyr/audiobookshelf:2.27.0
           name: audiobookshelf
           ports:
             - containerPort: 3005
