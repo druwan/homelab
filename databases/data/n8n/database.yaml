@@ -1,0 +1,17 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: n8n-db
+  namespace: n8n
+spec:
+  description: Postgres cluster for n8n app
+  imageName: ghcr.io/cloudnative-pg/postgis:17
+  inheritedMetadata:
+    labels:
+      app: n8n
+      policy-type: database
+  instances: 3
+  monitoring:
+    enablePodMonitor: true
+  storage:
+    size: 1Gi
