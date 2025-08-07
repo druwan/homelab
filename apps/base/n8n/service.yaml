@@ -7,8 +7,8 @@ metadata:
   namespace: n8n
 spec:
   ports:
-    - port: 80
-      name: web
+    - name: http
+      port: 80
       protocol: TCP
       targetPort: 5678
   selector:
