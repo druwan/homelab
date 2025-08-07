@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: discord-bot
+  name: discord-bot
+  namespace: discord-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: discord-bot
+  template:
+    metadata:
+      labels:
+        app: discord-bot
+    spec:
+      containers:
+        - image: ghcr.io/druwan/discord-bot:v0.0.1
+          name: discord-bot
+          envFrom:
+            - secretRef:
+                name: discord-dot-env
