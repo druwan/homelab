@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: n8n
+    role: app
   name: n8n
   namespace: n8n
 spec:
@@ -14,6 +15,7 @@ spec:
     metadata:
       labels:
         app: n8n
+        role: app
     spec:
       securityContext:
         fsGroup: 1000

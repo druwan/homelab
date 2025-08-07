@@ -13,4 +13,5 @@ spec:
       targetPort: 5678
   selector:
     app: n8n
+    role: app
   type: ClusterIP
