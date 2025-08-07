@@ -75,7 +75,7 @@ My apps I currently use via Docker Compose & Kubernetes migration progress.
     </tr>
     <tr>
         <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/n8n.svg"></td>
-        <td><a href="https://n8n.io/">n8n<a/></td>
+        <td><a href="https://n8n.io/">n8n ✅<a/></td>
         <td>Workflow automation</td>
     </tr>
     <tr>
