@@ -37,6 +37,8 @@ spec:
               value: http
             - name: N8N_PROXY_HOPS
               value: "1"
+            - name: N8N_RUNNERS_ENABLED
+              value: "true"
             - name: N8N_SECURE_COOKIE
               value: "false"
             - name: NODE_ENV
