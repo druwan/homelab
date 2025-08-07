@@ -20,4 +20,4 @@ spec:
           name: discord-bot
           envFrom:
             - secretRef:
-                name: discord-dot-env
+                name: discord-bot-env
