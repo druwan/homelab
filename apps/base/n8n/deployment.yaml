@@ -29,6 +29,8 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
           env:
+            - name: DB_TYPE
+              value: postgresdb
             - name: GENERIC_TIMEZONE
               value: Europe/Stockholm
             - name: N8N_HOST
