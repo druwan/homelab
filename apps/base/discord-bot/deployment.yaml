@@ -18,6 +18,9 @@ spec:
       containers:
         - image: ghcr.io/druwan/discord-bot:v0.1.0
           name: discord-bot
+          env:
+            - name: NODE_ENV
+              value: production
           envFrom:
             - secretRef:
                 name: discord-bot-env
