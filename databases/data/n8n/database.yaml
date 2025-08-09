@@ -8,8 +8,6 @@ spec:
   imageName: ghcr.io/cloudnative-pg/postgis:17
   bootstrap:
     initdb:
-      secret:
-        name: postgres-env-secret
       postInitTemplateSQL:
         - CREATE EXTENSION fuzzystrmatch;
         - CREATE EXTENSION postgis;
