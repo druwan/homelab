@@ -1,0 +1,87 @@
+theme:
+  background-color: 240 21 15
+  contrast-multiplier: 1.4
+  negative-color: 347 70 65
+  positive-color: 115 54 76
+  primary-color: 217 92 83
+
+branding:
+  custom-footer: |
+    <p><a href="https://github.com/druwan">github.com/druwan<a></p>
+
+server:
+  port: 8080
+  proxied: true
+
+pages:
+  - name: Home
+    hide-desktop-navigation: true
+    width: wide
+    columns:
+      - size: small
+        widgets:
+          - type: custom-api
+            title: Random Fact
+            cache: 6h
+            url: https://uselessfacts.jsph.pl/api/v2/facts/random
+            template: |
+              <p class="size-h4 color-paragraph">{{ .JSON.String "text" }}</p>
+          - type: clock
+            hour-format: 24h
+            timezones:
+              - timezone: Europe/Stockholm
+                label: Sweden
+              - timezone: Asia/Colombo
+                label: Sri Lanka
+              - timezone: Australia/Brisbane
+                label: Cairns
+          - type: weather
+            units: metric
+            hour-format: 24h
+            location: Arlanda, Sweden
+
+      - size: full
+        widgets:
+          - type: server-stats
+            servers:
+              - type: local
+                name: Satsumas
+          - type: monitor
+            cache: 1h
+            title: Apps
+            sites:
+              - title: Audiobookshelf
+                url: https://audiobookshelf.christophervestman.com
+              - title: Home Assistant
+                url: http://192.168.1.104:8123
+                icon: sh:home-assistant
+              - title: Grafana-Promeheus-Stack
+                url: https://grafana.christophervestman.com
+                icon: sh:grafana
+              - title: Jellyfin
+                url: https://jellyfin.christophervestman.com
+                icon: sh:jellyfin
+              - title: Linkding
+                url: https://linkding.christophervestman.com
+                icon: sh:linkding
+              - title: Mealie
+                url: https://mealie.christophervestman.com
+                icon: sh:mealie
+              - title: Minio
+                url: https://minio.christophervestman.com
+                icon: sh:minio
+              - title: n8n
+                url: https://n8n.christophervestman.com
+                icon: sh:n8n
+              - title: Paperless-ngx
+                url: https://paperless.christophervestman.com
+                icon: sh:paperless-ngx
+              - title: Postgres
+                url: https://pgadmin.christophervestman.com
+                icon: sh:postgresql
+              - title: Wallos
+                url: https://wallos.christophervestman.com
+                icon: sh:wallos
+              - title: Vaultwarden
+                url: https://vaultwarden.christophervestman.com
+                icon: sh:vaultwarden

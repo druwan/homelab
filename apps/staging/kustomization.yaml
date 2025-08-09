@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - audiobookshelf
   - discord-bot
+  - glance
   - jellyfin
   - linkding
   - mealie

@@ -39,9 +39,9 @@ My apps I currently use via Docker Compose & Kubernetes migration progress.
         <td>PostgreSQL with PostGIS</td>
     </tr>
     <tr>
-        <td></td>
-        <td><a href="https://gethomepage.dev/installation/k8s/">Homepage</a> Or <a href="https://github.com/glanceapp/glance/">Glances</a></td>
-        <td>TBD</td>
+        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/glance.svg"></td>
+        <td><a href="https://github.com/glanceapp/glance/">Glance ✅</a></td>
+        <td>Dashboard</td>
     </tr>
     <tr>
         <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/home-assistant.svg"></td>
