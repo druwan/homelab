@@ -1,27 +1,23 @@
 apiVersion: v1
 data:
-    PGADMIN_DEFAULT_EMAIL: ENC[AES256_GCM,data:ZDiYyQb5deLKiZfNN7ZxFDE0HVtXSXPvi2BQPEQzzRflU1AkyzO1ng==,iv:B4k09zDffEZwM8lkjG5Ei8NFRIqN74VJZs/WuA7a9Mo=,tag:IstUbo96NbPKD5UGyw5EIA==,type:str]
-    PGADMIN_DEFAULT_PASSWORD: ENC[AES256_GCM,data:GHH0yxGLHwsNYZda,iv:YQSdz+5Ssq/81GnPHexczitkLZ65ZCCMedQRVOBY7ps=,tag:HauyyTY9n7P87sFQjCnYmw==,type:str]
+    PGADMIN_DEFAULT_EMAIL: ENC[AES256_GCM,data:5ZDuEPKdMaimSQV1xSKZ374yOO8nyUcT/9ZISKeH/hSGU2lnrCyi9Q==,iv:M7vAJPSf9YsqnvA/xa7piLWsYFJuEJXRguzFpIYFZuY=,tag:NEGvKsRp208QpMTVhzxzYw==,type:str]
+    PGADMIN_DEFAULT_PASSWORD: ENC[AES256_GCM,data:5xhUMYHLDy6Vj+jL,iv:0EgEsWujKouN+HfbRpGJWAZSL0slW36aVUfZjOSJGIY=,tag:epVVuxixWmMp2D1EgHFhmA==,type:str]
 kind: Secret
 metadata:
-    creationTimestamp: "2025-08-09T20:03:46Z"
+    creationTimestamp: null
     name: pgadmin-secret-env
-    namespace: pgadmin
-    resourceVersion: "2608645"
-    uid: fd1494fe-71ca-42d7-b09d-809a8af0a3b1
-type: Opaque
 sops:
     age:
         - recipient: age14l4x2993zh3lavuyc75d669889zqjzap384um9ngv08eeh9w35nqnw3jd8
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBPMGIwWHFWeWQvWFRZbTl1
-            a0k1blR0aUdRQm9vcUYyQ29qZmt3SERweUMwClJ2Q2tCZmgrZlpGWW5RWFYxSGtW
-            aGxHdXNaY3pWcjZLTnc1ZUpYeTZza1EKLS0tIHRsUG1kM1RGL2lScnRqV2JmakIv
-            WUFLWjNidy83ZDJrbW5vWEFhQmNpRU0KwJt+0uGMzrJtb4e3St5VWhnTaD6sjB41
-            h/6+O64kDfsXLj2DHPay7aAU2Cji4EAkiptF4J0or6fa+QvCE8o0Ig==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlcGpJazdOOGpEOWNJcUZu
+            M0dRTE5ub2pBQkRTejJJUXdWMVBod1lyYUNVCmhqZk1DZlVFUFl3YmRERFRldHdp
+            cDlOVGJaRHZFZmRUMlJZbjNYY2ZwR2cKLS0tIEl1VzRaandEdkt3Y3NwNXZ5U1pW
+            azdvR2pORm42YTJUNnVMV0MrUDlxcXcKn2aJurnb7nytxVKhRNhxri5NqsDzTgjN
+            899wKL4p5kGhEZOd+2UUdqIAND1JhnOj7gKjr9vReyppCC8Bqpv6Rg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-08-09T20:04:04Z"
-    mac: ENC[AES256_GCM,data:9W7NcJrbHtEgwoVl/nrJVMnW/OHgh9rlY5bP7Ft27+EHaRNWjSXQIvZKqn3tsDWV8iziPZgOYyIJitJBI0fifoXqj8mfnaDobQQ+0Z1CaHNVviCbZ58Er6LmXm7wqQlGU40aeAlAkyeZ705VOjvL8AiGN8kRzFWyVE/q7CrJHuU=,iv:dYRufeZ6/Kz0Gklw/RHMClzGFyeXwhUp5HWNrXXfdwU=,tag:ZdO1H6Gj2GmxZmGYe4oBfA==,type:str]
+    lastmodified: "2025-08-09T20:48:50Z"
+    mac: ENC[AES256_GCM,data:Zk3qLYVuqajub6fSA6bv28w7r0b9BfchhDchvtlrr84gqKv2iS5Zg+OiQS6MSC5IL+XjCR9Iq5SjDIP9M95TRqugKFe4Ydj9RRnrMBuzHYoZJhrgqD50Rd8uHAmLz9pED5/ELINPXNUN9wAtHJN5B+hjF6XoJf6xUnDm0tBsMno=,iv:IHx14YRof0y5EtBmIdlXBfDSAD16Eh8gxvfTvw/VRhI=,tag:Fm84kmeU103FJiQN5cNpqg==,type:str]
     encrypted_regex: ^(data|stringData)$
     version: 3.10.2
