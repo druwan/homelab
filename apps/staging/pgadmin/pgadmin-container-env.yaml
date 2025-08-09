@@ -1,0 +1,27 @@
+apiVersion: v1
+data:
+  PGADMIN_DEFAULT_EMAIL: ENC[AES256_GCM,data:opeVn0LpomTjcWV7gGMbTrYu4N634OCRI0RvIsDfc+m22j+ktT6H3A==,iv:hgzEUPUvST1g+UR6G5TiwBs28aXjBlAwNkltEjMeo1k=,tag:vwr2Bqfpiy1X+zPQheqsng==,type:str]
+  PGADMIN_DEFAULT_PASSWORD: ENC[AES256_GCM,data:52J8kKXl1MoWyssk,iv:FAx3WUyqZ/u2JAzdZkqFXkRF1Af2Tlk6NFWIK6phxug=,tag:NbiiR2aKKQlnVQ1FPZcxnw==,type:str]
+kind: Secret
+metadata:
+  creationTimestamp: "2025-08-09T19:34:24Z"
+  name: pgadmin-secret-env
+  namespace: glance
+  resourceVersion: "2604998"
+  uid: 47c79cc6-3ea2-4d51-be39-d9a9d06e2d1b
+type: Opaque
+sops:
+  age:
+    - recipient: age14l4x2993zh3lavuyc75d669889zqjzap384um9ngv08eeh9w35nqnw3jd8
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB0dXJHVHlSRW1FaGRhcFc1
+        SWZCSzlKYkNlS3J1R3VmK05pU09RWVNGQlJJClpDQVNMV0tMcHJDbzhHc2xoa1Rq
+        WWdYaThHR3JZOHFITVRqZHlnV01WQjgKLS0tIGVkbCtVVEFVeWVqZmp0UXhpZ3Rn
+        eG5DUHZRNDNSRENhazNIMkFsbkNXOTgKHkNYk4bgE94W+L3UveSPKdDw6I6Q+UBg
+        mTgQeFPUCbJoE6zj8qMgHdaFHiXyohrDPNPDaNnjYUgse60aD0+fRg==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-08-09T19:35:21Z"
+  mac: ENC[AES256_GCM,data:Q7j4z+RO3lDoPqoSSpLdDnr5lgT4eC/hyaZLCS2l89iDVbVPWhtl3yLCy7IrxU0shXrDfEmwnqHeGEAa2QxAy1Yn258+XhV4KSJgHY8VpK1PDKX27vpCjSn/WYV0TwGnHtT8gzrbStDHSVWmrZWIsGNpd9N+uM8329t8SnO4VUI=,iv:r9OmFzU3liFdcoxlKEKvjXnq6MXM7pzSV/Lb1GBcPqQ=,tag:XW0JAQzVsaQCaej0Mn6goA==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  version: 3.10.2

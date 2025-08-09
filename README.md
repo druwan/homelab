@@ -36,7 +36,7 @@ My apps I currently use via Docker Compose & Kubernetes migration progress.
     <tr>
         <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/postgresql.svg"></td>
         <td><a href="https://cloudnative-pg.io/">CloudNativePG ✅</a></td>
-        <td>PostgreSQL with PostGIS</td>
+        <td>PostgreSQL with PostGIS, Using PG-Admin whenever I need a GUI</td>
     </tr>
     <tr>
         <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/glance.svg"></td>
