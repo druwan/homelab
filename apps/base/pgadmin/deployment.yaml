@@ -16,7 +16,7 @@ spec:
         app: pgadmin
     spec:
       containers:
-        - image: dpage/pgadmin4:9.5
+        - image: dpage/pgadmin4:9.6
           name: pgadmin
           ports:
             - containerPort: 80
