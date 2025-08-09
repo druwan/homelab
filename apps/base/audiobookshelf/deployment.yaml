@@ -27,9 +27,6 @@ spec:
               protocol: TCP
           securityContext:
             allowPrivilegeEscalation: false
-          envFrom:
-            - configMapRef:
-                name: audiobookshelf-configmap
           volumeMounts:
             - mountPath: /audiobooks
               name: audiobookshelf-audiobooks
