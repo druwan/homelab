@@ -48,16 +48,27 @@ spec:
             - name: NODE_ENV
               value: production
             - name: DB_POSTGRESDB_DATABASE
-              value: app
+              valueFrom:
+                secretKeyRef:
+                  name: n8n-db-app
+                  key: dbname
             - name: DB_POSTGRESDB_HOST
-              value: n8n-db-rw
+              valueFrom:
+                secretKeyRef:
+                  name: n8n-db-app
+                  key: host
             - name: DB_POSTGRESDB_USER
-              value: app
+              valueFrom:
+                secretKeyRef:
+                  name: n8n-db-app
+                  key: user
+            - name: DB_POSTGRESDB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: n8n-db-app
+                  key: password
             - name: WEBHOOK_URL
               value: https://n8n.christophervestman.com/
-          envFrom:
-            - secretRef:
-                name: postgres-env-secret
           volumeMounts:
             - mountPath: /home/node/.n8n
               name: n8n-data
