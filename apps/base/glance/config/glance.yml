@@ -56,7 +56,7 @@ pages:
               - title: Home Assistant
                 url: http://192.168.1.104:8123
                 icon: sh:home-assistant
-              - title: Grafana-Promeheus-Stack
+              - title: Grafana
                 url: https://grafana.christophervestman.com
                 icon: sh:grafana
               - title: Jellyfin
