@@ -4,5 +4,8 @@
     "fileMatch": [
       "\\.yaml$"
     ]
+  },
+  "flux": {
+    "enabled": true
   }
 }
