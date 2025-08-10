@@ -52,6 +52,7 @@ pages:
             sites:
               - title: Audiobookshelf
                 url: https://audiobookshelf.christophervestman.com
+                icon: sh:audiobookshelf
               - title: Home Assistant
                 url: http://192.168.1.104:8123
                 icon: sh:home-assistant
