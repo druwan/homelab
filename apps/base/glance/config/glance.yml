@@ -43,10 +43,8 @@ pages:
                 hide-mountpoints-by-default: true
                 mountpoints:
                   "/":
-                    name: "root"
                     hide: false
-                  "/home/":
-                    name: "home"
+                  "/home":
                     hide: false
           - type: monitor
             cache: 1h
