@@ -1,14 +1,14 @@
 # Homelab
 
-**Workin Progress** — Aiming to build a Kubernetes-based homelab using GitOps practices. This setup follows the [KubeCraft](https://www.skool.com/kubecraft) course by [Mischa van den Burg](https://github.com/mischavandenburg).
+**Work in Progress** — Aiming to build a Kubernetes-based homelab using GitOps practices. This setup follows the [KubeCraft](https://www.skool.com/kubecraft) course by [Mischa van den Burg](https://github.com/mischavandenburg).
 
-I'mcurrently in the process of migrating my existing Docker Compose setups into Kubernetes manifests. While I intend to use Helm for some deployments, I’m primarily writing plain `.yaml` manifests to gain a deeper understanding of Kubernetes. One of the main challenges so far has been migrating persistent data (such as SQLite and PostgreSQL databases) from Docker volumes into Kubernetes-native storage.
+I'm currently in the process of migrating my existing Docker Compose setups into Kubernetes manifests. While I intend to use Helm for some deployments, I’m primarily writing plain `.yaml` manifests to gain a deeper understanding of Kubernetes. One of the main challenges so far has been migrating persistent data (such as SQLite and PostgreSQL databases) from Docker volumes into Kubernetes-native storage.
 
 ---
 
 ## Hardware
 
-I'mrunning everything on a **GMKtec G3 Plus** (Intel Twin Lake N150, 512GB SSD, 16GB RAM), with **Arch Linux** installed. Which I access via SSH.
+I'm running everything on a **GMKtec G3 Plus** (Intel Twin Lake N150, 512GB SSD, 16GB RAM), with **Arch Linux** installed. Which I access via SSH.
 
 Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. However, I switched to Arch to benefit from more up-to-date package versions and rolling releases.
 
@@ -16,7 +16,7 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
 
 ## Apps
 
-<tablestyle="width:100%">
+<table style="width:100%">
    <tr>
        <th style="width:25%">Logo</td>
        <th style="width:25%">URL</td>
@@ -110,25 +110,25 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
 
 ### Using Porkbun-webhook for ACME DNS01 Solver
 
-Since[Porkbun](https://porkbun.com/) is not officially supported by [cert-manager](https://cert-manager.io), I’m using a webhook-based solver to enable [Let's Encrypt](https://letsencrypt.org/) certificates via DNS-01 challenges.
+Since [Porkbun](https://porkbun.com/) is not officially supported by [cert-manager](https://cert-manager.io), I’m using a webhook-based solver to enable [Let's Encrypt](https://letsencrypt.org/) certificates via DNS-01 challenges.
 
-IfI were using [Cloudflare](https://www.cloudflare.com/) as my DNS provider, this would be much simpler — I may consider switching in the future.
+If I were using [Cloudflare](https://www.cloudflare.com/) as my DNS provider, this would be much simpler — I may consider switching in the future.
 
-Toinstall the Porkbun webhook:
+To install the Porkbun webhook:
 
-1.Clone the [porkbun-webhook](https://github.com/mdonoughe/porkbun-webhook) repository
-2.Navigate into the project directory
-3.Install the Helm chart:
+1. Clone the [porkbun-webhook](https://github.com/mdonoughe/porkbun-webhook) repository
+2. Navigate into the project directory
+3. Install the Helm chart:
 
 ```bash
-helminstall porkbun-webhook ./deploy/porkbun-webhook --namespace cert-manager  --set groupName=christophervestman.com
+helm install porkbun-webhook ./deploy/porkbun-webhook --namespace cert-manager  --set groupName=christophervestman.com
 ```
 
 4.Then, configure your cert-manager Issuer (see the infrastructure/ directory for examples).
 
 ### Bootstrapping a new cluster
 
-Hadto redo my cluster by changing the install directory. Some of the necessities required to make it function again:
+Had to redo my cluster by changing the install directory. Some of the necessities required to make it function again:
 
 ```bash
 #Uninstall k3s
@@ -136,20 +136,20 @@ Hadto redo my cluster by changing the install directory. Some of the necessities
 /usr/local/bin/k3s-uninstall.sh
 
 #Reinstall with flags
-sudocurl -sfL https://get.k3s.io | sh -s - --disable-helm-controller --data-dir=/home/k3s
+sudo curl -sfL https://get.k3s.io | sh -s - --disable-helm-controller --data-dir=/home/k3s
 
 #cp kubeconfig and edit server address
-sudocp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 
 #Recreate secrets
-kcreate secret generic porkbun-env-secret --from-literal=api-key=pk1_b7899a440e4b57c3b05684c5a4ce1518c720b7d6cda5417a1bb202ebe213bea4 --from-literal=secret-key=sk1_9620fe1ce138d37e1faf22129fd5154d993d86de067fbcf1b266f6e779a7536f --dry-run=client -o yaml > porkbun-env-secret.yaml
+k create secret generic porkbun-env-secret --from-literal=api-key=pk1_b7899a440e4b57c3b05684c5a4ce1518c720b7d6cda5417a1bb202ebe213bea4 --from-literal=secret-key=sk1_9620fe1ce138d37e1faf22129fd5154d993d86de067fbcf1b266f6e779a7536f --dry-run=client -o yaml > porkbun-env-secret.yaml
 
-kcreate secret generic sops-age --namespace=flux-system --from-file=age.agekey=/dev/stdin
+k create secret generic sops-age --namespace=flux-system --from-file=age.agekey=/dev/stdin
 
 #Manually create the cert-manager namespace
-kcreate namespace cert-manager
+k create namespace cert-manager
 
 #cd into the porkbun-webhook repo and do the install
 
-fluxbootstrap github --owner=druwan --repository=homelab --branch=main --path=./clusters/staging --personal
+flux bootstrap github --owner=druwan --repository=homelab --branch=main --path=./clusters/staging --personal
 ```
