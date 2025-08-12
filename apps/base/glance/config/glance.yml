@@ -20,12 +20,6 @@ pages:
     columns:
       - size: small
         widgets:
-          - type: custom-api
-            title: Random Fact
-            cache: 6h
-            url: https://uselessfacts.jsph.pl/api/v2/facts/random
-            template: |
-              <p class="size-h4 color-paragraph">{{ .JSON.String "text" }}</p>
           - type: clock
             hour-format: 24h
             timezones:
@@ -46,6 +40,14 @@ pages:
             servers:
               - type: local
                 name: Satsumas
+                hide-mountpoints-by-default: true
+                mountpoints:
+                  "/":
+                    name: "root"
+                    hide: false
+                  "/home/":
+                    name: "home"
+                    hide: false
           - type: monitor
             cache: 1h
             title: Apps
@@ -77,7 +79,7 @@ pages:
               - title: Paperless-ngx
                 url: https://paperless.christophervestman.com
                 icon: sh:paperless-ngx
-              - title: Postgres
+              - title: pgAdmin
                 url: https://pgadmin.christophervestman.com
                 icon: sh:postgresql
               - title: Wallos
