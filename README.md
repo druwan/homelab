@@ -33,7 +33,7 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>Installed as part of the KubeCraft Homelab course.</td>
    </tr>
    <tr>
-     <td><img width="32" src="https://raw.githubusercontent.com/cert-manager/cert-manager/master/logo/logo.svg>"</td>
+     <td><img width="32" src="https://raw.githubusercontent.com/cert-manager/cert-manager/master/logo/logo.svg"></td>
      <td><a href="https://cert-manager.io/">Cert-Manager</a></td>
      <td>X.509 certificate management</td>
    </tr>
