@@ -142,7 +142,7 @@ sudo curl -sfL https://get.k3s.io | sh -s - --disable-helm-controller --data-dir
 sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 
 #Recreate secrets
-k create secret generic porkbun-env-secret --from-literal=api-key=${PORKBUN_API_KEY} --from-literal=secret-key=${PORKBUN_SECRET_KEY} --dry-run=client -o yaml > porkbun-env-secret.yaml
+k create secret generic porkbun-secret --from-literal=api-key=${PORKBUN_API_KEY} --from-literal=secret-key=${PORKBUN_SECRET_KEY} --dry-run=client -o yaml > porkbun-secret.yaml
 
 k create secret generic sops-age --namespace=flux-system --from-file=age.agekey=/dev/stdin
 
