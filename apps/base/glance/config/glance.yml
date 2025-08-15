@@ -50,9 +50,9 @@ pages:
             cache: 1h
             title: Apps
             sites:
-              - title: Audiobookshelf
-                url: https://audiobookshelf.christophervestman.com
-                icon: sh:audiobookshelf
+              # - title: Audiobookshelf
+              #   url: https://audiobookshelf.christophervestman.com
+              #   icon: sh:audiobookshelf
               - title: Home Assistant
                 url: http://192.168.1.104:8123
                 icon: sh:home-assistant
@@ -62,27 +62,27 @@ pages:
               - title: Jellyfin
                 url: https://jellyfin.christophervestman.com
                 icon: sh:jellyfin
-              - title: Linkding
-                url: https://linkding.christophervestman.com
-                icon: sh:linkding
+              # - title: Linkding
+              #   url: https://linkding.christophervestman.com
+              #   icon: sh:linkding
               - title: Mealie
                 url: https://mealie.christophervestman.com
                 icon: sh:mealie
-              - title: Minio
-                url: https://minio.christophervestman.com
-                icon: sh:minio
+              # - title: Minio
+              #   url: https://minio.christophervestman.com
+              #   icon: sh:minio
               - title: n8n
                 url: https://n8n.christophervestman.com
                 icon: sh:n8n
-              - title: Paperless-ngx
-                url: https://paperless.christophervestman.com
-                icon: sh:paperless-ngx
+              # - title: Paperless-ngx
+              #   url: https://paperless.christophervestman.com
+              #   icon: sh:paperless-ngx
               - title: pgAdmin
                 url: https://pgadmin.christophervestman.com
                 icon: sh:postgresql
-              - title: Wallos
-                url: https://wallos.christophervestman.com
-                icon: sh:wallos
-              - title: Vaultwarden
-                url: https://vaultwarden.christophervestman.com
-                icon: sh:vaultwarden
+              # - title: Wallos
+              #   url: https://wallos.christophervestman.com
+              #   icon: sh:wallos
+              # - title: Vaultwarden
+              #   url: https://vaultwarden.christophervestman.com
+              #   icon: sh:vaultwarden
