@@ -5,7 +5,13 @@
       "\\.yaml$"
     ]
   },
-  "flux": {
-    "enabled": true
-  }
+  "assignees": [
+    "druwan"
+  ],
+  "labels": [
+    "deps"
+  ],
+  "reviewers": [
+    "druwan"
+  ]
 }
