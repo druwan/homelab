@@ -4,4 +4,4 @@ resources:
   - configmap.yaml
   - cronjob.yaml
   - namespace.yaml
-  - renovate-bot-container-env.yaml
+  - renovate-bot-secret.yaml

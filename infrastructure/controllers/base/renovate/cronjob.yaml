@@ -17,7 +17,7 @@ spec:
                 - druwan/homelab
               envFrom:
                 - secretRef:
-                    name: renovate-bot-container-env
+                    name: renovate-bot-secret
                 - configMapRef:
                     name: renovate-configmap
           restartPolicy: Never
