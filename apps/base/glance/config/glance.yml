@@ -80,9 +80,9 @@ pages:
               - title: pgAdmin
                 url: https://pgadmin.christophervestman.com
                 icon: sh:postgresql
-              # - title: Wallos
-              #   url: https://wallos.christophervestman.com
-              #   icon: sh:wallos
+              - title: Wallos
+                url: https://wallos.christophervestman.com
+                icon: sh:wallos
               # - title: Vaultwarden
               #   url: https://vaultwarden.christophervestman.com
               #   icon: sh:vaultwarden
