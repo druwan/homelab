@@ -6,7 +6,10 @@ metadata:
   name: glance
   namespace: glance
 spec:
+  revisionHistoryLimit: 2
   replicas: 1
+  strategy:
+    type: RollingUpdate
   selector:
     matchLabels:
       app: glance
