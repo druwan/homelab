@@ -9,4 +9,4 @@ resources:
   - mealie
   - n8n
   - pgadmin
-  #- wallos
+  - wallos
