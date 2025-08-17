@@ -44,7 +44,7 @@ pages:
                 mountpoints:
                   "/":
                     hide: false
-                  "/home/druwan/":
+                  "/home":
                     hide: false
           - type: monitor
             cache: 1h
