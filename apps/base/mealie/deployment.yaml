@@ -23,6 +23,35 @@ spec:
         - image: ghcr.io/mealie-recipes/mealie:v3.0.2
           name: mealie
           env:
+            - name: BASE_URL
+              value: https://mealie.christophervestman.com
+            - name: DB_ENGINE
+              value: postgres
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: mealie-db-app
+                  key: dbname
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mealie-db-app
+                  key: password
+            - name: POSTGRES_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: mealie-db-app
+                  key: port
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mealie-db-app
+                  key: username
+            - name: POSTGRES_SERVER
+              valueFrom:
+                secretKeyRef:
+                  name: mealie-db-app
+                  key: host
             - name: TZ
               value: Europe/Stockholm
           securityContext:

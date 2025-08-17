@@ -1,0 +1,16 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: mealie-db
+  namespace: mealie
+spec:
+  description: Postgres cluster for mealie app
+  inheritedMetadata:
+    labels:
+      app: mealie
+      policy-type: database
+  instances: 3
+  monitoring:
+    enablePodMonitor: true
+  storage:
+    size: 1Gi
