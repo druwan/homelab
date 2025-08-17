@@ -5,10 +5,9 @@
       "\\.yaml$"
     ]
   },
-  "helm": {
-    "fileMatch": [
-      ".*/release\\.yaml$",
-      ".*/repository\\.yaml$"
+  "flux": {
+    "managerFilePatterns": [
+      "/\\.yaml$/"
     ]
   },
   "assignees": [
