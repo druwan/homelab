@@ -5,6 +5,12 @@
       "\\.yaml$"
     ]
   },
+  "helm": {
+    "fileMatch": [
+      ".*/release\\.yaml$",
+      ".*/repository\\.yaml$"
+    ]
+  },
   "assignees": [
     "druwan"
   ],
