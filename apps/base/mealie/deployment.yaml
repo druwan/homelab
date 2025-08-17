@@ -23,8 +23,6 @@ spec:
         - image: ghcr.io/mealie-recipes/mealie:v3.0.2
           name: mealie
           env:
-            - name: BASE_URL
-              value: https://mealie.christophervestman.com
             - name: DB_ENGINE
               value: postgres
             - name: POSTGRES_DB
