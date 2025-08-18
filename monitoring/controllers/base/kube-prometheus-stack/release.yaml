@@ -41,16 +41,12 @@ spec:
             hosts:
               - grafana.christophervestman.com
     prometheus:
-      ingress:
-        enabled: true
-        ingressClassName: traefik
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.tls: "true"
-        hosts:
-          - prometheus.christophervestman.com
-        tls:
-          - secretName: prometheus-tls
-            hosts:
-              - prometheus.christophervestman.com
+      prometheusSpec:
+        podMonitorNamespaceSelector:
+          matchLabels:
+            app.kubernetes.io/component: monitoring
+        # Discover all PodMonitors, Probes, PrometheusRules and ServiceMonitors
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
