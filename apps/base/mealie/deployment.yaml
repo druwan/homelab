@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: mealie
+    role: app
   name: mealie
   namespace: mealie
 spec:
@@ -14,6 +15,7 @@ spec:
     metadata:
       labels:
         app: mealie
+        role: app
     spec:
       securityContext:
         fsGroup: 911
