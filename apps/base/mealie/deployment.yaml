@@ -16,9 +16,9 @@ spec:
         app: mealie
     spec:
       securityContext:
-        fsGroup: 33
-        runAsUser: 33
-        runAsGroup: 33
+        fsGroup: 911
+        runAsUser: 911
+        runAsGroup: 911
       containers:
         - image: ghcr.io/mealie-recipes/mealie:v3.0.2
           name: mealie
