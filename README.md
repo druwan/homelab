@@ -124,7 +124,7 @@ To install the Porkbun webhook:
 helm install porkbun-webhook ./deploy/porkbun-webhook --namespace cert-manager  --set groupName=christophervestman.com
 ```
 
-4.Then, configure your cert-manager Issuer (see the infrastructure/ directory for examples).
+4. Then, configure your cert-manager Issuer (see the infrastructure/ directory for examples).
 
 ### Bootstrapping a new cluster
 
