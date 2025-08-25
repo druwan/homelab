@@ -17,7 +17,7 @@ spec:
       securityContext:
         fsGroup: 33
         runAsUser: 33
-        runsAsGroup: 33
+        runAsGroup: 33
       containers:
         - image: sissbruecker/linkding:1.42.0
           name: linkding
@@ -47,7 +47,7 @@ spec:
                   name: linkding-db-app
                   key: host
             - name: LD_DB_PORT
-              value: 5432
+              value: "5432"
           envFrom:
             - secretRef:
                 name: linkding-container-env
