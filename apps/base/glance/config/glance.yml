@@ -62,9 +62,9 @@ pages:
               - title: Jellyfin
                 url: https://jellyfin.christophervestman.com
                 icon: sh:jellyfin
-              # - title: Linkding
-              #   url: https://linkding.christophervestman.com
-              #   icon: sh:linkding
+              - title: Linkding
+                url: https://linkding.christophervestman.com
+                icon: sh:linkding
               - title: Mealie
                 url: https://mealie.christophervestman.com
                 icon: sh:mealie
