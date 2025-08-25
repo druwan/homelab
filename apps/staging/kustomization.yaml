@@ -5,7 +5,7 @@ resources:
   - discord-bot
   - glance
   - jellyfin
-  # - linkding
+  - linkding
   - mealie
   - n8n
   - pgadmin
