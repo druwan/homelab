@@ -1,10 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
+  labels:
+    app: linkding
   name: linkding
+  namespace: linkding
 spec:
   ports:
     - port: 9090
   selector:
     app: linkding
+    role: app
   type: ClusterIP
