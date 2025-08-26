@@ -40,12 +40,12 @@ spec:
           - secretName: grafana-tls
             hosts:
               - grafana.christophervestman.com
-    persistence:
-      enabled: true
-      type: pvc
-      accessModes:
-        - ReadWriteOnce
-      size: 2Gi
+      persistence:
+        enabled: true
+        type: pvc
+        accessModes:
+          - ReadWriteOnce
+        size: 2Gi
 
     prometheus:
       prometheusSpec:
