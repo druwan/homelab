@@ -28,6 +28,9 @@ spec:
     grafana:
       initChownData:
         enabled: false
+      operator:
+        dashboardsConfigMapRefEnabled: true
+      defaultDashboardsTimezone: Europe/Stockholm
       adminPassword: druwan
       ingress:
         enabled: true
