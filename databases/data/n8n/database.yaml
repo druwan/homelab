@@ -5,7 +5,7 @@ metadata:
   namespace: n8n
 spec:
   description: Postgres cluster for n8n app
-  imageName: ghcr.io/cloudnative-pg/postgis:17
+  imageName: ghcr.io/cloudnative-pg/postgis:17-3.5
   bootstrap:
     initdb:
       postInitTemplateSQL:
