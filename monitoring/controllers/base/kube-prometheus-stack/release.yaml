@@ -31,6 +31,14 @@ spec:
       operator:
         dashboardsConfigMapRefEnabled: true
       defaultDashboardsTimezone: Europe/Stockholm
+      sidecar:
+        dashboards:
+          enabled: true
+          label: grafana_dashboard
+          labelValue: "1"
+          searchNamespace: monitoring
+          provider:
+            allowUiUpdates: true
       adminPassword: druwan
       ingress:
         enabled: true
