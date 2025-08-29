@@ -8,5 +8,6 @@ resources:
   - linkding
   - mealie
   - n8n
+  - paperless-ngx
   - pgadmin
   - wallos

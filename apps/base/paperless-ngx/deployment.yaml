@@ -1,0 +1,103 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: paperless-ngx
+    role: app
+  name: paperless-ngx
+  namespace: paperless-ngx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ngx
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx
+        role: app
+    spec:
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+        runAsGroup: 1000
+      containers:
+        - image: redis:8.2.1
+          name: paperless-redis-broker
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - mountPath: /data
+              name: paperless-redis-broker-data
+        - image: ghcr.io/paperless-ngx/paperless-ngx:2.18.2
+          name: paperless-ngx
+          ports:
+            - containerPort: 8000
+          securityContext:
+            allowPrivilegeEscalation: false
+          env:
+            - name: PAPERLESS_OCR_LANGUAGES
+              value: eng swe sin
+
+            - name: PAPERLESS_OCR_LANGUAGE
+              value: "eng+swe+sin"
+
+            - name: PAPERLESS_TIME_ZONE
+              value: "Europe/Stockholm"
+
+            - name: PAPERLESS_DBENGINE
+              value: postgresql
+
+            - name: PAPERLESS_DBHOST
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-db-app
+                  key: host
+
+            - name: PAPERLESS_DBNAME
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-db-app
+                  key: dbname
+
+            - name: PAPERLESS_DBUSER
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-db-app
+                  key: user
+
+            - name: PAPERLESS_DBPASS
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-db-app
+                  key: password
+          envFrom:
+            - secretRef:
+                name: paperless-ngx-env
+
+          volumeMounts:
+            - mountPath: /usr/src/paperless/data
+              name: paperless-ngx-data
+            - mountPath: /usr/src/paperless/media
+              name: paperless-ngx-media
+            - mountPath: /usr/src/paperless/export
+              name: paperless-ngx-export
+            - mountPath: /usr/src/paperless/consume
+              name: paperless-ngx-consume
+      restartPolicy: Always
+      volumes:
+        - name: paperless-redis-broker-data
+          persistentVolumeClaim:
+            claimName: paperless-redis-broker-data-pvc
+        - name: paperless-ngx-data
+          persistentVolumeClaim:
+            claimName: paperless-ngx-data-pvc
+        - name: paperless-ngx-media
+          persistentVolumeClaim:
+            claimName: paperless-ngx-media-pvc
+        - name: paperless-ngx-export
+          persistentVolumeClaim:
+            claimName: paperless-ngx-export-pvc
+        - name: paperless-ngx-consume
+          persistentVolumeClaim:
+            claimName: paperless-ngx-consume-pvc

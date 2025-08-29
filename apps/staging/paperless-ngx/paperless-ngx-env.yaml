@@ -1,0 +1,28 @@
+apiVersion: v1
+data:
+    PAPERLESS_ADMIN_MAIL: ENC[AES256_GCM,data:coB64aUqyy7FZjl7YJk540kGY0jV6dhvB4egY6sjdYJhBXp6nm6tsw==,iv:blOYV8YeosAKuKWZ8d/oLdn671iA7/LAyE6TpIPzse4=,tag:q9BFz0ngft5OKI0SVRDJCA==,type:str]
+    PAPERLESS_ADMIN_PASSWORD: ENC[AES256_GCM,data:ocKfFjJ2Y4/ba7+DPhjJMB839jY5zLDwgd66eg==,iv:ZE9JtyCl7ogVdlu+834qwUk84SUaKQfzwMpWueCEJZE=,tag:7nntBYv23v0JZkMu5BVSvQ==,type:str]
+    PAPERLESS_ADMIN_USER: ENC[AES256_GCM,data:SOQ/iSktB5pYkUoi,iv:YBMOSPPv1EbTBUOSNd0F3s9JjSMmA31I3g0PSOXl5vc=,tag:lc7dBXSsaLj0wi/l7E4xYw==,type:str]
+kind: Secret
+metadata:
+    creationTimestamp: "2025-08-29T21:27:54Z"
+    name: paperless-ngx-env
+    namespace: paperless-ngx
+    resourceVersion: "3226418"
+    uid: 5354708f-1bf6-48a1-83d4-d1c42b1e8669
+type: Opaque
+sops:
+    age:
+        - recipient: age14l4x2993zh3lavuyc75d669889zqjzap384um9ngv08eeh9w35nqnw3jd8
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB0UHN2MVIvNUFVakcwa29U
+            dEhmY2V0K2p5MmJxQzAwUjhBelpDSnprWHc4CjVFdU1PVGVxcEhPaUZxZG9hcnVv
+            alJzd0VER1I1dS9CS0hPaGlyUDdhUmsKLS0tIFN4aVBhNnZBT0tLb1JCOXYwbWpY
+            UElLTG9WU0FJRUpsTXV4dFJWeGJqSHcK3/cVF7ZRBWiQRueujX9ctSpd/GxIkbj5
+            e5hhqM4B83wHNkUYiKlgesZGGNbRyrmD+sZujmXY3yAg+dqQwi9igw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-08-29T21:28:25Z"
+    mac: ENC[AES256_GCM,data:8n+QV26n0XWoKa1CDaoDJZyOjfeeq/wuiDNoBnMxkt7UvF70ztpZSZXFgXhwXUS6VDCMy9mA5xXdeLGicdp7tcxcWcZf4HDazrwODlHKR3hBV8PFhDNP01cYggi4AVqP5+9YkJFARTaeki1SB+kRqU8rkYJKvCsYwrSpr17Urrk=,iv:uuswJ2vGZn5XSpkgul31sOF98olo5mQV79E+N+hqLto=,tag:/LZV9kR1qckzQq2t0AFGmA==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.10.2
