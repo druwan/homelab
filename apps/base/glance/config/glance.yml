@@ -75,7 +75,7 @@ pages:
                 url: https://n8n.christophervestman.com
                 icon: sh:n8n
               - title: Paperless-ngx
-                url: https://paperless.christophervestman.com
+                url: https://paperless-ngx.christophervestman.com
                 icon: sh:paperless-ngx
               - title: pgAdmin
                 url: https://pgadmin.christophervestman.com
