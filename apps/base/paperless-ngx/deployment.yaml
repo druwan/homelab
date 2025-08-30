@@ -1,6 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: redis
+  namespace: paperless-ngx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:8.2.1
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - mountPath: /data
+              name: paperless-redis-broker-data
+      restartPolicy: Always
+      volumes:
+        - name: paperless-redis-broker-data
+          persistentVolumeClaim:
+            claimName: paperless-redis-broker-data-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   labels:
     app: paperless-ngx
     role: app
@@ -17,18 +46,7 @@ spec:
         app: paperless-ngx
         role: app
     spec:
-      # securityContext:
-      #   fsGroup: 1000
-      #   runAsUser: 1000
-      #   runAsGroup: 1000
       containers:
-        - image: redis:8.2.1
-          name: paperless-redis-broker
-          ports:
-            - containerPort: 6379
-          volumeMounts:
-            - mountPath: /data
-              name: paperless-redis-broker-data
         - image: ghcr.io/paperless-ngx/paperless-ngx:2.18.2
           name: paperless-ngx
           ports:
@@ -47,6 +65,12 @@ spec:
 
             - name: PAPERLESS_DBENGINE
               value: postgresql
+
+            - name: PAPERLESS_URL
+              value: "https://paperless-ngx.christophervestman.com"
+
+            - name: PAPERLESS_REDIS
+              value: "redis://redis:6379"
 
             - name: PAPERLESS_DBHOST
               valueFrom:
@@ -86,9 +110,6 @@ spec:
               name: paperless-ngx-consume
       restartPolicy: Always
       volumes:
-        - name: paperless-redis-broker-data
-          persistentVolumeClaim:
-            claimName: paperless-redis-broker-data-pvc
         - name: paperless-ngx-data
           persistentVolumeClaim:
             claimName: paperless-ngx-data-pvc
