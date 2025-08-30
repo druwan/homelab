@@ -10,7 +10,7 @@ spec:
     - name: http
       port: 80
       protocol: TCP
-      targetPort: 5678
+      targetPort: 8000
   selector:
     app: paperless-ngx
     role: app
