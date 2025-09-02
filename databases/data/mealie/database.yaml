@@ -5,6 +5,7 @@ metadata:
   namespace: mealie
 spec:
   description: Postgres cluster for mealie app
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.5
   inheritedMetadata:
     labels:
       app: mealie

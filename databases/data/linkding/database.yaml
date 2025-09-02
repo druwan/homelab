@@ -5,6 +5,7 @@ metadata:
   namespace: linkding
 spec:
   description: Postgres cluster for linkding app
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.5
   inheritedMetadata:
     labels:
       app: linkding
