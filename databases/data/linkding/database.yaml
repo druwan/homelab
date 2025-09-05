@@ -36,9 +36,6 @@ spec:
       connectionString:
         name: azure-creds
         key: AZURE_CONNECTION_STRING
-      storageKey:
-        name: azure-creds
-        key: AZURE_STORAGE_KEY
   instanceSidecarConfiguration:
     retentionPolicyIntervalSeconds: 1800
     resources:
