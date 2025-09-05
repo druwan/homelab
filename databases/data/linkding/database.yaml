@@ -6,6 +6,7 @@ metadata:
 spec:
   description: Postgres cluster for linkding app
   imageName: ghcr.io/cloudnative-pg/postgresql:17.5
+  imagePullPolicy: Always
   inheritedMetadata:
     labels:
       app: linkding
@@ -13,5 +14,46 @@ spec:
   instances: 3
   monitoring:
     enablePodMonitor: true
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: azure-store
   storage:
     size: 1Gi
+---
+# Barman Cloud CNPG-I plugin
+# https://cloudnative-pg.io/plugin-barman-cloud/docs/migration/
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: azure-store
+  namespace: linkding
+spec:
+  configuration:
+    destinationPath: "https://homelabdatabases.blob.core.windows.net/linkding"
+    azureCredentials:
+      connectionString:
+        name: azure-creds
+        key: AZURE_CONNECTION_STRING
+      storageKey:
+        name: azure-creds
+        key: AZURE_STORAGE_KEY
+  instanceSidecarConfiguration:
+    retentionPolicyIntervalSeconds: 1800
+    resources:
+      requests:
+        memory: 100Mi
+---
+# Backup
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: linkding-backup
+  namespace: linkding
+spec:
+  cluster:
+    name: linkding-db
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
