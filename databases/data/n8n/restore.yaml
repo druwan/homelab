@@ -1,0 +1,25 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: n8n-db-restore
+  namespace: n8n
+spec:
+  instances: 3
+  imagePullPolicy: IfNotPresent
+  bootstrap:
+    recovery:
+      source: clusterBackup
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: n8n-azure-store
+  externalClusters:
+    - name: clusterBackup
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: n8n-azure-store
+          serverName: n8n-db
+  storage:
+    size: 1Gi
