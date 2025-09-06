@@ -69,16 +69,3 @@ spec:
     resources:
       requests:
         memory: 100Mi
----
-# Backup
-apiVersion: postgresql.cnpg.io/v1
-kind: Backup
-metadata:
-  name: linkding-backup
-  namespace: linkding
-spec:
-  cluster:
-    name: linkding-db
-  method: plugin
-  pluginConfiguration:
-    name: barman-cloud.cloudnative-pg.io
