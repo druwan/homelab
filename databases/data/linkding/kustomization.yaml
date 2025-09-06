@@ -5,4 +5,5 @@ resources:
   - backups.yaml
   - database.yaml
   - namespace.yaml
+  - restore.yaml
   - secrets.yaml
