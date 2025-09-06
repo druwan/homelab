@@ -18,7 +18,33 @@ spec:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
-        barmanObjectName: azure-store
+        barmanObjectName: linkding-azure-store
+  storage:
+    size: 1Gi
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: linkding-db-restore
+  namespace: linkding
+spec:
+  instances: 3
+  imagePullPolicy: IfNotPresent
+  bootstrap:
+    recovery:
+      source: clusterBackup
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: linkding-azure-store
+  externalClusters:
+    - name: clusterBackup
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: linkding-azure-store
+          serverName: linkding-db
   storage:
     size: 1Gi
 ---
@@ -27,7 +53,7 @@ spec:
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
-  name: azure-store
+  name: linkding-azure-store
   namespace: linkding
 spec:
   configuration:
@@ -36,6 +62,8 @@ spec:
       connectionString:
         name: azure-creds
         key: AZURE_CONNECTION_STRING
+    wal:
+      compression: gzip
   instanceSidecarConfiguration:
     retentionPolicyIntervalSeconds: 1800
     resources:
