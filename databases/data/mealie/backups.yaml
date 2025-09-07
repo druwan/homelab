@@ -1,0 +1,26 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: mealie-backup
+  namespace: mealie
+spec:
+  cluster:
+    name: mealie-db
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: mealie-db-scheduled-backup
+  namespace: mealie
+spec:
+  cluster:
+    name: mealie-db
+  schedule: "0 0 3 * * *"
+  immediate: true
+  backupOwnerReference: self
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io

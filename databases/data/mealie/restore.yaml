@@ -1,0 +1,25 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: mealie-db-restore
+  namespace: mealie
+spec:
+  instances: 3
+  imagePullPolicy: IfNotPresent
+  bootstrap:
+    recovery:
+      source: clusterBackup
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: mealie-azure-store
+  externalClusters:
+    - name: clusterBackup
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: mealie-azure-store
+          serverName: mealie-db
+  storage:
+    size: 1Gi

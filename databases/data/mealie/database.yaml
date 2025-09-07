@@ -6,6 +6,7 @@ metadata:
 spec:
   description: Postgres cluster for mealie app
   imageName: ghcr.io/cloudnative-pg/postgresql:17.5
+  imagePullPolicy: Always
   inheritedMetadata:
     labels:
       app: mealie
@@ -13,5 +14,10 @@ spec:
   instances: 3
   monitoring:
     enablePodMonitor: true
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: mealie-azure-store
   storage:
     size: 1Gi
