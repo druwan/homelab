@@ -42,6 +42,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td><a href="https://cloudnative-pg.io/">CloudNativePG</a></td>
        <td>PostgreSQL with PostGIS, Using pgAdmin whenever I need a GUI</td>
    </tr>
+  <tr>
+      <td><img width="32" src="https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/eso-round-logo.svg"></td>
+      <td><a href="https://external-secrets.io">External Secrets Operator</a></td>
+      <td>Used to sync my secrets from Azure Key Vaults to my cluster</td>
+  </tr>
    <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/glance.svg"></td>
        <td><a href="https://github.com/glanceapp/glance/">Glance</a></td>
