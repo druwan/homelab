@@ -1,0 +1,25 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: paperless-ngx-db-restore
+  namespace: paperless-ngx
+spec:
+  instances: 3
+  imagePullPolicy: IfNotPresent
+  bootstrap:
+    recovery:
+      source: clusterBackup
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: paperless-ngx-azure-store
+  externalClusters:
+    - name: clusterBackup
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: paperless-ngx-azure-store
+          serverName: paperless-ngx-db
+  storage:
+    size: 1Gi

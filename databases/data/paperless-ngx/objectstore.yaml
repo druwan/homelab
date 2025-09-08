@@ -1,0 +1,21 @@
+# Barman Cloud CNPG-I plugin
+# https://cloudnative-pg.io/plugin-barman-cloud/docs/migration/
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: paperless-ngx-azure-store
+  namespace: paperless-ngx
+spec:
+  configuration:
+    destinationPath: "https://homelabdatabases.blob.core.windows.net/paperless-ngx"
+    azureCredentials:
+      connectionString:
+        name: azure-creds
+        key: AZURE_CONNECTION_STRING
+    wal:
+      compression: gzip
+  instanceSidecarConfiguration:
+    retentionPolicyIntervalSeconds: 1800
+    resources:
+      requests:
+        memory: 100Mi

@@ -13,5 +13,10 @@ spec:
   instances: 3
   monitoring:
     enablePodMonitor: true
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: paperless-ngx-azure-store
   storage:
     size: 1Gi
