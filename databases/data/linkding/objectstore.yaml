@@ -6,7 +6,7 @@ metadata:
   name: linkding-azure-store
   namespace: linkding
 spec:
-  retentionPolicy: "7d"
+  retentionPolicy: "07d"
   configuration:
     destinationPath: "https://homelabdatabases.blob.core.windows.net/linkding"
     azureCredentials:
