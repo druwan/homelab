@@ -1,14 +1,12 @@
-# Barman Cloud CNPG-I plugin
-# https://cloudnative-pg.io/plugin-barman-cloud/docs/migration/
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
-  name: mealie-azure-store
-  namespace: mealie
+  name: n8n-azure-store
+  namespace: n8n
 spec:
   retentionPolicy: "7d"
   configuration:
-    destinationPath: "https://homelabdatabases.blob.core.windows.net/mealie"
+    destinationPath: "https://homelabdatabases.blob.core.windows.net/n8n"
     azureCredentials:
       connectionString:
         name: azure-creds

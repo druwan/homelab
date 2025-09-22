@@ -6,6 +6,7 @@ metadata:
   name: paperless-ngx-azure-store
   namespace: paperless-ngx
 spec:
+  retentionPolicy: "7d"
   configuration:
     destinationPath: "https://homelabdatabases.blob.core.windows.net/paperless-ngx"
     azureCredentials:

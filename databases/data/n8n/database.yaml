@@ -38,23 +38,3 @@ spec:
               type: LoadBalancer
   storage:
     size: 1Gi
----
-apiVersion: barmancloud.cnpg.io/v1
-kind: ObjectStore
-metadata:
-  name: n8n-azure-store
-  namespace: n8n
-spec:
-  configuration:
-    destinationPath: "https://homelabdatabases.blob.core.windows.net/n8n"
-    azureCredentials:
-      connectionString:
-        name: azure-creds
-        key: AZURE_CONNECTION_STRING
-    wal:
-      compression: gzip
-  instanceSidecarConfiguration:
-    retentionPolicyIntervalSeconds: 1800
-    resources:
-      requests:
-        memory: 100Mi
