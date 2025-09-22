@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: discord-bot
 resources:
   - ../../base/discord-bot/
-  - discord-bot-env-secret.yaml
   - secrets.yaml
