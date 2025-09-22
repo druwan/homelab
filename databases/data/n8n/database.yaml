@@ -27,6 +27,15 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: n8n-azure-store
+  managed:
+    services:
+      additional:
+        - selectorType: rw
+          serviceTemplate:
+            metadata:
+              name: n8n-db-lb
+              spec:
+                type: LoadBalancer
   storage:
     size: 1Gi
 ---
