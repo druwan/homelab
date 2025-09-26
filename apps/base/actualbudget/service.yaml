@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: actualbudget
+  name: actualbudget
+  namespace: actualbudget
+spec:
+  ports:
+    - name: http
+      port: 5006
+      protocol: TCP
+      targetPort: 5006
+  selector:
+    app: actualbudget
+    role: app
+  type: ClusterIP

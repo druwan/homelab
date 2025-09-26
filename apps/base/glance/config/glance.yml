@@ -50,6 +50,9 @@ pages:
             cache: 1h
             title: Apps
             sites:
+              - title: Actual Budget
+                url: https://actualbudget.christophervestman.com
+                icon: sh:actual-budget
               # - title: Audiobookshelf
               #   url: https://audiobookshelf.christophervestman.com
               #   icon: sh:audiobookshelf

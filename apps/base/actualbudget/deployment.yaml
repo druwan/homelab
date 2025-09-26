@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: actualbudget
+    role: app
+  name: actualbudget
+  namespace: actualbudget
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: actualbudget
+  template:
+    metadata:
+      labels:
+        app: actualbudget
+        role: app
+    spec:
+      containers:
+        - image: ghcr.io/actualbudget/actual:25.9.0
+          name: actualbudget
+          ports:
+            - containerPort: 5006
+          volumeMounts:
+            - mountPath: /data
+              name: actualbudget-data
+      volumes:
+        - name: actualbudget-data
+          persistentVolumeClaim:
+            claimName: actualbudget-data-pvc

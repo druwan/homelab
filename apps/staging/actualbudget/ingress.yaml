@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: actualbudget
+  namespace: actualbudget
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - actualbudget.christophervestman.com
+      secretName: actualbudget-tls
+  rules:
+    - host: actualbudget.christophervestman.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: actualbudget
+                port:
+                  number: 5006
+            path: /
+            pathType: Prefix
