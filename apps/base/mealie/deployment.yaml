@@ -22,7 +22,7 @@ spec:
         runAsUser: 911
         runAsGroup: 911
       containers:
-        - image: ghcr.io/mealie-recipes/mealie:v3.2.1
+        - image: ghcr.io/mealie-recipes/mealie:v3.3.0
           name: mealie
           env:
             - name: DB_ENGINE
