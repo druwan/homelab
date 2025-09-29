@@ -23,6 +23,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <th style="width:50%">Comment</td>
    </tr>
    <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/actual-budget.svg"></td>
+       <td><a href="https://actualbudget.org/">Actual Budget</a></td>
+       <td>Managing my finances</td>
+   </tr>
+   <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/sonarr-radarr.svg"></td>
        <td><a href="https://trash-guides.info">Arr Stack</a></td>
        <td>Standard PVR/Downloader stack</td>
