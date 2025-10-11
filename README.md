@@ -69,7 +69,7 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
    </tr>
    <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyseerr.svg"></td>
-       <td><a href="https://docs.jellyseerr.dev/">Jellyseer</a></td>
+       <td><a href="https://docs.seerr.dev/">Jellyseer</a></td>
        <td>Jellyfin request manager</td>
    </tr>
    <tr>
