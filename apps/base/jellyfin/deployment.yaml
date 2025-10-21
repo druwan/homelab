@@ -42,5 +42,5 @@ spec:
             claimName: jellyfin-cache-pvc
         - name: media
           hostPath:
-            path: /home/druwan/media
+            path: /mnt/jellyfin/media
             type: Directory
