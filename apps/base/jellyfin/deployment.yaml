@@ -4,7 +4,7 @@ metadata:
   labels:
     app: jellyfin
   name: jellyfin
-  namespace: jellyfin
+  namespace: media
 spec:
   replicas: 1
   selector:
@@ -41,6 +41,5 @@ spec:
           persistentVolumeClaim:
             claimName: jellyfin-cache-pvc
         - name: media
-          hostPath:
-            path: /mnt/jellyfin/media
-            type: Directory
+          persistentVolumeClaim:
+            claimName: media-pvc
