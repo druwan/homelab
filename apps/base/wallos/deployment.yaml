@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: wallos
-          image: bellamy/wallos:4.3.0
+          image: bellamy/wallos:4.5.0
           ports:
             - containerPort: 80
           env:
