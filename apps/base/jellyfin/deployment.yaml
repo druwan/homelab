@@ -16,9 +16,8 @@ spec:
         app: jellyfin
     spec:
       securityContext:
-        fsGroup: 33
         runAsUser: 33
-        runAsGroup: 33
+        runAsGroup: 3100
       containers:
         - image: ghcr.io/jellyfin/jellyfin:10.11.0
           name: jellyfin
