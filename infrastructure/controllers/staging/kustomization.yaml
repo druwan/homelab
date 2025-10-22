@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
   - cert-manager
   - cloudnativepg
-  # - csi-driver-nfs
+  - csi-driver-nfs
   - external-secrets
   - renovate
