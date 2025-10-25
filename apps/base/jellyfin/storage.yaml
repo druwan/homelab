@@ -1,4 +1,19 @@
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: truenas-media-pv
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.1.83
+    path: /mnt/main/k8s/media   # <-- Mount the dataset root
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: truenas-media-nfs
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: jellyfin-config-pvc
@@ -33,6 +48,7 @@ spec:
   accessModes:
     - ReadWriteMany
   storageClassName: truenas-media-nfs
+  volumeName: truenas-media-pv
   resources:
     requests:
       storage: 1Ti
