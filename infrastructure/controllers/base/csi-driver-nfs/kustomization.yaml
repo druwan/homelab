@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - release.yaml
   - repository.yaml
-  - storageclass.yaml
+  - pvc-storageclass.yaml
+  - media-storageclass.yaml

@@ -6,7 +6,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: truenas-nfs
+  storageClassName: truenas-pvc-nfs
   resources:
     requests:
       storage: 10Gi
@@ -17,7 +17,7 @@ metadata:
   name: jellyfin-cache-pvc
   namespace: media
 spec:
-  storageClassName: truenas-nfs
+  storageClassName: truenas-pvc-nfs
   accessModes:
     - ReadWriteOnce
   resources:
@@ -32,7 +32,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: truenas-nfs
+  storageClassName: truenas-media-nfs
   resources:
     requests:
       storage: 1Ti
