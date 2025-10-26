@@ -71,9 +71,6 @@ pages:
               - title: Mealie
                 url: https://mealie.christophervestman.com
                 icon: sh:mealie
-              # - title: Minio
-              #   url: https://minio.christophervestman.com
-              #   icon: sh:minio
               - title: n8n
                 url: https://n8n.christophervestman.com
                 icon: sh:n8n
