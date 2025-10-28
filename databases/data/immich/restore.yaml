@@ -10,6 +10,13 @@ spec:
   bootstrap:
     recovery:
       source: clusterBackup
+      postRecoverySQL:
+        database: app
+        statements:
+          - CREATE EXTENSION IF NOT EXISTS vector CASCADE;
+          - CREATE EXTENSION IF NOT EXISTS cube CASCADE;
+          - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
+          - CREATE EXTENSION IF NOT EXISTS pg_trgm CASCADE;
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true

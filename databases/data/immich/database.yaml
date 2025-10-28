@@ -13,6 +13,7 @@ spec:
       policy-type: database
   bootstrap:
     initdb:
+      database: app
       postInitSQL:
         - CREATE EXTENSION IF NOT EXISTS vector CASCADE;
         - CREATE EXTENSION IF NOT EXISTS cube CASCADE;
