@@ -13,7 +13,10 @@ spec:
       policy-type: database
   bootstrap:
     initdb:
-      database: app
+      database: immich
+      owner: immich
+      secret:
+        name: immich-db-app
       postInitSQL:
         - CREATE EXTENSION IF NOT EXISTS vector CASCADE;
         - CREATE EXTENSION IF NOT EXISTS cube CASCADE;
