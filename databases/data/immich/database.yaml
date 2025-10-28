@@ -17,7 +17,7 @@ spec:
         - CREATE EXTENSION IF NOT EXISTS vector CASCADE;
         - CREATE EXTENSION IF NOT EXISTS cube CASCADE;
         - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
-        - CREATE EXTENSION IF NOT EXISTS pg_trim CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS pg_trgm CASCADE;
   instances: 3
   monitoring:
     enablePodMonitor: true
