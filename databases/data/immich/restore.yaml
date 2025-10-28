@@ -1,0 +1,26 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: immich-db-restore
+  namespace: immich
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgis:17-3-standard-trixie
+  imagePullPolicy: IfNotPresent
+  bootstrap:
+    recovery:
+      source: clusterBackup
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: immich-azure-store
+  externalClusters:
+    - name: clusterBackup
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: immich-azure-store
+          serverName: immich-db
+  storage:
+    size: 1Gi

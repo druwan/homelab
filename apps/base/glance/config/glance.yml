@@ -62,6 +62,9 @@ pages:
               - title: Grafana
                 url: https://grafana.christophervestman.com
                 icon: sh:grafana
+              - title: Immich
+                url: https://immich.christophervestman.com
+                icon: sh:immich
               - title: Jellyfin
                 url: https://jellyfin.christophervestman.com
                 icon: sh:jellyfin
@@ -71,9 +74,6 @@ pages:
               - title: Mealie
                 url: https://mealie.christophervestman.com
                 icon: sh:mealie
-              # - title: Minio
-              #   url: https://minio.christophervestman.com
-              #   icon: sh:minio
               - title: n8n
                 url: https://n8n.christophervestman.com
                 icon: sh:n8n
