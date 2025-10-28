@@ -5,6 +5,7 @@ metadata:
   namespace: immich
 spec:
   instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgis:17-3-standard-trixie
   imagePullPolicy: IfNotPresent
   bootstrap:
     recovery:

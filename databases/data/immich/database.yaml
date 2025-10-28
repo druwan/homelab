@@ -5,12 +5,18 @@ metadata:
   namespace: immich
 spec:
   description: Postgres cluster for immich app
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.5
+  imageName: ghcr.io/cloudnative-pg/postgis:17-3-standard-trixie
   imagePullPolicy: Always
   inheritedMetadata:
     labels:
       app: immich
       policy-type: database
+  bootstrap:
+    initdb:
+      database: immich
+      owner: immich
+      postInitSQL:
+        - CREATE EXTENSION IF NOT EXISTS vector;
   instances: 3
   monitoring:
     enablePodMonitor: true
