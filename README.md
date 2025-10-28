@@ -64,7 +64,7 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
    </tr>
    <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/immich.svg"></td>
-       <td><a href="https://www.home-assistant.io/">Immich</a></td>
+       <td><a href="https://immich.app/">Immich</a></td>
        <td>Photo & Video management</td>
    </tr>
    <tr>
