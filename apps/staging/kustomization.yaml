@@ -5,6 +5,7 @@ resources:
   # - audiobookshelf
   - discord-bot
   - glance
+  - immich
   - jellyfin
   - linkding
   - mealie

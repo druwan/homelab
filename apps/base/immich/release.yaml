@@ -1,0 +1,107 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: immich
+  namespace: immich
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: immich
+      version: "immich-0.10.1"
+      sourceRef:
+        kind: HelmRepository
+        name: immich
+        namespace: immich
+      interval: 30m
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/immich-app/immich-server
+              tag: v2.1.0
+              pullPolicy: Always
+            env:
+              REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
+              IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+
+    immich:
+      metrics:
+        enabled: true
+      persistence:
+        library:
+          enabled: true
+          existingClaim: immich-upload-data-pvc
+      # configuration is immich-config.json converted to yaml
+      # ref: https://immich.app/docs/install/config-file/
+      configuration: {}
+
+    # Deps
+    valkey:
+      enabled: true
+      controllers:
+        main:
+          containers:
+            main:
+              image:
+                repository: docker.io/valkey/valkey
+                tag: 9.0.0
+                pullPolicy: Always
+      persistence:
+        data:
+          enabled: true
+          type: emptyDir
+          accessMode: ReadWriteOnce
+          storageClass: truenas-pvc-nfs
+
+    server:
+      enabled: true
+      controllers:
+        main:
+          containers:
+            main:
+              repository: ghcr.io/immich-app/immich-server
+              tag: v2.1.0
+              pullPolicy: Always
+      ingress:
+        main:
+          enabled: true
+          ingressClassName: traefik
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt-production
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.tls: "true"
+          hosts:
+            - host: immich.christophervestman.com
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - secretName: immich-tls
+              hosts:
+                - immich.christophervestman.com
+    machine-learning:
+      enabled: true
+      controllers:
+        main:
+          containers:
+            main:
+              image:
+                repository: ghcr.io/immich-app/immich-machine-learning
+                pullPolicy: Always
+              env:
+                TRANSFORMERS_CACHE: /cache
+                HF_XET_CACHE: /cache/huggingface-xet
+                MPLCONFIGDIR: /cache/matplotlib-config
+      persistence:
+        cache:
+          enabled: true
+          existingClaim: immich-machine-learning-model-cache-pvc
+          accessMode: ReadWriteMany
+          storageClass: truenas-pvc-nfs

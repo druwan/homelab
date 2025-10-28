@@ -62,6 +62,9 @@ pages:
               - title: Grafana
                 url: https://grafana.christophervestman.com
                 icon: sh:grafana
+              - title: Immich
+                url: https://immich.christophervestman.com
+                icon: sh:immich
               - title: Jellyfin
                 url: https://jellyfin.christophervestman.com
                 icon: sh:jellyfin
