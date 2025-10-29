@@ -68,6 +68,9 @@ pages:
               - title: Jellyfin
                 url: https://jellyfin.christophervestman.com
                 icon: sh:jellyfin
+              - title: Jellyseerr
+                url: https://jellyseerr.christophervestman.com
+                icon: sh:jellyseerr
               - title: Linkding
                 url: https://linkding.christophervestman.com
                 icon: sh:linkding
