@@ -20,7 +20,7 @@ spec:
         - CREATE EXTENSION IF NOT EXISTS pg_trgm CASCADE;
   instances: 3
   monitoring:
-    enablePodMonitor: true
+    enablePodMonitor: false
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
@@ -28,3 +28,14 @@ spec:
         barmanObjectName: immich-azure-store
   storage:
     size: 100Gi
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: immich-db
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: immich-db
+  podMetricsEndpoints:
+    - port: metrics
