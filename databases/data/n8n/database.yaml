@@ -22,11 +22,11 @@ spec:
   instances: 3
   monitoring:
     enablePodMonitor: true
-  plugins:
-    - name: barman-cloud.cloudnative-pg.io
-      isWALArchiver: true
-      parameters:
-        barmanObjectName: n8n-azure-store
+  # plugins:
+  #   - name: barman-cloud.cloudnative-pg.io
+  #     isWALArchiver: true
+  #     parameters:
+  #       barmanObjectName: n8n-azure-store
   managed:
     services:
       additional:

@@ -4,7 +4,7 @@ namespace: n8n
 resources:
   - namespace.yaml
   - secrets.yaml
-  - objectstore.yaml
+  # - objectstore.yaml
   - database.yaml
-  - backups.yaml
-  - restore.yaml
+  # - backups.yaml
+  # - restore.yaml

@@ -14,10 +14,10 @@ spec:
   instances: 3
   monitoring:
     enablePodMonitor: true
-  plugins:
-    - name: barman-cloud.cloudnative-pg.io
-      isWALArchiver: true
-      parameters:
-        barmanObjectName: linkding-azure-store
+  # plugins:
+  #   - name: barman-cloud.cloudnative-pg.io
+  #     isWALArchiver: true
+  #     parameters:
+  #       barmanObjectName: linkding-azure-store
   storage:
     size: 1Gi
