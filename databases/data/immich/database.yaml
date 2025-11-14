@@ -24,10 +24,10 @@ spec:
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
-      parameters:
-        barmanObjectName: immich-azure-store
   storage:
     size: 100Gi
+    storageClass: truenas-pvc-nfs
+    resizeInUseVolumes: true
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
