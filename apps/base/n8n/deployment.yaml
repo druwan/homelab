@@ -22,7 +22,7 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
       containers:
-        - image: ghcr.io/n8n-io/n8n:1.120.1
+        - image: ghcr.io/n8n-io/n8n:1.120.3
           name: n8n
           ports:
             - containerPort: 5678
