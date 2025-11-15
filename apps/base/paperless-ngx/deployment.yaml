@@ -47,7 +47,7 @@ spec:
         role: app
     spec:
       containers:
-        - image: ghcr.io/paperless-ngx/paperless-ngx:2.19.5
+        - image: ghcr.io/paperless-ngx/paperless-ngx:2.19.6
           name: paperless-ngx
           ports:
             - containerPort: 8000
