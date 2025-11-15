@@ -83,6 +83,9 @@ pages:
               - title: pgAdmin
                 url: https://pgadmin.christophervestman.com
                 icon: sh:postgresql
+              - title: Prowlarr
+                url: https://prowlarr.christophervestman.com
+                icon: sh:prowlarr-radarr
               - title: Radarr
                 url: https://radarr.christophervestman.com
                 icon: sh:radarr
