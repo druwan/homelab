@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: qbittorrent
+  name: qbittorrent
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qbittorrent
+  template:
+    metadata:
+      labels:
+        app: qbittorrent
+    spec:
+      securityContext:
+        fsGroup: 3100
+        supplementalGroups: [3100]
+      containers:
+        - name: qbittorrent
+          image: ghcr.io/linuxserver/qbittorrent:5.1.2
+          ports:
+            - name: webui
+              containerPort: 8080
+              protocol: TCP
+            - name: torrent-tcp
+              containerPort: 6881
+              protocol: TCP
+            - name: torrent-udp
+              containerPort: 6881
+              protocol: UDP
+          securityContext:
+            allowPrivilegeEscalation: false
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "3100"
+            - name: TZ
+              value: Europe/Stockholm
+            - name: WEBUI_PORT
+              value: "8080"
+            - name: TORRENTING_PORT
+              value: "6881"
+          volumeMounts:
+            - mountPath: /config
+              name: qbittorrent-config
+            - mountPath: /media
+              name: media
+      volumes:
+        - name: qbittorrent-config
+          persistentVolumeClaim:
+            claimName: qbittorrent-config-pvc
+        - name: media
+          persistentVolumeClaim:
+            claimName: media-pvc
