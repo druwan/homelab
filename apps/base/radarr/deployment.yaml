@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: radarr
+  name: radarr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radarr
+  template:
+    metadata:
+      labels:
+        app: radarr
+    spec:
+      securityContext:
+        fsGroup: 3100
+        supplementalGroups: [3100]
+      containers:
+        - name: radarr
+          image: linuxserver/radarr:5.28.0
+          ports:
+            - containerPort: 7878
+          securityContext:
+            allowPrivilegeEscalation: false
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "3100"
+            - name: TZ
+              value: Europe/Stockholm
+          volumeMounts:
+            - mountPath: /config
+              name: radarr-config
+            - mountPath: /media
+              name: media
+      volumes:
+        - name: radarr-config
+          persistentVolumeClaim:
+            claimName: radarr-config-pvc
+        - name: media
+          persistentVolumeClaim:
+            claimName: media-pvc

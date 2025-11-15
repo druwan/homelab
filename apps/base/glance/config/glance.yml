@@ -86,6 +86,9 @@ pages:
               - title: pgAdmin
                 url: https://pgadmin.christophervestman.com
                 icon: sh:postgresql
+              - title: Radarr
+                url: https://radarr.christophervestman.com
+                icon: sh:radarr
               - title: Wallos
                 url: https://wallos.christophervestman.com
                 icon: sh:wallos
