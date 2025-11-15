@@ -12,6 +12,7 @@ resources:
   - n8n
   - paperless-ngx
   - pgadmin
+  - prowlarr
   - radarr
   - sonarr
   - wallos
