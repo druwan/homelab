@@ -21,9 +21,6 @@ spec:
   instances: 3
   monitoring:
     enablePodMonitor: false
-  plugins:
-    - name: barman-cloud.cloudnative-pg.io
-      isWALArchiver: true
   storage:
     size: 100Gi
     storageClass: truenas-pvc-nfs
