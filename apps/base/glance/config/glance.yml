@@ -24,15 +24,12 @@ pages:
             hour-format: 24h
             timezones:
               - timezone: Europe/Stockholm
-                label: Sweden
+                label: Stockholm
               - timezone: Asia/Colombo
-                label: Sri Lanka
+                label: Colombo
               - timezone: Australia/Brisbane
                 label: Cairns
-          - type: weather
-            units: metric
-            hour-format: 24h
-            location: Arlanda, Sweden
+
 
       - size: full
         widgets:
