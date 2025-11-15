@@ -86,6 +86,9 @@ pages:
               - title: Radarr
                 url: https://radarr.christophervestman.com
                 icon: sh:radarr
+              - title: Sonarr
+                url: https://sonarr.christophervestman.com
+                icon: sh:sonarr-radarr
               - title: Wallos
                 url: https://wallos.christophervestman.com
                 icon: sh:wallos

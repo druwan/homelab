@@ -10,7 +10,8 @@ resources:
   - linkding
   - mealie
   - n8n
-  - radarr
   - paperless-ngx
   - pgadmin
+  - radarr
+  - sonarr
   - wallos
