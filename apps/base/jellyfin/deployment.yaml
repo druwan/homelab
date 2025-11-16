@@ -21,7 +21,7 @@ spec:
         runAsGroup: 33
         supplementalGroups: [3100]
       containers:
-        - image: ghcr.io/jellyfin/jellyfin:10.11.2
+        - image: ghcr.io/jellyfin/jellyfin:10.11.3
           name: jellyfin
           ports:
             - containerPort: 8096
