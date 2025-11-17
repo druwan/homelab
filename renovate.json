@@ -18,5 +18,19 @@
   ],
   "reviewers": [
     "druwan"
+  ],
+  "packageRules": [
+    {
+      "description": "Only allow proper semver tags for LinuxServer/qBittorrent",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "linuxserver/qbittorrent",
+        "ghcr.io/linuxserver/qbittorrent"
+      ],
+      "allowedTags": "/^\\d+\\.\\d+\\.\\d+$/",
+      "versioning": "semver"
+    }
   ]
 }
