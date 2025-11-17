@@ -29,7 +29,10 @@
         "linuxserver/qbittorrent",
         "ghcr.io/linuxserver/qbittorrent"
       ],
-      "allowedTags": "/^\\d+\\.\\d+\\.\\d+$/",
+      "extractVersion": "^(?<version>\\d+\\.\\d+\\.\\d+)$",
+      "allowedTags": [
+        "\\d+\\.\\d+\\.\\d+"
+      ],
       "versioning": "semver"
     }
   ]
