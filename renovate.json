@@ -29,7 +29,7 @@
         "linuxserver/qbittorrent",
         "ghcr.io/linuxserver/qbittorrent"
       ],
-      "extractVersion": "^(?<version>\\d+\\.\\d+\\.\\d+)$",
+      "extractVersion": "^(?<version>\\d+\\.\\d+\\.\\d+)(?:-r\\d+-ls\\d+)?$",
       "versioning": "semver"
     }
   ]
