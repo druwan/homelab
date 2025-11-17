@@ -20,7 +20,7 @@ spec:
         supplementalGroups: [3100]
       containers:
         - name: qbittorrent
-          image: ghcr.io/linuxserver/qbittorrent:5.1.2
+          image: linuxserver/qbittorrent:5.1.2
           ports:
             - name: webui
               containerPort: 8080
