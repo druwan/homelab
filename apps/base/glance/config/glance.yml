@@ -30,7 +30,6 @@ pages:
               - timezone: Australia/Brisbane
                 label: Cairns
 
-
       - size: full
         widgets:
           - type: server-stats
@@ -83,6 +82,9 @@ pages:
               - title: pgAdmin
                 url: https://pgadmin.christophervestman.com
                 icon: sh:postgresql
+              - title: Prometheus
+                url: https://prometheus.christophervestman.com
+                icon: sh:prometheus
               - title: Prowlarr
                 url: https://prowlarr.christophervestman.com
                 icon: sh:prowlarr-radarr

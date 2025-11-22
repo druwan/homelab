@@ -25,11 +25,15 @@ spec:
         target:
           kind: PrometheusRule
   values:
+    crds:
+      enabled: true
     grafana:
       initChownData:
         enabled: false
       operator:
         dashboardsConfigMapRefEnabled: true
+        matchLabels:
+          app: grafana
       defaultDashboardsTimezone: Europe/Stockholm
       sidecar:
         dashboards:
@@ -70,6 +74,7 @@ spec:
         probeSelectorNilUsesHelmValues: false
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
+        externalUrl: "https://prometheus.christophervestman.com"
       ingress:
         enabled: true
         ingressClassName: traefik
