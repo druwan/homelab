@@ -15,37 +15,47 @@ spec:
       labels:
         app: qbittorrent
     spec:
+      enableServiceLinks: false
       securityContext:
         fsGroup: 3100
         supplementalGroups: [3100]
       containers:
-        - name: qbittorrent
-          image: ghcr.io/linuxserver/qbittorrent:5.1.4
+        - name: gluetun
+          image: ghcr.io/qdm12/gluetun:v3.40.3
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN"]
+          env:
+            - name: VPN_SERVICE_PROVIDER
+              value: protonvpn
+            - name: VPN_TYPE
+              value: openvpn
+            - name: TZ
+              value: Europe/Stockholm
+            - name: DOT
+              value: "off"
+            - name: DNS_UPSTREAM
+              value: "1.1.1.1,8.8.8.8"
+          envFrom:
+            - secretRef:
+                name: openvpn-secrets
           ports:
             - name: webui
               containerPort: 8080
-              protocol: TCP
             - name: torrent-tcp
               containerPort: 6881
-              hostPort: 6881
               protocol: TCP
             - name: torrent-udp
               containerPort: 6881
-              hostPort: 6881
               protocol: UDP
-          securityContext:
-            allowPrivilegeEscalation: false
+
+        - name: qbittorrent
+          image: ghcr.io/linuxserver/qbittorrent:5.1.4
           env:
             - name: PUID
               value: "1000"
             - name: PGID
               value: "3100"
-            - name: TZ
-              value: Europe/Stockholm
-            - name: WEBUI_PORT
-              value: "8080"
-            - name: TORRENTING_PORT
-              value: "6881"
           volumeMounts:
             - mountPath: /config
               name: qbittorrent-config
