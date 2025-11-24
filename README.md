@@ -161,15 +161,20 @@ sudo curl -sfL https://get.k3s.io | sh -s - --disable-helm-controller --data-dir
 #cp kubeconfig and edit server address
 sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 
-#Recreate secrets
-k create secret generic porkbun-secret --from-literal=api-key=${PORKBUN_API_KEY} --from-literal=secret-key=${PORKBUN_SECRET_KEY} --dry-run=client -o yaml > porkbun-secret.yaml
+flux bootstrap github --owner=druwan --repository=homelab --branch=main --path=./clusters/staging --personal
 
-k create secret generic sops-age --namespace=flux-system --from-file=age.agekey=/dev/stdin
+k create secret generic sops-age --namespace=flux-system --from-file=age.agekey=./age.agekey --dry-run -o yaml | k apply -f -
 
-#Manually create the cert-manager namespace
+k apply -k infrastructure/controllers/staging/external-secrets
+
+# Recreate secrets
+k create secret generic azure-creds --from-literal=clientId=${AZURE_KEY_VAULT_CLIENT_ID} --from-literal=clientSecret=${AZURE_KEY_VAULT_CLIENT_VALUE} -n external-secrets
+
+# Manually create the cert-manager namespace
 k create namespace cert-manager
 
-#cd into the porkbun-webhook repo and do the install
+k create secret generic porkbun-secret --namespace cert-manager --from-literal=api-key=${PORKBUN_API_KEY} --from-literal=secret-key=${PORKBUN_SECRET_KEY} --dry-run=client -o yaml | k apply -f -
 
-flux bootstrap github --owner=druwan --repository=homelab --branch=main --path=./clusters/staging --personal
 ```
+
+5. `cd` into the `porkbun-webhook` repo and do the install
