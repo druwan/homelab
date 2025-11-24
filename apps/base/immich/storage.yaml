@@ -9,7 +9,7 @@ spec:
   resources:
     requests:
       storage: 100Gi
-  storageClassName: truenas-media-nfs
+  storageClassName: truenas-pvc-nfs
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
