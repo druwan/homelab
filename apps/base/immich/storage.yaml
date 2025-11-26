@@ -11,7 +11,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: 192.168.1.83
-    path: /mnt/pvc/
+    path: /mnt/main/k8/pvc
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
