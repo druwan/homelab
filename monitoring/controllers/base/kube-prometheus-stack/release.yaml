@@ -62,7 +62,7 @@ spec:
         type: pvc
         accessModes:
           - ReadWriteOnce
-        size: 2Gi
+        size: 20Gi
         storageClassName: truenas-pvc-nfs
 
     prometheus:
@@ -76,6 +76,15 @@ spec:
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         externalUrl: "https://prometheus.christophervestman.com"
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: truenas-pvc-nfs
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 20Gi
       ingress:
         enabled: true
         ingressClassName: traefik
