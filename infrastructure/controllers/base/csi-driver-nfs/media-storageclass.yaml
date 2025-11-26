@@ -8,5 +8,6 @@ parameters:
   share: /mnt/main/k8s/media
 reclaimPolicy: Retain
 volumeBindingMode: Immediate
+allowVolumeExpansion: true
 mountOptions:
   - nfsvers=4.2
