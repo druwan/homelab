@@ -17,9 +17,16 @@ spec:
     image:
       pullPolicy: Always
       tag: "2.7.3"
+    fullnameOverride: jellyseerr
     extraEnv:
       - name: TZ
         value: "Europe/Stockholm"
+    config:
+      persistence:
+        size: 5Gi
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: truenas-pvc-nfs
     ingress:
       enabled: true
       ingressClassName: traefik
