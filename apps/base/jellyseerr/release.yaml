@@ -26,7 +26,6 @@ spec:
         size: 5Gi
         accessModes:
           - ReadWriteOnce
-        storageClassName: truenas-pvc-nfs
     ingress:
       enabled: true
       ingressClassName: traefik
