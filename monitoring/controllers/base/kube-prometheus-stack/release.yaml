@@ -30,21 +30,18 @@ spec:
     grafana:
       initChownData:
         enabled: false
-      operator:
-        enabled: true
-        dashboardsConfigMapRefEnabled: true
-        matchLabels:
-          app: grafana
       defaultDashboardsTimezone: Europe/Stockholm
       sidecar:
         dashboards:
-          enabled: false
+          enabled: true
           label: grafana_dashboard
           labelValue: "1"
           searchNamespace: monitoring
           provider:
             allowUiUpdates: true
-      adminPassword: druwan
+      admin:
+        existingSecret: kps-secrets
+        passwordKey: grafana-admin-pass
       ingress:
         enabled: true
         ingressClassName: traefik
