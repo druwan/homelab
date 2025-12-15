@@ -41,7 +41,8 @@ spec:
             allowUiUpdates: true
       admin:
         existingSecret: kps-secrets
-        passwordKey: grafana-admin-pass
+        userKey: admin-user
+        passwordKey: admin-password
       ingress:
         enabled: true
         ingressClassName: traefik
