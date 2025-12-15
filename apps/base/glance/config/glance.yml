@@ -97,6 +97,9 @@ pages:
               - title: Sonarr
                 url: https://sonarr.christophervestman.com
                 icon: sh:sonarr-radarr
+              - title: TrueNAS
+                url: http://192.168.1.83
+                icon: sh:ugreen-nas
               - title: Wallos
                 url: https://wallos.christophervestman.com
                 icon: sh:wallos

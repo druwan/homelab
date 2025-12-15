@@ -113,6 +113,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>I initially disliked using Traefik with Docker Compose due to overly verbose files, which was likely due to misconfiguration. Kubernetes seems to offer a much cleaner setup.</td>
    </tr>
    <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/truenas-core.svg"></td>
+       <td><a href="https://www.truenas.com/">TrueNAS</a></td>
+       <td>NAS</td>
+   </tr>
+   <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wallos.svg"></td>
        <td><a href="https://github.com/ellite/Wallos">Wallos</a></td>
        <td>Subscriptions Dashboard</td>
