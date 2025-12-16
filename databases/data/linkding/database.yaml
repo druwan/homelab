@@ -27,5 +27,5 @@ spec:
   selector:
     matchLabels:
       cnpg.io/cluster: linkding-db
-  podMetricsEndpoint:
+  podMetricsEndpoints:
     - port: metrics
