@@ -5,7 +5,7 @@ metadata:
   namespace: linkding
 spec:
   description: Postgres cluster for linkding app
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.5
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.6-minimal-trixie
   imagePullPolicy: Always
   inheritedMetadata:
     labels:
@@ -13,11 +13,19 @@ spec:
       policy-type: database
   instances: 3
   monitoring:
-    enablePodMonitor: true
-  # plugins:
-  #   - name: barman-cloud.cloudnative-pg.io
-  #     isWALArchiver: true
-  #     parameters:
-  #       barmanObjectName: linkding-azure-store
+    enablePodMonitor: false
   storage:
-    size: 1Gi
+    size: 5Gi
+    storageClass: truenas-pvc-nfs
+    resizeInUseVolumes: true
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: linkding-db
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: linkding-db
+  podMetricsEndpoint:
+    - port: metrics
