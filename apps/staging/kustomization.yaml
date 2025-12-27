@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - actualbudget
   # - audiobookshelf
+  - convertx
   - discord-bot
   - glance
   - immich
