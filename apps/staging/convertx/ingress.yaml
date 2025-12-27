@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: convertx
+  namespace: media
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - convertx.christophervestman.com
+      secretName: convertx-tls
+  rules:
+    - host: convertx.christophervestman.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: convertx
+                port:
+                  number: 3000
+            path: /
+            pathType: Prefix

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: convertx
+  name: convertx
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: convertx
+  template:
+    metadata:
+      labels:
+        app: convertx
+    spec:
+      securityContext:
+        fsGroup: 3100
+        runAsUser: 33
+        runAsGroup: 33
+        supplementalGroups: [3100]
+      containers:
+        - image: ghcr.io/c4illin/convertx:v0.16.0
+          name: convertx
+          ports:
+            - containerPort: 3000
+          securityContext:
+            allowPrivilegeEscalation: false
+          volumeMounts:
+            - mountPath: /app/data
+              name: convertx-data
+          envFrom:
+            - secretRef:
+                name: convertx-secrets
+      volumes:
+        - name: convertx-data
+          persistentVolumeClaim:
+            claimName: convertx-data-pvc
