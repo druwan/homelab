@@ -4,12 +4,11 @@ metadata:
   labels:
     app: prowlarr
   name: prowlarr
-  namespace: media
 spec:
   selector:
     app: prowlarr
   ports:
-  - port: 9696
-    targetPort: 9696
-    protocol: TCP
+    - port: 9696
+      targetPort: 9696
+      protocol: TCP
   type: ClusterIP

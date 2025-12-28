@@ -4,7 +4,6 @@ metadata:
   labels:
     app: radarr
   name: radarr
-  namespace: media
 spec:
   replicas: 1
   selector:

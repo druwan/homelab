@@ -4,7 +4,6 @@ metadata:
   labels:
     app: qbittorrent
   name: qbittorrent
-  namespace: media
 spec:
   replicas: 1
   selector:
