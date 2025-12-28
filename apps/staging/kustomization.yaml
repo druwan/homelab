@@ -10,6 +10,7 @@ resources:
   - jellyfin
   - linkding
   - mealie
+  - namespaces
   - n8n
   - paperless-ngx
   - pgadmin
