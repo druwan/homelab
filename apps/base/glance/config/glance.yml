@@ -97,6 +97,9 @@ pages:
               - title: Radarr
                 url: https://radarr.christophervestman.com
                 icon: sh:radarr
+              - title: Sterling-PDF
+                url: https://tabs.christophervestman.com
+                icon: sh:sterling-pdf
               - title: Sonarr
                 url: https://sonarr.christophervestman.com
                 icon: sh:sonarr-radarr

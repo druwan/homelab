@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: stirling-pdf
+  name: stirling-pdf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stirling-pdf
+  template:
+    metadata:
+      labels:
+        app: stirling-pdf
+    spec:
+      containers:
+        - image: stirlingtools/stirling-pdf:2.1.4
+          name: stirling-pdf
+          env:
+            - name: LANGS
+              value: en_GB
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /configs
+              name: stirling-pdf-configs
+            - mountPath: /usr/share/tessdata
+              name: stirling-pdf-ocr-data
+            - mountPath: /logs
+              name: stirling-pdf-logs
+            - mountPath: /pipeline
+              name: stirling-pdf-automation-pipeline
+      volumes:
+        - name: stirling-pdf-configs
+          persistentVolumeClaim:
+            claimName: stirling-pdf-configs-pvc
+        - name: stirling-pdf-ocr-data
+          persistentVolumeClaim:
+            claimName: stirling-pdf-ocr-data-pvc
+        - name: stirling-pdf-logs
+          persistentVolumeClaim:
+            claimName: stirling-pdf-logs-pvc
+        - name: stirling-pdf-automation-pipeline
+          persistentVolumeClaim:
+            claimName: stirling-pdf-automation-pipeline-pvc
