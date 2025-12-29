@@ -73,6 +73,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>Photo & Video management</td>
    </tr>
    <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/ultimate-guitar.svg"></td>
+       <td><a href="https://github.com/louislam/its-mytabs">It's MyTabs!</a></td>
+       <td>Guitar Tabs</td>
+   </tr>
+   <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyfin.svg"></td>
        <td><a href="https://jellyfin.org/docs/general/installation/container">Jellyfin</a></td>
        <td>Media server</td>

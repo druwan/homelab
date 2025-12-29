@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: its-mytabs-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: truenas-pvc-nfs
+  resources:
+    requests:
+      storage: 10Gi
