@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: its-mytabs
+  name: its-mytabs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: its-mytabs
+  template:
+    metadata:
+      labels:
+        app: its-mytabs
+    spec:
+      containers:
+        - image: louislam/its-mytabs:1.0.0
+          name: its-mytabs
+          ports:
+            - containerPort: 47777
+          volumeMounts:
+            - mountPath: /app/data
+              name: its-mytabs-data
+      volumes:
+        - name: its-mytabs-data
+          persistentVolumeClaim:
+            claimName: its-mytabs-data-pvc

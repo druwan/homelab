@@ -64,6 +64,9 @@ pages:
               - title: Immich
                 url: https://immich.christophervestman.com
                 icon: sh:immich
+              - title: It's MyTabs
+                url: https://tabs.christophervestman.com
+                icon: mdi:guitarpickoutline
               - title: Jellyfin
                 url: https://jellyfin.christophervestman.com
                 icon: sh:jellyfin
