@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: stirling-pdf-configs-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: truenas-pvc-nfs
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: stirling-pdf-ocr-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: truenas-pvc-nfs
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: stirling-pdf-logs-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: truenas-pvc-nfs
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: stirling-pdf-automation-pipeline-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: truenas-pvc-nfs
+  resources:
+    requests:
+      storage: 10Gi

@@ -118,6 +118,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>Metrics and Monitoring</td>
    </tr>
    <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/stirling-pdf-dark.svg"></td>
+       <td><a href="https://docs.stirlingpdf.com">Sterling-PDF</a></td>
+       <td>PDF Application</td>
+   </tr>
+   <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/traefik.svg"></td>
        <td><a href="https://doc.traefik.io/traefik/getting-started/">Traefik</a></td>
        <td>I initially disliked using Traefik with Docker Compose due to overly verbose files, which was likely due to misconfiguration. Kubernetes seems to offer a much cleaner setup.</td>
