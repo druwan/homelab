@@ -73,9 +73,12 @@ pages:
               - title: Jellyseerr
                 url: https://jellyseerr.christophervestman.com
                 icon: sh:jellyseerr
-              - title: Linkding
-                url: https://linkding.christophervestman.com
-                icon: sh:linkding
+              # - title: Linkding
+              #   url: https://linkding.christophervestman.com
+              #   icon: sh:linkding
+              - title: Linkwarden
+                url: https://linkwarden.christophervestman.com
+                icon: sh:linkwarden
               - title: Mealie
                 url: https://mealie.christophervestman.com
                 icon: sh:mealie

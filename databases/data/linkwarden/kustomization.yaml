@@ -1,7 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - linkwarden.yaml
-  - media.yaml
-  - stirling-pdf.yaml
-  - tabs.yaml
+  # - secrets.yaml
+  - database.yaml

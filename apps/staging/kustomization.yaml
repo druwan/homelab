@@ -9,7 +9,8 @@ resources:
   - immich
   - its-mytabs
   - jellyfin
-  - linkding
+  # - linkding
+  - linkwarden
   - mealie
   - namespaces
   - n8n

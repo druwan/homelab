@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - immich
   - linkding
+  - linkwarden
   - mealie
   - n8n
   - paperless-ngx
