@@ -98,6 +98,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>Bookmark manager</td>
    </tr>
    <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/linkwarden.svg"></td>
+       <td><a href="https://docs.linkwarden.app/">Linkwarden</a></td>
+       <td>Bookmark manager</td>
+   </tr>
+   <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/mealie.svg"></td>
        <td><a href="https://docs.mealie.io/">Mealie</a></td>
        <td>Recipe manager</td>

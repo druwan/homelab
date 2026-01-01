@@ -1,0 +1,29 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: linkwarden-db
+  namespace: linkwarden
+spec:
+  description: Postgres cluster for linkwarden app
+  imageName: ghcr.io/cloudnative-pg/postgresql:16-minimal-trixie
+  imagePullPolicy: Always
+  inheritedMetadata:
+    labels:
+      app: linkwarden
+      policy-type: database
+  instances: 3
+  storage:
+    size: 5Gi
+    storageClass: truenas-pvc-nfs
+    resizeInUseVolumes: true
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: linkwarden-db
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: linkwarden-db
+  podMetricsEndpoints:
+    - port: metrics
