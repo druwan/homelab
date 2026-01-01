@@ -29,7 +29,7 @@ spec:
           volumeMounts:
             - mountPath: /meili_data
               name: meili-data
-        - image: ghcr.io/linkwarden/linkwarden:v2.13.3
+        - image: ghcr.io/linkwarden/linkwarden:v2.13.5
           name: linkwarden
           ports:
             - containerPort: 3000
