@@ -21,6 +21,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
   name: linkwarden-db
+  namespace: linkwarden
 spec:
   selector:
     matchLabels:
