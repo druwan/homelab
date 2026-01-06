@@ -147,6 +147,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td><a href="https://github.com/containrrr/watchtower">Watchtower</a></td>
        <td>Replaced by Renovate/GitOps</td>
    </tr>
+   <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/zigbee2mqtt.svg"></td>
+       <td><a href="https://github.com/Koenkk/zigbee2mqtt">Zigbee2MQTT</a></td>
+       <td>Zigbee Bridge</td>
+   </tr>
 </table>
 
 ![Glance](./assets/Glance.png)
