@@ -20,7 +20,7 @@ spec:
         runAsGroup: 33
         supplementalGroups: [3100]
       containers:
-        - image: ghcr.io/c4illin/convertx:v0.16.1
+        - image: ghcr.io/c4illin/convertx:v0.17.0
           name: convertx
           ports:
             - containerPort: 3000
