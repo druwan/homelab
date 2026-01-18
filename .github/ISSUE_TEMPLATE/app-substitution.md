@@ -7,9 +7,9 @@ assignees: druwan
 
 ---
 
-Which app(s) is/are replaced?
+Which app(s) is/are being replaced?: 
 
-## Link to new app
+Link to new app: 
 
 - [ ] [Selfh.st](https://selfh.st/icons/) icon?
 - [ ] Postgresql?
