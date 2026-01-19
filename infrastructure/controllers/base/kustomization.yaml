@@ -5,4 +5,5 @@ resources:
   - cloudnativepg
   - csi-driver-nfs
   - external-secrets
+  - garage
   - renovate
