@@ -39,21 +39,52 @@ spec:
                 secretKeyRef:
                   name: linkwarden-db-app
                   key: uri
+            
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: linkwarden-db-app
                   key: password
+            
             - name: NEXTAUTH_URL
               valueFrom:
                 secretKeyRef:
                   name: linkwarden-secrets
                   key: NEXTAUTH_URL
+            
             - name: NEXTAUTH_SECRET
               valueFrom:
                 secretKeyRef:
                   name: linkwarden-secrets
                   key: NEXTAUTH_SECRET
+            
+            - name: STORAGE_TYPE
+              value: "s3"
+            
+            - name: S3_ENDPOINT
+              value: "https://s3.christophervestman.com"
+            
+            - name: S3_REGION
+              value: "garage"
+            
+            - name: S3_BUCKET
+              value: "linkwarden-bucket"
+            
+            - name: S3_FORCE_PATH_STYLE
+              value: "true"
+
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: linkwarden-secrets
+                  key: AWS_ACCESS_KEY_ID
+
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: linkwarden-secrets
+                  key: AWS_SECRET_ACCESS_KEY
+
           volumeMounts:
             - mountPath: /data/data
               name: linkwarden-data
