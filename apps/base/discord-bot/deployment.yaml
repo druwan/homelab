@@ -16,7 +16,7 @@ spec:
         app: discord-bot
     spec:
       containers:
-        - image: ghcr.io/druwan/discord-bot:v0.2.17
+        - image: ghcr.io/druwan/discord-bot:v0.2.18
           name: discord-bot
           env:
             - name: NODE_ENV
