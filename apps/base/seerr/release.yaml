@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: jellyseerr
+  name: seerr
 spec:
   interval: 30m
   chart:
@@ -10,17 +10,19 @@ spec:
       version: "2.7.0"
       sourceRef:
         kind: HelmRepository
-        name: jellyseerr
+        name: seerr
   values:
     image:
       pullPolicy: Always
       tag: "2.7.3"
-    fullnameOverride: jellyseerr
+    fullnameOverride: seerr
     extraEnv:
       - name: TZ
         value: "Europe/Stockholm"
     config:
       persistence:
+        enabled: true
+        existingClaim: seerr-config
         size: 5Gi
         accessModes:
           - ReadWriteOnce
@@ -32,11 +34,11 @@ spec:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.tls: "true"
       hosts:
-        - host: jellyseerr.christophervestman.com
+        - host: seerr.christophervestman.com
           paths:
             - path: /
               pathType: ImplementationSpecific
       tls:
-        - secretName: jellyseerr-tls
+        - secretName: seerr-tls
           hosts:
-            - jellyseerr.christophervestman.com
+            - seerr.christophervestman.com

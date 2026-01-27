@@ -83,11 +83,6 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>Media server</td>
    </tr>
    <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyseerr.svg"></td>
-       <td><a href="https://docs.seerr.dev/">Jellyseer</a></td>
-       <td>Jellyfin request manager</td>
-   </tr>
-   <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/grafana.svg"></td>
        <td><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#get-helm-repository-info">Kube Prometheus Stack</a></td>
        <td>Monitoring stack</td>
@@ -121,6 +116,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/prometheus.svg"></td>
        <td><a href="https://prometheus.io/">Prometheus</a></td>
        <td>Metrics and Monitoring</td>
+   </tr>
+   <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyseerr.svg"></td>
+       <td><a href="https://docs.seerr.dev/">Seerr</a></td>
+       <td>Jellyfin request manager</td>
    </tr>
    <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/stirling-pdf-dark.svg"></td>
