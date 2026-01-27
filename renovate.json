@@ -31,6 +31,17 @@
       ],
       "extractVersion": "^(?<version>\\d+\\.\\d+\\.\\d+)(?:-r\\d+-ls\\d+)?$",
       "versioning": "semver"
+    },
+    {
+      "description": "Enable OCI Helm chart updates for Seerr",
+      "matchDatasources": [
+        "oci"
+      ],
+      "matchManagers": [
+        "helm"
+      ],
+      "extractVersion": "^(?<version>\\d+\\.\\d+\\.\\d+)$",
+      "versioning": "semver"
     }
   ]
 }
