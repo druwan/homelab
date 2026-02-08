@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bazarr
+  name: bazarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bazarr
+  template:
+    metadata:
+      labels:
+        app: bazarr
+    spec:
+      securityContext:
+        fsGroup: 3100
+        supplementalGroups: [3100]
+      containers:
+        - name: bazarr
+          image: lscr.io/linuxserver/bazarr:v1.5.5-ls336
+          ports:
+            - containerPort: 6767
+          securityContext:
+            allowPrivilegeEscalation: false
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "3100"
+            - name: TZ
+              value: Europe/Stockholm
+          volumeMounts:
+            - mountPath: /config
+              name: bazarr-config
+            - mountPath: /media
+              name: media
+      volumes:
+        - name: bazarr-config
+          persistentVolumeClaim:
+            claimName: bazarr-config-pvc
+        - name: media
+          persistentVolumeClaim:
+            claimName: media-pvc

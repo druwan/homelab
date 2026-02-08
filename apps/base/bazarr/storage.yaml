@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bazarr-config-pvc
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: truenas-pvc-nfs
+  accessModes:
+    - ReadWriteOnce

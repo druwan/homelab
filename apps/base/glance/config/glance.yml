@@ -52,6 +52,9 @@ pages:
               # - title: Audiobookshelf
               #   url: https://audiobookshelf.christophervestman.com
               #   icon: sh:audiobookshelf
+              - title: Bazarr
+                url: https://bazarr.christophervestman.com
+                icon: sh:bazarr-light
               - title: ConvertX
                 url: https://convertx.christophervestman.com
                 icon: sh:convertx
