@@ -18,7 +18,7 @@ spec:
         role: app
     spec:
       containers:
-        - image: getmeili/meilisearch:v1.12.8
+        - image: getmeili/meilisearch:v1.35.0
           name: meilisearch
           env:
             - name: MEILI_MASTER_KEY
