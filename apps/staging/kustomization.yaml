@@ -4,6 +4,7 @@ resources:
   - actualbudget
   # - audiobookshelf
   - bazarr
+  - bento-pdf
   - convertx
   - discord-bot
   - glance
@@ -21,4 +22,5 @@ resources:
   - qbittorrent
   - radarr
   - sonarr
+  # - stirling-pdf
   - wallos

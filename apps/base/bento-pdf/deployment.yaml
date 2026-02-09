@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bento-pdf
+  name: bento-pdf
+  namespace: bento-pdf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bento-pdf
+  template:
+    metadata:
+      labels:
+        app: bento-pdf
+    spec:
+      containers:
+        - image: ghcr.io/alam00000/bentopdf:2.2.0
+          name: bentopdf

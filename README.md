@@ -38,6 +38,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>Installed as part of the KubeCraft Homelab course.</td>
    </tr>
    <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/bentopdf.svg"></td>
+       <td><a href="https://www.bentopdf.com/">BentoPDF</a></td>
+       <td>The PDF Toolkit built for privacy.</td>
+   </tr>
+   <tr>
        <td><img width="32" src="https://raw.githubusercontent.com/cert-manager/cert-manager/master/logo/logo.svg"></td>
        <td><a href="https://cert-manager.io/">Cert-Manager</a></td>
        <td>X.509 certificate management</td>
@@ -174,7 +179,7 @@ To install the Porkbun webhook:
 helm install porkbun-webhook ./deploy/porkbun-webhook --namespace cert-manager  --set groupName=christophervestman.com
 ```
 
-4. Then, configure your cert-manager Issuer (see the infrastructure/ directory for examples).
+1. Then, configure your cert-manager Issuer (see the infrastructure/ directory for examples).
 
 ### Bootstrapping a new cluster
 
@@ -207,4 +212,4 @@ k create secret generic porkbun-secret --namespace cert-manager --from-literal=a
 
 ```
 
-5. `cd` into the `porkbun-webhook` repo and do the install
+1. `cd` into the `porkbun-webhook` repo and do the install

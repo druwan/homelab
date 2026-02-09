@@ -55,6 +55,9 @@ pages:
               - title: Bazarr
                 url: https://bazarr.christophervestman.com
                 icon: sh:bazarr-light
+              - title: BentoPDF
+                url: https://pdf.christophervestman.com
+                icon: sh:bentopdf
               - title: ConvertX
                 url: https://convertx.christophervestman.com
                 icon: sh:convertx
@@ -106,9 +109,9 @@ pages:
               - title: Seerr
                 url: https://seerr.christophervestman.com
                 icon: sh:jellyseerr
-              - title: Stirling-PDF
-                url: https://pdf.christophervestman.com
-                icon: sh:stirling-pdf
+              # - title: Stirling-PDF
+              #   url: https://pdf.christophervestman.com
+              #   icon: sh:stirling-pdf
               - title: Sonarr
                 url: https://sonarr.christophervestman.com
                 icon: sh:sonarr-radarr
