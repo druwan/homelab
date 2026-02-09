@@ -128,8 +128,8 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>Jellyfin request manager</td>
    </tr>
    <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/stirling-pdf-dark.svg"></td>
-       <td><a href="https://docs.stirlingpdf.com">Sterling-PDF</a></td>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/stirling-pdf.svg"></td>
+       <td><a href="https://docs.stirlingpdf.com">Stirling-PDF</a></td>
        <td>PDF Application</td>
    </tr>
    <tr>
