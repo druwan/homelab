@@ -106,9 +106,9 @@ pages:
               - title: Seerr
                 url: https://seerr.christophervestman.com
                 icon: sh:jellyseerr
-              - title: Sterling-PDF
+              - title: Stirling-PDF
                 url: https://pdf.christophervestman.com
-                icon: sh:sterling-pdf
+                icon: sh:stirling-pdf
               - title: Sonarr
                 url: https://sonarr.christophervestman.com
                 icon: sh:sonarr-radarr
