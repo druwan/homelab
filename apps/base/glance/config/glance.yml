@@ -108,7 +108,7 @@ pages:
                 icon: sh:radarr
               - title: Seerr
                 url: https://seerr.christophervestman.com
-                icon: sh:jellyseerr
+                icon: sh:seerr
               # - title: Stirling-PDF
               #   url: https://pdf.christophervestman.com
               #   icon: sh:stirling-pdf

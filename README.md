@@ -123,9 +123,9 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>Metrics and Monitoring</td>
    </tr>
    <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyseerr.svg"></td>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/seerr.svg"></td>
        <td><a href="https://docs.seerr.dev/">Seerr</a></td>
-       <td>Jellyfin request manager</td>
+       <td>Open-source media request and discovery manager.</td>
    </tr>
    <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/stirling-pdf.svg"></td>
