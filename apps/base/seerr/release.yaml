@@ -21,10 +21,10 @@ spec:
     config:
       persistence:
         enabled: true
-        existingClaim: seerr-config
         size: 5Gi
         accessModes:
           - ReadWriteOnce
+        storageClass: truenas-pvc-nfs
     podSecurityContext:
       fsGroup: 1000
       fsGroupChangePolicy: OnRootMismatch
