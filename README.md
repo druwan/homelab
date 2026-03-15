@@ -63,6 +63,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>Used to sync my secrets from Azure Key Vaults to my cluster</td>
   </tr>
    <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/garage.webp"></td>
+       <td><a href="https://garagehq.deuxfleurs.fr/">Garage</a></td>
+       <td>Object storage service for local backups</td>
+   </tr>
+   <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/glance.svg"></td>
        <td><a href="https://github.com/glanceapp/glance/">Glance</a></td>
        <td>Dashboard</td>
@@ -121,6 +126,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/prometheus.svg"></td>
        <td><a href="https://prometheus.io/">Prometheus</a></td>
        <td>Metrics and Monitoring</td>
+   </tr>
+   <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/rustfs.webp"></td>
+       <td><a href="https://github.com/rustfs/rustfs">RustFS</a></td>
+       <td>Object storage service for local backups</td>
    </tr>
    <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/seerr.svg"></td>
