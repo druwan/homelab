@@ -1,0 +1,24 @@
+# Offsite Backup
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: firefly-backup-hexabyte
+  namespace: firefly
+spec:
+  configuration:
+    destinationPath: "s3://cnpg-backups/firefly/"
+    endpointURL: "https://s3.hexabyte.se"
+    s3Credentials:
+      accessKeyId:
+        name: hexabyte-credentials
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: hexabyte-credentials
+        key: ACCESS_SECRET_KEY
+    wal:
+      compression: gzip
+      maxParallel: 2
+    data:
+      compression: gzip
+      jobs: 2
+  retentionPolicy: "7d"
