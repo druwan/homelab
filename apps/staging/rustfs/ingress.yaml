@@ -24,3 +24,30 @@ spec:
                   name: console
             path: /
             pathType: Prefix
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rustfs-s3
+  namespace: rustfs
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - s3.christophervestman.com
+      secretName: rustfs-s3-tls
+  rules:
+    - host: s3.christophervestman.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: rustfs
+                port:
+                  name: s3-api
+            path: /
+            pathType: Prefix
