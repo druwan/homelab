@@ -23,7 +23,7 @@ spec:
         fsGroup: 10001
       containers:
         - name: rustfs
-          image: rustfs/rustfs:latest
+          image: rustfs/rustfs:1.0.0-alpha.85
           imagePullPolicy: Always
           ports:
             - containerPort: 9000
