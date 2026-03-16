@@ -2,7 +2,6 @@ apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-staging
-  namespace: cert-manager
 spec:
   acme:
     server: https://acme-staging-v02.api.letsencrypt.org/directory
@@ -14,13 +13,7 @@ spec:
           dnsZones:
             - christophervestman.com
         dns01:
-          webhook:
-            groupName: christophervestman.com
-            solverName: porkbun
-            config:
-              apiKeySecretRef:
-                name: porkbun-secret
-                key: api-key
-              secretKeySecretRef:
-                name: porkbun-secret
-                key: secret-key
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-tokens
+              key: cert-manager-token
