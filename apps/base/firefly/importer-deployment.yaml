@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firefly-importer
+  namespace: firefly
+  labels:
+    app: firefly-importer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firefly-importer
+  template:
+    metadata:
+      labels:
+        app: firefly-importer
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: importer
+          image: fireflyiii/data-importer:version-2.2.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: FIREFLY_III_URL
+              value: "http://firefly.firefly.svc.cluster.local"
+            - name: VANITY_URL
+              value: "https://firefly.christophervestman.com"
+            - name: FIREFLY_III_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: firefly-app-secrets
+                  key: FIREFLY_III_ACCESS_TOKEN
+            - name: TZ
+              value: "Europe/Stockholm"
+            - name: TRUSTED_PROXIES
+              value: "*"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi

@@ -1,0 +1,76 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: firefly-db
+  namespace: firefly
+spec:
+  description: "Postgres cluster for Firefly III"
+  imagePullPolicy: Always
+  inheritedMetadata:
+    labels:
+      app: firefly-db
+      policy-type: database
+  instances: 3
+  storage:
+    size: 10Gi
+    storageClass: truenas-pvc-nfs
+    resizeInUseVolumes: true
+
+  walStorage:
+    size: 2Gi
+    storageClass: truenas-pvc-nfs
+
+  superuserSecret:
+    name: firefly-db-superuser
+
+  # FRESH INSTALL: contains no backup. Have to use initdb
+
+  # DISTASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  # bootstrap:
+  #   recovery:
+  #     source: firefly-db-hexabyte
+  #     database: firefly
+  #     owner: firefly
+  #     secret:
+  #       name: firefly-db-credentials
+  # externalClusters:
+  #   - name: firefly-db-hexabyte
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: firefly-backup-hexabyte
+  bootstrap:
+    initdb:
+      database: firefly
+      owner: firefly
+      secret:
+        name: firefly-db-credentials
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: firefly-backup-hexabyte
+
+  managed:
+    services:
+      disabledDefaultServices: ["ro", "r"]
+    roles:
+      - name: firefly
+        ensure: present
+        login: true
+        createdb: false
+        passwordSecret:
+          name: firefly-db-credentials
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: firefly-db
+  namespace: firefly
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: firefly-db
+  podMetricsEndpoints:
+    - port: metrics

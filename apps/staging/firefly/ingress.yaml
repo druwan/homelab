@@ -1,0 +1,53 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: firefly
+  namespace: firefly
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - firefly.christophervestman.com
+      secretName: firefly-tls
+  rules:
+    - host: firefly.christophervestman.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: firefly
+                port:
+                  name: http
+            path: /
+            pathType: Prefix
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: firefly-importer
+  namespace: firefly
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - firefly-importer.christophervestman.com
+      secretName: firefly-importer-tls
+  rules:
+    - host: firefly-importer.christophervestman.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: firefly-importer
+                port:
+                  name: http
+            path: /
+            pathType: Prefix
