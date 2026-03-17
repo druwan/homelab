@@ -61,15 +61,18 @@ pages:
               - title: ConvertX
                 url: https://convertx.christophervestman.com
                 icon: sh:convertx
-              - title: Home Assistant
-                url: http://192.168.1.104:8123
-                icon: sh:home-assistant
+              - title: Firefly
+                url: https://firefly.christophervestman.com
+                icon: sh:firefly-iii
               # - title: Garage
               #   url: https://garage.christophervestman.com
               #   icon: sh:garage
               - title: Grafana
                 url: https://grafana.christophervestman.com
                 icon: sh:grafana
+              - title: Home Assistant
+                url: http://192.168.1.104:8123
+                icon: sh:home-assistant
               - title: Immich
                 url: https://immich.christophervestman.com
                 icon: sh:immich

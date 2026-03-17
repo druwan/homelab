@@ -63,6 +63,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>Used to sync my secrets from Azure Key Vaults to my cluster</td>
   </tr>
    <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/firefly-iii.svg"></td>
+       <td><a href="https://www.firefly-iii.org/">Firefly III</a></td>
+       <td>A free and open source personal finance manager</td>
+   </tr>
+   <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/garage.webp"></td>
        <td><a href="https://garagehq.deuxfleurs.fr/">Garage</a></td>
        <td>Object storage service for local backups</td>
