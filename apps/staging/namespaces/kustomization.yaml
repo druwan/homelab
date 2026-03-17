@@ -4,5 +4,6 @@ resources:
   - garage.yaml
   - linkwarden.yaml
   - media.yaml
+  - rustfs.yaml
   - stirling-pdf.yaml
   - tabs.yaml

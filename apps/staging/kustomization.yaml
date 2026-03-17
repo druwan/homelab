@@ -8,6 +8,7 @@ resources:
   - convertx
   - discord-bot
   - firefly
+  # - garage
   - glance
   - immich
   - its-mytabs
@@ -22,6 +23,7 @@ resources:
   - prowlarr
   - qbittorrent
   - radarr
+  - rustfs
   - sonarr
   # - stirling-pdf
   - wallos

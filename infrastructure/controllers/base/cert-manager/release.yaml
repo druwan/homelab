@@ -17,22 +17,3 @@ spec:
   values:
     crds:
       enabled: true
----
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: porkbun-webhook
-  namespace: cert-manager
-spec:
-  interval: 10m
-  chart:
-    spec:
-      chart: ./deploy/porkbun-webhook
-      reconcileStrategy: ChartVersion
-      version: "*"
-      sourceRef:
-        kind: GitRepository
-        name: porkbun-webhook
-        namespace: cert-manager
-  values:
-    groupName: christophervestman.com

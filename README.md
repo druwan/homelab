@@ -63,6 +63,16 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>Used to sync my secrets from Azure Key Vaults to my cluster</td>
   </tr>
    <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/firefly-iii.svg"></td>
+       <td><a href="https://www.firefly-iii.org/">Firefly III</a></td>
+       <td>A free and open source personal finance manager</td>
+   </tr>
+   <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/garage.webp"></td>
+       <td><a href="https://garagehq.deuxfleurs.fr/">Garage</a></td>
+       <td>Object storage service for local backups</td>
+   </tr>
+   <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/glance.svg"></td>
        <td><a href="https://github.com/glanceapp/glance/">Glance</a></td>
        <td>Dashboard</td>
@@ -123,6 +133,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>Metrics and Monitoring</td>
    </tr>
    <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/rustfs.webp"></td>
+       <td><a href="https://github.com/rustfs/rustfs">RustFS</a></td>
+       <td>Object storage service for local backups</td>
+   </tr>
+   <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/seerr.svg"></td>
        <td><a href="https://docs.seerr.dev/">Seerr</a></td>
        <td>Open-source media request and discovery manager.</td>
@@ -169,47 +184,49 @@ Since [Porkbun](https://porkbun.com/) is not officially supported by [cert-manag
 
 If I were using [Cloudflare](https://www.cloudflare.com/) as my DNS provider, this would be much simpler — I may consider switching in the future.
 
-To install the Porkbun webhook:
-
-1. Clone the [porkbun-webhook](https://github.com/mdonoughe/porkbun-webhook) repository
-2. Navigate into the project directory
-3. Install the Helm chart:
-
-```bash
-helm install porkbun-webhook ./deploy/porkbun-webhook --namespace cert-manager  --set groupName=christophervestman.com
-```
-
-1. Then, configure your cert-manager Issuer (see the infrastructure/ directory for examples).
-
-### Bootstrapping a new cluster
-
-Had to redo my cluster by changing the install directory. Some of the necessities required to make it function again:
-
-```bash
-#Uninstall k3s
-/usr/local/bin/k3s-killall.sh
-/usr/local/bin/k3s-uninstall.sh
-
-#Reinstall with flags
-sudo curl -sfL https://get.k3s.io | sh -s - --disable-helm-controller --data-dir=/home/k3s
-
-#cp kubeconfig and edit server address
-sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
-
-flux bootstrap github --owner=druwan --repository=homelab --branch=main --path=./clusters/staging --personal
-
-k create secret generic sops-age --namespace=flux-system --from-file=age.agekey=./age.agekey --dry-run -o yaml | k apply -f -
-
-k apply -k infrastructure/controllers/staging/external-secrets
-
-# Recreate secrets
-k create secret generic azure-creds --from-literal=clientId=${AZURE_KEY_VAULT_CLIENT_ID} --from-literal=clientSecret=${AZURE_KEY_VAULT_CLIENT_VALUE} -n external-secrets
-
-# Manually create the cert-manager namespace
-k create namespace cert-manager
-
-k create secret generic porkbun-secret --namespace cert-manager --from-literal=api-key=${PORKBUN_API_KEY} --from-literal=secret-key=${PORKBUN_SECRET_KEY} --dry-run=client -o yaml | k apply -f -
-
-```
-
-1. `cd` into the `porkbun-webhook` repo and do the install
+> [!IMPORTANT]
+> Migrated to Cloudflare
+> To install the Porkbun webhook:
+>
+> 1. Clone the [porkbun-webhook](https://github.com/mdonoughe/porkbun-webhook) repository
+> 2. Navigate into the project directory
+> 3. Install the Helm chart:
+>
+> ```bash
+> helm install porkbun-webhook ./deploy/porkbun-webhook --namespace cert-manager  --set groupName=christophervestman.com
+> ```
+>
+> 1. Then, configure your cert-manager Issuer (see the infrastructure/ directory for examples).
+>
+> ### Bootstrapping a new cluster
+>
+> Had to redo my cluster by changing the install directory. Some of the necessities required to make it function again:
+>
+> ```bash
+> #Uninstall k3s
+> /usr/local/bin/k3s-killall.sh
+> /usr/local/bin/k3s-uninstall.sh
+>
+> #Reinstall with flags
+> sudo curl -sfL https://get.k3s.io | sh -s - --disable-helm-controller --data-dir=/home/k3s
+>
+> #cp kubeconfig and edit server address
+> sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+>
+> flux bootstrap github --owner=druwan --repository=homelab --branch=main --path=./clusters/staging --personal
+>
+> k create secret generic sops-age --namespace=flux-system --from-file=age.agekey=./age.agekey --dry-run -o yaml | k apply -f -
+>
+> k apply -k infrastructure/controllers/staging/external-secrets
+>
+> # Recreate secrets
+> k create secret generic azure-creds --from-literal=clientId=${AZURE_KEY_VAULT_CLIENT_ID} --from-literal=clientSecret=${AZURE_KEY_VAULT_CLIENT_VALUE} -n external-secrets
+>
+> # Manually create the cert-manager namespace
+> k create namespace cert-manager
+>
+> k create secret generic porkbun-secret --namespace cert-manager --from-literal=api-key=${PORKBUN_API_KEY} --from-literal=secret-key=${PORKBUN_SECRET_KEY} --dry-run=client -o yaml | k apply -f -
+> 
+> ```
+>
+> 1. `cd` into the `porkbun-webhook` repo and do the install
