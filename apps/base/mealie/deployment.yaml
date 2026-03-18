@@ -7,7 +7,6 @@ metadata:
   name: mealie
   namespace: mealie
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: mealie
@@ -28,30 +27,21 @@ spec:
             - name: DB_ENGINE
               value: postgres
             - name: POSTGRES_DB
-              valueFrom:
-                secretKeyRef:
-                  name: mealie-db-app
-                  key: dbname
+              value: "mealie"
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mealie-db-app
+                  name: mealie-db-credentials
                   key: password
             - name: POSTGRES_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: mealie-db-app
-                  key: port
+              value: "5432"
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: mealie-db-app
+                  name: mealie-db-credentials
                   key: username
             - name: POSTGRES_SERVER
-              valueFrom:
-                secretKeyRef:
-                  name: mealie-db-app
-                  key: host
+              value: "mealie-db-rw.mealie.svc.cluster.local"
             - name: TZ
               value: Europe/Stockholm
           securityContext:

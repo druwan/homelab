@@ -4,20 +4,74 @@ metadata:
   name: mealie-db
   namespace: mealie
 spec:
-  description: Postgres cluster for mealie app
+  description: Postgres Cluster for Mealie
   imageName: ghcr.io/cloudnative-pg/postgresql:17.5
   imagePullPolicy: Always
   inheritedMetadata:
     labels:
-      app: mealie
+      app: mealie-db
       policy-type: database
   instances: 3
-  monitoring:
-    enablePodMonitor: true
-  # plugins:
-  #   - name: barman-cloud.cloudnative-pg.io
-  #     isWALArchiver: true
-  #     parameters:
-  #       barmanObjectName: mealie-azure-store
   storage:
-    size: 1Gi
+    size: 10Gi
+    storageClass: truenas-pvc-nfs
+    resizeInUseVolumes: true
+
+  walStorage:
+    size: 2Gi
+    storageClass: truenas-pvc-nfs
+
+  superuserSecret:
+    name: mealie-db-superuser
+
+  # FRESH INSTALL: contains no backup. Have to use initdb
+
+  # DISTASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  # bootstrap:
+  #   recovery:
+  #     source: mealie-db-hexabyte
+  #     database: mealie
+  #     owner: mealie
+  #     secret:
+  #       name: mealie-db-credentials
+  # externalClusters:
+  #   - name: mealie-db-hexabyte
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: mealie-backup-hexabyte
+  bootstrap:
+    initdb:
+      database: mealie
+      owner: mealie
+      secret:
+        name: mealie-db-credentials
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: mealie-db-backup-hexabyte
+
+  managed:
+    services:
+      disabledDefaultServices: ["ro", "r"]
+    roles:
+      - name: mealie
+        ensure: present
+        login: true
+        createdb: false
+        passwordSecret:
+          name: mealie-db-credentials
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: mealie-db
+  namespace: mealie
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: mealie-db
+  podMetricsEndpoints:
+    - port: metrics

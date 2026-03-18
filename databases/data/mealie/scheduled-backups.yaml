@@ -1,0 +1,16 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: mealie-db-daily-hexabyte
+  namespace: mealie
+spec:
+  immediate: true
+  schedule: "0 30 1 * * *"
+  cluster:
+    name: mealie-db
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: mealie-db-backup-hexabyte
+  backupOwnerReference: cluster

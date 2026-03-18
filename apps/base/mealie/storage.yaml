@@ -4,8 +4,9 @@ metadata:
   name: mealie-data-pvc
   namespace: mealie
 spec:
+  storageClassName: truenas-pvc-nfs
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 5Gi
