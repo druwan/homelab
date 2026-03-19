@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - garage.yaml
   - linkwarden.yaml
+  - mealie.yaml
   - media.yaml
   - rustfs.yaml
   - stirling-pdf.yaml
