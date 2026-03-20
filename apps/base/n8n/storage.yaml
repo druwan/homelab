@@ -6,8 +6,9 @@ metadata:
   labels:
     app: n8n
 spec:
+  storageClassName: truenas-pvc-nfs
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 5Gi

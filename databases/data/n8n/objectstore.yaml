@@ -1,20 +1,24 @@
+# Offsite Backup
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
-  name: n8n-azure-store
+  name: n8n-db-backup-hexabyte
   namespace: n8n
 spec:
-  retentionPolicy: "7d"
   configuration:
-    destinationPath: "https://homelabdatabases.blob.core.windows.net/n8n"
-    azureCredentials:
-      connectionString:
-        name: azure-creds
-        key: AZURE_CONNECTION_STRING
+    destinationPath: "s3://cnpg-backups/n8n/"
+    endpointURL: "https://s3.hexabyte.se"
+    s3Credentials:
+      accessKeyId:
+        name: hexabyte-credentials
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: hexabyte-credentials
+        key: ACCESS_SECRET_KEY
     wal:
       compression: gzip
-  instanceSidecarConfiguration:
-    retentionPolicyIntervalSeconds: 1800
-    resources:
-      requests:
-        memory: 100Mi
+      maxParallel: 2
+    data:
+      compression: gzip
+      jobs: 2
+  retentionPolicy: "7d"

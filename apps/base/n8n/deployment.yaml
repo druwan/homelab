@@ -48,24 +48,18 @@ spec:
             - name: NODE_ENV
               value: production
             - name: DB_POSTGRESDB_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  name: n8n-db-app
-                  key: dbname
+              value: "n8n"
             - name: DB_POSTGRESDB_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: n8n-db-app
-                  key: host
+              value: "n8n-db-rw.n8n.svc.cluster.local"
             - name: DB_POSTGRESDB_USER
               valueFrom:
                 secretKeyRef:
-                  name: n8n-db-app
-                  key: user
+                  name: n8n-db-credentials
+                  key: username
             - name: DB_POSTGRESDB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: n8n-db-app
+                  name: n8n-db-credentials
                   key: password
             - name: WEBHOOK_URL
               value: https://n8n.christophervestman.com/

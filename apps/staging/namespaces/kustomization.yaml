@@ -5,6 +5,7 @@ resources:
   - linkwarden.yaml
   - mealie.yaml
   - media.yaml
+  - n8n.yaml
   - rustfs.yaml
   - stirling-pdf.yaml
   - tabs.yaml

@@ -4,31 +4,64 @@ metadata:
   name: n8n-db
   namespace: n8n
 spec:
-  description: Postgres cluster for n8n app
+  description: "Postgres cluster for n8n"
   imageName: ghcr.io/cloudnative-pg/postgis:17-3.5
   imagePullPolicy: Always
+  inheritedMetadata:
+    labels:
+      app: n8n-db
+      policy-type: database
+  instances: 3
+  storage:
+    size: 10Gi
+    storageClass: truenas-pvc-nfs
+    resizeInUseVolumes: true
+
+  walStorage:
+    size: 2Gi
+    storageClass: truenas-pvc-nfs
+
+  superuserSecret:
+    name: n8n-db-superuser
+
+  # FRESH INSTALL: contains no backup. Have to use initdb
   bootstrap:
     initdb:
+      database: n8n
+      owner: n8n
+      secret:
+        name: n8n-db-credentials
       postInitTemplateSQL:
         - CREATE EXTENSION fuzzystrmatch;
         - CREATE EXTENSION postgis;
         - CREATE EXTENSION postgis_raster;
         - CREATE EXTENSION postgis_tiger_geocoder;
         - CREATE EXTENSION postgis_topology;
-  inheritedMetadata:
-    labels:
-      app: n8n
-      policy-type: database
-  instances: 3
-  monitoring:
-    enablePodMonitor: true
-  # plugins:
-  #   - name: barman-cloud.cloudnative-pg.io
-  #     isWALArchiver: true
-  #     parameters:
-  #       barmanObjectName: n8n-azure-store
+
+  # DISTASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  # bootstrap:
+  #   recovery:
+  #     source: n8n-db-hexabyte
+  #     database: n8n
+  #     owner: n8n
+  #     secret:
+  #       name: n8n-db-credentials
+  # externalClusters:
+  #   - name: n8n-db-hexabyte
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: n8n-ab-backup-hexabyte
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: n8n-db-backup-hexabyte
+
   managed:
     services:
+      disabledDefaultServices: ["ro", "r"]
       additional:
         - selectorType: rw
           serviceTemplate:
@@ -36,5 +69,22 @@ spec:
               name: n8n-db-lb
             spec:
               type: LoadBalancer
-  storage:
-    size: 1Gi
+    roles:
+      - name: n8n
+        ensure: present
+        login: true
+        createdb: false
+        passwordSecret:
+          name: n8n-db-credentials
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: n8n-db
+  namespace: n8n
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: n8n-db
+  podMetricsEndpoints:
+    - port: metrics
