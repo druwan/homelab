@@ -4,18 +4,58 @@ metadata:
   name: linkwarden-db
   namespace: linkwarden
 spec:
-  description: Postgres cluster for linkwarden app
+  description: "Postgres cluster for Linkwarden"
   imageName: ghcr.io/cloudnative-pg/postgresql:16-minimal-trixie
   imagePullPolicy: Always
   inheritedMetadata:
     labels:
-      app: linkwarden
+      app: linkwarden-db
       policy-type: database
   instances: 3
   storage:
     size: 10Gi
     storageClass: truenas-pvc-nfs
     resizeInUseVolumes: true
+
+  walStorage:
+    size: 2Gi
+    storageClass: truenas-pvc-nfs
+
+  superuserSecret:
+    name: linkwarden-db-superuser
+
+  # FRESH INSTALL: contains no backup. Have to use initdb
+  bootstrap:
+    initdb:
+      database: linkwarden
+      owner: linkwarden
+      secret:
+        name: linkwarden-db-credentials
+
+  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  # bootstrap:
+  #   recovery:
+  #     source: linkwarden-db-hexabyte
+  #     database: linkwarden
+  #     owner: linkwarden
+  #     secret:
+  #       name: linkwarden-db-credentials
+  # externalClusters:
+  #   - name: linkwarden-db-hexabyte
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: linkwarden-db-backup-hexabyte
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: linkwarden-db-backup-hexabyte
+
+  managed:
+    services:
+      disabledDefaultServices: ["r", "ro"]
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
