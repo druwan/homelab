@@ -73,31 +73,40 @@ spec:
               value: "redis://redis:6379"
 
             - name: PAPERLESS_DBHOST
-              valueFrom:
-                secretKeyRef:
-                  name: paperless-ngx-db-app
-                  key: host
+              value: paperless-ngx-db-rw.paperless-ngx.svc.cluster.local
 
             - name: PAPERLESS_DBNAME
-              valueFrom:
-                secretKeyRef:
-                  name: paperless-ngx-db-app
-                  key: dbname
+              value: paperless
 
             - name: PAPERLESS_DBUSER
               valueFrom:
                 secretKeyRef:
-                  name: paperless-ngx-db-app
-                  key: user
+                  name: paperless-ngx-db-credentials
+                  key: username
 
             - name: PAPERLESS_DBPASS
               valueFrom:
                 secretKeyRef:
-                  name: paperless-ngx-db-app
+                  name: paperless-ngx-db-credentials
                   key: password
-          envFrom:
-            - secretRef:
-                name: paperless-ngx-env
+
+            - name: PAPERLESS_ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-db-credentials
+                  key: adminUser
+
+            - name: PAPERLESS_ADMIN_MAIL
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-db-credentials
+                  key: adminMail
+
+            - name: PAPERLESS_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-db-credentials
+                  key: adminPassword
 
           volumeMounts:
             - mountPath: /usr/src/paperless/data

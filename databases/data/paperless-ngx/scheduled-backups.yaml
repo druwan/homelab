@@ -1,0 +1,17 @@
+# Daily backup at 01:00
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: paperless-ngx-db-daily-hexabyte
+  namespace: paperless-ngx
+spec:
+  immediate: true
+  schedule: "0 45 1 * * *"
+  cluster:
+    name: paperless-ngx-db
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: paperless-ngx-db-backup-hexabyte
+  backupOwnerReference: cluster

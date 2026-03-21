@@ -4,11 +4,12 @@ metadata:
   name: paperless-redis-broker-data-pvc
   namespace: paperless-ngx
 spec:
+  storageClassName: truenas-pvc-nfs
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 5Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -16,11 +17,12 @@ metadata:
   name: paperless-ngx-data-pvc
   namespace: paperless-ngx
 spec:
+  storageClassName: truenas-pvc-nfs
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 500Mi
+      storage: 5Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -28,11 +30,12 @@ metadata:
   name: paperless-ngx-media-pvc
   namespace: paperless-ngx
 spec:
+  storageClassName: truenas-pvc-nfs
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 500Mi
+      storage: 5Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -40,11 +43,12 @@ metadata:
   name: paperless-ngx-export-pvc
   namespace: paperless-ngx
 spec:
+  storageClassName: truenas-pvc-nfs
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 500Mi
+      storage: 5Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -52,10 +56,10 @@ metadata:
   name: paperless-ngx-consume-pvc
   namespace: paperless-ngx
 spec:
+  storageClassName: truenas-pvc-nfs
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 500Mi
+      storage: 5Gi
 ---
-

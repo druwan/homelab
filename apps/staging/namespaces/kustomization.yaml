@@ -6,6 +6,7 @@ resources:
   - mealie.yaml
   - media.yaml
   - n8n.yaml
+  - paperless-ngx.yaml
   - rustfs.yaml
   - stirling-pdf.yaml
   - tabs.yaml
