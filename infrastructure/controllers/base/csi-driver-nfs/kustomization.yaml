@@ -5,3 +5,4 @@ resources:
   - repository.yaml
   - pvc-storageclass.yaml
   - media-storageclass.yaml
+  - nvme-storageclass.yaml

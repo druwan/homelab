@@ -1,0 +1,13 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: truenas-nvme-nfs
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: 192.168.1.83
+  share: /mnt/nvme/k8s-fast
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+mountOptions:
+  - nfsvers=4.2
