@@ -4,32 +4,76 @@ metadata:
   name: immich-db
   namespace: immich
 spec:
-  description: Postgres cluster for immich app
+  description: "Postgres cluster for Immich"
   imageName: ghcr.io/cloudnative-pg/postgis:17-3-standard-trixie
   imagePullPolicy: Always
   inheritedMetadata:
     labels:
-      app: immich
+      app: immich-db
       policy-type: database
+  instances: 3
+  storage:
+    size: 100Gi
+    storageClass: truenas-pvc-nfs
+    resizeInUseVolumes: true
+
+  walStorage:
+    size: 10Gi
+    storageClass: truenas-pvc-nfs
+
+  superuserSecret:
+    name: immich-db-superuser
+
+  # FRESH INSTALL: contains no backup. Have to use initdb
   bootstrap:
     initdb:
+      database: immich
+      owner: immich
+      secret:
+        name: immich-db-credentials
       postInitApplicationSQL:
         - CREATE EXTENSION IF NOT EXISTS vector CASCADE;
         - CREATE EXTENSION IF NOT EXISTS cube CASCADE;
         - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
         - CREATE EXTENSION IF NOT EXISTS pg_trgm CASCADE;
-  instances: 3
-  monitoring:
-    enablePodMonitor: false
-  storage:
-    size: 100Gi
-    storageClass: truenas-pvc-nfs
-    resizeInUseVolumes: true
+
+  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  # bootstrap:
+  #   recovery:
+  #     source: immich-db-hexabyte
+  #     database: immich
+  #     owner: immich
+  #     secret:
+  #       name: immich-db-credentials
+  # externalClusters:
+  #   - name: immich-db-hexabyte
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: immich-db-backup-hexabyte
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: immich-db-backup-hexabyte
+
+  managed:
+    services:
+      disabledDefaultServices: ["r", "ro"]
+    roles:
+      - name: immich
+        ensure: present
+        login: true
+        createdb: false
+        passwordSecret:
+          name: immich-db-credentials
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
   name: immich-db
+  namespace: immich
 spec:
   selector:
     matchLabels:

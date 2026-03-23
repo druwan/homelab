@@ -1,22 +1,24 @@
-# Barman Cloud CNPG-I plugin
-# https://cloudnative-pg.io/plugin-barman-cloud/docs/migration/
+# Offsite Backup
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
-  name: immich-azure-store
+  name: immich-db-backup-hexabyte
   namespace: immich
 spec:
   retentionPolicy: "7d"
   configuration:
-    destinationPath: "https://homelabdatabases.blob.core.windows.net/immich"
-    azureCredentials:
-      connectionString:
-        name: azure-creds
-        key: AZURE_CONNECTION_STRING
+    destinationPath: "s3://cnpg-backups/immich/"
+    endpointURL: "https://s3.hexabyte.se"
+    s3Credentials:
+      accessKeyId:
+        name: hexabyte-credentials
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: hexabyte-credentials
+        key: ACCESS_SECRET_KEY
     wal:
       compression: gzip
-  instanceSidecarConfiguration:
-    retentionPolicyIntervalSeconds: 1800
-    resources:
-      requests:
-        memory: 100Mi
+      maxParallel: 2
+    data:
+      compression: gzip
+      jobs: 2
