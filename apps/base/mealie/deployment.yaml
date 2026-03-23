@@ -41,7 +41,7 @@ spec:
                   name: mealie-db-credentials
                   key: username
             - name: POSTGRES_SERVER
-              value: "mealie-db-rw.mealie.svc.cluster.local"
+              value: "mealie-db-v1-rw.mealie.svc.cluster.local"
             - name: TZ
               value: Europe/Stockholm
           securityContext:

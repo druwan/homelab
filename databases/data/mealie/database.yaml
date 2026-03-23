@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: mealie-db
+  name: mealie-db-v1
   namespace: mealie
 spec:
   description: Postgres Cluster for Mealie
@@ -14,38 +14,40 @@ spec:
   instances: 3
   storage:
     size: 10Gi
-    storageClass: truenas-pvc-nfs
+    storageClass: truenas-nvme-nfs
     resizeInUseVolumes: true
 
   walStorage:
     size: 2Gi
-    storageClass: truenas-pvc-nfs
+    storageClass: truenas-nvme-nfs
 
   superuserSecret:
     name: mealie-db-superuser
 
   # FRESH INSTALL: contains no backup. Have to use initdb
-
-  # DISTASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   # bootstrap:
-  #   recovery:
-  #     source: mealie-db-hexabyte
+  #   initdb:
   #     database: mealie
   #     owner: mealie
   #     secret:
   #       name: mealie-db-credentials
-  # externalClusters:
-  #   - name: mealie-db-hexabyte
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: mealie-backup-hexabyte
+
+  # DISTASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   bootstrap:
-    initdb:
+    recovery:
+      source: mealie-db-hexabyte
       database: mealie
       owner: mealie
       secret:
         name: mealie-db-credentials
+
+  externalClusters:
+    - name: mealie-db-hexabyte
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: mealie-db-backup-hexabyte
+          serverName: mealie-db
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
