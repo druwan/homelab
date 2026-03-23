@@ -6,7 +6,7 @@ metadata:
   labels:
     app: n8n
 spec:
-  storageClassName: truenas-pvc-nfs
+  storageClassName: truenas-nvme-nfs
   accessModes:
     - ReadWriteOnce
   resources:

@@ -4,7 +4,7 @@ metadata:
   name: linkwarden-data-pvc
   namespace: linkwarden
 spec:
-  storageClassName: truenas-pvc-nfs
+  storageClassName: truenas-nvme-nfs
   accessModes:
     - ReadWriteOnce
   resources:
@@ -17,7 +17,7 @@ metadata:
   name: meili-data-pvc
   namespace: linkwarden
 spec:
-  storageClassName: truenas-pvc-nfs
+  storageClassName: truenas-nvme-nfs
   accessModes:
     - ReadWriteOnce
   resources:

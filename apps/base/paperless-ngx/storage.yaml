@@ -4,7 +4,7 @@ metadata:
   name: paperless-redis-broker-data-pvc
   namespace: paperless-ngx
 spec:
-  storageClassName: truenas-pvc-nfs
+  storageClassName: truenas-nvme-nfs
   accessModes:
     - ReadWriteOnce
   resources:
@@ -17,7 +17,7 @@ metadata:
   name: paperless-ngx-data-pvc
   namespace: paperless-ngx
 spec:
-  storageClassName: truenas-pvc-nfs
+  storageClassName: truenas-nvme-nfs
   accessModes:
     - ReadWriteOnce
   resources:
@@ -56,7 +56,7 @@ metadata:
   name: paperless-ngx-consume-pvc
   namespace: paperless-ngx
 spec:
-  storageClassName: truenas-pvc-nfs
+  storageClassName: truenas-nvme-nfs
   accessModes:
     - ReadWriteOnce
   resources:
