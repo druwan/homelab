@@ -13,12 +13,12 @@ spec:
   instances: 3
   storage:
     size: 10Gi
-    storageClass: truenas-pvc-nfs
+    storageClass: truenas-nvme-nfs
     resizeInUseVolumes: true
 
   walStorage:
     size: 2Gi
-    storageClass: truenas-pvc-nfs
+    storageClass: truenas-nvme-nfs
 
   superuserSecret:
     name: paperless-ngx-db-superuser
@@ -44,7 +44,7 @@ spec:
   #     plugin:
   #       name: barman-cloud.cloudnative-pg.io
   #       parameters:
-  #         barmanObjectName: paperless-ngx-backup-hexabyte
+  #         barmanObjectName: paperless-ngx-db-backup-hexabyte
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
