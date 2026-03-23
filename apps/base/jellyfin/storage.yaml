@@ -30,7 +30,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: jellyfin-cache-pvc
 spec:
-  storageClassName: truenas-pvc-nfs
+  storageClassName: truenas-nvme-nfs
   accessModes:
     - ReadWriteOnce
   resources:
