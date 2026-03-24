@@ -14,12 +14,12 @@ spec:
   instances: 3
   storage:
     size: 10Gi
-    storageClass: truenas-pvc-nfs
+    storageClass: truenas-nvme-nfs
     resizeInUseVolumes: true
 
   walStorage:
     size: 2Gi
-    storageClass: truenas-pvc-nfs
+    storageClass: truenas-nvme-nfs
 
   superuserSecret:
     name: n8n-db-superuser
@@ -46,12 +46,14 @@ spec:
   #     owner: n8n
   #     secret:
   #       name: n8n-db-credentials
+  #
   # externalClusters:
   #   - name: n8n-db-hexabyte
   #     plugin:
   #       name: barman-cloud.cloudnative-pg.io
   #       parameters:
-  #         barmanObjectName: n8n-ab-backup-hexabyte
+  #         barmanObjectName: n8n-db-backup-hexabyte
+  #         serverName: n8n-db
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
