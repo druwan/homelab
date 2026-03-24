@@ -27,7 +27,7 @@ spec:
           main:
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: v2.6.1
+              tag: v2.6.2
               pullPolicy: Always
             env:
               - name: DB_HOSTNAME
