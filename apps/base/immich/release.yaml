@@ -31,7 +31,7 @@ spec:
               pullPolicy: Always
             env:
               - name: DB_HOSTNAME
-                value: immich-db-rw.immich.svc.cluster.local
+                value: immich-db-v1-rw.immich.svc.cluster.local
               - name: DB_PORT
                 value: 5432
               - name: DB_USERNAME

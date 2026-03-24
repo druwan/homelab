@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: immich-db
+  name: immich-db-v1
   namespace: immich
 spec:
   description: "Postgres cluster for Immich"
@@ -14,43 +14,44 @@ spec:
   instances: 3
   storage:
     size: 100Gi
-    storageClass: truenas-pvc-nfs
+    storageClass: truenas-nvme-nfs
     resizeInUseVolumes: true
 
   walStorage:
     size: 10Gi
-    storageClass: truenas-pvc-nfs
+    storageClass: truenas-nvme-nfs
 
   superuserSecret:
     name: immich-db-superuser
 
   # FRESH INSTALL: contains no backup. Have to use initdb
-  bootstrap:
-    initdb:
-      database: immich
-      owner: immich
-      secret:
-        name: immich-db-credentials
-      postInitApplicationSQL:
-        - CREATE EXTENSION IF NOT EXISTS vector CASCADE;
-        - CREATE EXTENSION IF NOT EXISTS cube CASCADE;
-        - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
-        - CREATE EXTENSION IF NOT EXISTS pg_trgm CASCADE;
-
-  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   # bootstrap:
-  #   recovery:
-  #     source: immich-db-hexabyte
+  #   initdb:
   #     database: immich
   #     owner: immich
   #     secret:
   #       name: immich-db-credentials
-  # externalClusters:
-  #   - name: immich-db-hexabyte
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: immich-db-backup-hexabyte
+  #     postInitApplicationSQL:
+  #       - CREATE EXTENSION IF NOT EXISTS vector CASCADE;
+  #       - CREATE EXTENSION IF NOT EXISTS cube CASCADE;
+  #       - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
+  #       - CREATE EXTENSION IF NOT EXISTS pg_trgm CASCADE;
+
+  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  bootstrap:
+    recovery:
+      source: immich-db-hexabyte
+      database: immich
+      owner: immich
+      secret:
+        name: immich-db-credentials
+  externalClusters:
+    - name: immich-db-hexabyte
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: immich-db-backup-hexabyte
+          serverName: immich-db
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
