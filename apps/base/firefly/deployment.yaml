@@ -26,7 +26,7 @@ spec:
             - sh
             - -c
             - |
-              until nc -z firefly-db-rw.firefly.svc.cluster.local 5432; do
+              until nc -z firefly-db-v1-rw.firefly.svc.cluster.local 5432; do
                 echo "waiting for postgres..."; sleep 3
               done
       containers:
@@ -58,7 +58,7 @@ spec:
             - name: DB_CONNECTION
               value: "pgsql"
             - name: DB_HOST
-              value: "firefly-db-rw.firefly.svc.cluster.local"
+              value: "firefly-db-v1-rw.firefly.svc.cluster.local"
             - name: DB_PORT
               value: "5432"
             - name: DB_DATABASE

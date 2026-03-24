@@ -4,7 +4,7 @@ metadata:
   name: firefly-upload
   namespace: firefly
 spec:
-  storageClassName: truenas-pvc-nfs
+  storageClassName: truenas-nvme-nfs
   accessModes:
     - ReadWriteOnce
   resources:
