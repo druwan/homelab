@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: paperless-ngx-db
+  name: paperless-ngx-db-v1
   namespace: paperless-ngx
 spec:
   description: "Postgres cluster for Paperless-ngx"
@@ -24,27 +24,28 @@ spec:
     name: paperless-ngx-db-superuser
 
   # FRESH INSTALL: contains no backup. Have to use initdb
-  bootstrap:
-    initdb:
-      database: paperless
-      owner: paperless
-      secret:
-        name: paperless-ngx-db-credentials
-
-  # DISTASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   # bootstrap:
-  #   recovery:
-  #     source: paperless-ngx-db-hexabyte
+  #   initdb:
   #     database: paperless
   #     owner: paperless
   #     secret:
   #       name: paperless-ngx-db-credentials
-  # externalClusters:
-  #   - name: paperless-ngx-db-hexabyte
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: paperless-ngx-db-backup-hexabyte
+
+  # DISTASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  bootstrap:
+    recovery:
+      source: paperless-ngx-db-hexabyte
+      database: paperless
+      owner: paperless
+      secret:
+        name: paperless-ngx-db-credentials
+  externalClusters:
+    - name: paperless-ngx-db-hexabyte
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: paperless-ngx-db-backup-hexabyte
+          serverName: paperless-ngx-db
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io

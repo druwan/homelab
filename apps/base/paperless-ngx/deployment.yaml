@@ -73,7 +73,7 @@ spec:
               value: "redis://redis:6379"
 
             - name: PAPERLESS_DBHOST
-              value: paperless-ngx-db-rw.paperless-ngx.svc.cluster.local
+              value: paperless-ngx-db-v1-rw.paperless-ngx.svc.cluster.local
 
             - name: PAPERLESS_DBNAME
               value: paperless

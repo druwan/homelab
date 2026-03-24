@@ -5,6 +5,7 @@ metadata:
   name: paperless-ngx-db-backup-hexabyte
   namespace: paperless-ngx
 spec:
+  retentionPolicy: "7d"
   configuration:
     destinationPath: "s3://cnpg-backups/paperless-ngx/"
     endpointURL: "https://s3.hexabyte.se"
@@ -21,4 +22,3 @@ spec:
     data:
       compression: gzip
       jobs: 2
-  retentionPolicy: "7d"
