@@ -16,5 +16,5 @@ spec:
         app: bento-pdf
     spec:
       containers:
-        - image: ghcr.io/alam00000/bentopdf:2.6.0
+        - image: ghcr.io/alam00000/bentopdf:2.7.0
           name: bentopdf
