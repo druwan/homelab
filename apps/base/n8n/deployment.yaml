@@ -50,7 +50,7 @@ spec:
             - name: DB_POSTGRESDB_DATABASE
               value: "n8n"
             - name: DB_POSTGRESDB_HOST
-              value: "n8n-db-rw.n8n.svc.cluster.local"
+              value: "n8n-db-v1-rw.n8n.svc.cluster.local"
             - name: DB_POSTGRESDB_USER
               valueFrom:
                 secretKeyRef:
