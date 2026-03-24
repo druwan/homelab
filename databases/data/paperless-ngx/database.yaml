@@ -65,6 +65,6 @@ metadata:
 spec:
   selector:
     matchLabels:
-      cnpg.io/cluster: paperless-ngx-db
+      cnpg.io/cluster: paperless-ngx-db-v1
   podMetricsEndpoints:
     - port: metrics

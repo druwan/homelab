@@ -66,6 +66,6 @@ metadata:
 spec:
   selector:
     matchLabels:
-      cnpg.io/cluster: linkwarden-db
+      cnpg.io/cluster: linkwarden-db-v1
   podMetricsEndpoints:
     - port: metrics

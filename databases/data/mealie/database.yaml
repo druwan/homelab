@@ -74,6 +74,6 @@ metadata:
 spec:
   selector:
     matchLabels:
-      cnpg.io/cluster: mealie-db
+      cnpg.io/cluster: mealie-db-v1
   podMetricsEndpoints:
     - port: metrics
