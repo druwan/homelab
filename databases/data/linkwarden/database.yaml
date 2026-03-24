@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: linkwarden-db
+  name: linkwarden-db-v1
   namespace: linkwarden
 spec:
   description: "Postgres cluster for Linkwarden"
@@ -14,38 +14,39 @@ spec:
   instances: 3
   storage:
     size: 10Gi
-    storageClass: truenas-pvc-nfs
+    storageClass: truenas-nvme-nfs
     resizeInUseVolumes: true
 
   walStorage:
     size: 2Gi
-    storageClass: truenas-pvc-nfs
+    storageClass: truenas-nvme-nfs
 
   superuserSecret:
     name: linkwarden-db-superuser
 
   # FRESH INSTALL: contains no backup. Have to use initdb
-  bootstrap:
-    initdb:
-      database: linkwarden
-      owner: linkwarden
-      secret:
-        name: linkwarden-db-credentials
-
-  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   # bootstrap:
-  #   recovery:
-  #     source: linkwarden-db-hexabyte
+  #   initdb:
   #     database: linkwarden
   #     owner: linkwarden
   #     secret:
   #       name: linkwarden-db-credentials
-  # externalClusters:
-  #   - name: linkwarden-db-hexabyte
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: linkwarden-db-backup-hexabyte
+
+  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  bootstrap:
+    recovery:
+      source: linkwarden-db-hexabyte
+      database: linkwarden
+      owner: linkwarden
+      secret:
+        name: linkwarden-db-credentials
+  externalClusters:
+    - name: linkwarden-db-hexabyte
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: linkwarden-db-backup-hexabyte
+          serverName: linkwarden-db
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
