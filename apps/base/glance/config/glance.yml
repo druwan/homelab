@@ -106,9 +106,12 @@ pages:
               - title: Prowlarr
                 url: https://prowlarr.christophervestman.com
                 icon: sh:prowlarr-radarr
-              - title: qBittorrent
-                url: https://qbittorrent.christophervestman.com
-                icon: sh:qbittorrent
+              # - title: qBittorrent
+              #   url: https://qbittorrent.christophervestman.com
+              #   icon: sh:qbittorrent
+              - title: qui
+                url: https://qui.christophervestman.com
+                icon: sh:qui
               - title: Radarr
                 url: https://radarr.christophervestman.com
                 icon: sh:radarr

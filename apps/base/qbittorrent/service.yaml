@@ -11,8 +11,17 @@ spec:
   ports:
     - name: webui
       port: 8080
-      targetPort: 8080
+      targetPort: webui
       protocol: TCP
+
+    - name: quiui
+      port: 7476
+      targetPort: quiui
+      protocol: TCP
+
+    - name: metrics
+      port: 9074
+      targetPort: metrics
 
     - name: torrent-tcp
       port: 6881

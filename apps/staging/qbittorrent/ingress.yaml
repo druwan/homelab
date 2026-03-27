@@ -12,6 +12,7 @@ spec:
   tls:
     - hosts:
         - qbittorrent.christophervestman.com
+        - qui.christophervestman.com
       secretName: qbittorrent-tls
   rules:
     - host: qbittorrent.christophervestman.com
@@ -22,5 +23,15 @@ spec:
             backend:
               service:
                 name: qbittorrent
-                port: 
+                port:
                   number: 8080
+    - host: qui.christophervestman.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: qbittorrent
+                port:
+                  number: 7476

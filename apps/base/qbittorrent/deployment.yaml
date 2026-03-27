@@ -64,6 +64,26 @@ spec:
               name: qbittorrent-config
             - mountPath: /media
               name: media
+
+        - name: qui
+          image: ghcr.io/autobrr/qui:v1.15.0
+          env:
+            - name: QUI__METRICS_ENABLED
+              value: "true"
+            - name: QUI__METRICS_HOST
+              value: "0.0.0.0"
+            - name: QUI__METRICS_PORT
+              value: "9074"
+          ports:
+            - name: quiui
+              containerPort: 7476
+            - name: metrics
+              containerPort: 9074
+          volumeMounts:
+            - mountPath: /config
+              name: qbittorrent-config
+            - mountPath: /media
+              name: media
       volumes:
         - name: qbittorrent-config
           persistentVolumeClaim:
