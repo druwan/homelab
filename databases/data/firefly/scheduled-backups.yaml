@@ -15,3 +15,17 @@ spec:
     parameters:
       barmanObjectName: firefly-backup-hexabyte
   backupOwnerReference: cluster
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: firefly-db-ondemand
+  namespace: firefly
+spec:
+  cluster:
+    name: firefly-db-v1
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: firefly-backup-hexabyte

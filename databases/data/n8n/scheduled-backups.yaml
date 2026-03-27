@@ -15,3 +15,17 @@ spec:
     parameters:
       barmanObjectName: n8n-db-backup-hexabyte
   backupOwnerReference: cluster
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: n8n-db-ondemand
+  namespace: n8n
+spec:
+  cluster:
+    name: n8n-db-v1
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: n8n-db-backup-hexabyte

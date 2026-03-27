@@ -14,3 +14,17 @@ spec:
     parameters:
       barmanObjectName: mealie-db-backup-hexabyte
   backupOwnerReference: cluster
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: mealie-db-ondemand
+  namespace: mealie
+spec:
+  cluster:
+    name: mealie-db-v1
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: mealie-db-backup-hexabyte

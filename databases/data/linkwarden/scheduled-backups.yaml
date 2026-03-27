@@ -15,3 +15,17 @@ spec:
     parameters:
       barmanObjectName: linkwarden-db-backup-hexabyte
   backupOwnerReference: cluster
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: linkwarden-db-ondemand
+  namespace: linkwarden
+spec:
+  cluster:
+    name: linkwarden-db-v1
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: linkwarden-db-backup-hexabyte

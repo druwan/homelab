@@ -15,3 +15,17 @@ spec:
     parameters:
       barmanObjectName: paperless-ngx-db-backup-hexabyte
   backupOwnerReference: cluster
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: paperless-ngx-db-ondemand
+  namespace: paperless-ngx
+spec:
+  cluster:
+    name: paperless-ngx-db-v1
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: paperless-ngx-db-backup-hexabyte
