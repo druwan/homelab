@@ -23,7 +23,7 @@ resources:
   - prowlarr
   - qbittorrent
   - radarr
-  - rustfs
+  # - rustfs
   - sonarr
   # - stirling-pdf
   - wallos
