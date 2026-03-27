@@ -60,7 +60,7 @@ pages:
                 icon: sh:bentopdf
               - title: ConvertX
                 url: https://convertx.christophervestman.com
-                icon: sh:convertx
+                icon: sh:convertx.png
               - title: Firefly
                 url: https://firefly.christophervestman.com
                 icon: sh:firefly-iii
@@ -78,7 +78,7 @@ pages:
                 icon: sh:immich
               - title: It's MyTabs
                 url: https://tabs.christophervestman.com
-                icon: mdi:guitarpickoutline
+                icon: di:my-guitar-tabs.png
               - title: Jellyfin
                 url: https://jellyfin.christophervestman.com
                 icon: sh:jellyfin
