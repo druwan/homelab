@@ -6,3 +6,12 @@ metadata:
 spec:
   interval: 24h
   url: https://cloudnative-pg.github.io/charts/
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: cnpg-grafana-dashboard
+  namespace: monitoring
+spec:
+  interval: 24h
+  url: https://cloudnative-pg.github.io/grafana-dashboards/
