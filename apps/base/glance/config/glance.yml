@@ -61,9 +61,9 @@ pages:
               - title: ConvertX
                 url: https://convertx.christophervestman.com
                 icon: sh:convertx.png
-              - title: Firefly
-                url: https://firefly.christophervestman.com
-                icon: sh:firefly-iii
+              # - title: Firefly
+              #   url: https://firefly.christophervestman.com
+              #   icon: sh:firefly-iii
               # - title: Garage
               #   url: https://garage.christophervestman.com
               #   icon: sh:garage
