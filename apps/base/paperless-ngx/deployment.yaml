@@ -54,6 +54,9 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
           env:
+            - name: PAPERLESS_OCR_LANGUAGES
+              value: eng swe sin
+
             - name: PAPERLESS_OCR_LANGUAGE
               value: "eng+swe+sin"
 
