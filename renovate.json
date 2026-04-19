@@ -22,15 +22,10 @@
   "packageRules": [
     {
       "description": "Only allow proper semver tags for LinuxServer/qBittorrent",
-      "matchDatasources": [
-        "docker"
-      ],
       "matchPackageNames": [
-        "linuxserver/qbittorrent",
         "ghcr.io/linuxserver/qbittorrent"
       ],
-      "extractVersion": "^(?<version>\\d+\\.\\d+\\.\\d+)(?:-r\\d+-ls\\d+)?$",
-      "versioning": "semver"
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-r\\d+-ls(?<build>\\d+)$"
     },
     {
       "description": "Enable OCI Helm chart updates for Seerr",
