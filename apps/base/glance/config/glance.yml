@@ -40,11 +40,6 @@ pages:
                 mountpoints:
                   "/":
                     hide: false
-                  "/home/druwan":
-                    hide: false
-                  "/mnt/media":
-                    hide: false
-                    name: media
           - type: monitor
             cache: 1h
             title: Apps
