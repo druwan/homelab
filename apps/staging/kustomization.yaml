@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - actualbudget
   # - audiobookshelf
-  - bazarr
+  # - bazarr
   - bento-pdf
   - convertx
   - discord-bot
