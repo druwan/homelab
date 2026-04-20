@@ -40,8 +40,11 @@ pages:
                 mountpoints:
                   "/":
                     hide: false
-                  "/home":
+                  "/home/druwan":
                     hide: false
+                  "/mnt/media":
+                    hide: false
+                    name: media
           - type: monitor
             cache: 1h
             title: Apps
@@ -52,9 +55,9 @@ pages:
               # - title: Audiobookshelf
               #   url: https://audiobookshelf.christophervestman.com
               #   icon: sh:audiobookshelf
-              - title: Bazarr
-                url: https://bazarr.christophervestman.com
-                icon: sh:bazarr-light
+              # - title: Bazarr
+              #   url: https://bazarr.christophervestman.com
+              #   icon: sh:bazarr-light
               - title: BentoPDF
                 url: https://pdf.christophervestman.com
                 icon: sh:bentopdf
