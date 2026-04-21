@@ -73,11 +73,7 @@ spec:
                 pullPolicy: Always
       persistence:
         data:
-          enabled: true
-          type: emptyDir
-          accessMode: ReadWriteOnce
-          storageClass: truenas-pvc-nfs
-
+          enabled: false
     server:
       enabled: true
       controllers:
