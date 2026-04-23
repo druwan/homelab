@@ -1,0 +1,61 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: immich-library-backup
+  namespace: immich
+spec:
+  schedule: "0 3 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: restic-backup
+              image: restic/restic:latest
+              command: ["/bin/sh", "-c"]
+              args:
+                - |
+                  set -e
+
+                  REPO=/backups/immich-library
+
+                  restic snapshots --repo "$REPO" 2>/dev/null || restic init --repo "$REPO"
+
+                  echo "=== Running backup ==="
+                  restic backup /immich-pvc/library /immich-pvc/thumbs /immich-pvc/profile --repo "$REPO" --tag immich --verbose
+
+                  echo "=== Pruning old snapshots ==="
+                  restic forget --repo "$REPO" --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune
+
+                  echo "=== Done ==="
+              env:
+                - name: RESTIC_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: hexabyte-credentials
+                      key: RESTIC_PASSWORD
+              volumeMounts:
+                - name: library
+                  mountPath: /immich-pvc
+                  readOnly: true
+                - name: backups
+                  mountPath: /backups
+              resources:
+                requests:
+                  cpu: 500m
+                  memory: 512Mi
+                limits:
+                  cpu: 2000m
+                  memory: 4Gi
+          volumes:
+            - name: library
+              persistentVolumeClaim:
+                claimName: immich-library
+            - name: backups
+              nfs:
+                server: 192.168.1.83
+                path: /mnt/main/backups
