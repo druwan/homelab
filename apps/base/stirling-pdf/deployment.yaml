@@ -15,7 +15,7 @@ spec:
         app: stirling-pdf
     spec:
       containers:
-        - image: stirlingtools/stirling-pdf:2.9.2
+        - image: stirlingtools/stirling-pdf:2.10.0
           name: stirling-pdf
           env:
             - name: LANGS
