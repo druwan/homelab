@@ -12,3 +12,4 @@ resources:
   - rustfs.yaml
   - stirling-pdf.yaml
   - tabs.yaml
+  - tududi.yaml

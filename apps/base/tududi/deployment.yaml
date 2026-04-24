@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tududi
+  labels:
+    app: tududi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tududi
+  template:
+    metadata:
+      labels:
+        app: tududi
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: tududi
+          image: chrisvel/tududi:1.0.0
+          ports:
+            - containerPort: 3002
+          env:
+            - name: TUDUDI_USER_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: tududi-secrets
+                  key: email
+            - name: TUDUDI_USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: tududi-secrets
+                  key: password
+            - name: TUDUDI_SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: tududi-secrets
+                  key: session-secret
+            - name: TUDUDI_ALLOWED_ORIGINS
+              value: "https://tududi.christophervestman.com"
+          volumeMounts:
+            - name: db
+              mountPath: /app/backend/db
+            - name: uploads
+              mountPath: /app/backend/uploads
+      volumes:
+        - name: db
+          persistentVolumeClaim:
+            claimName: tududi-db
+        - name: uploads
+          persistentVolumeClaim:
+            claimName: tududi-uploads

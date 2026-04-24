@@ -158,6 +158,11 @@ Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. Howeve
        <td>NAS</td>
    </tr>
    <tr>
+       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/tududi.svg"></td>
+       <td><a href="https://cloud.tududi.com/">Tududi</a></td>
+       <td>A calm, open system for life and work</td>
+   </tr>
+   <tr>
        <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wallos.svg"></td>
        <td><a href="https://github.com/ellite/Wallos">Wallos</a></td>
        <td>Subscriptions Dashboard</td>
