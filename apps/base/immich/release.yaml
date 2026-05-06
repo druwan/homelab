@@ -69,7 +69,7 @@ spec:
             main:
               image:
                 repository: docker.io/valkey/valkey
-                tag: 9.0.3
+                tag: 9.0.4
                 pullPolicy: Always
       persistence:
         data:
