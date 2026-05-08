@@ -1,0 +1,139 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: alloy
+  namespace: monitoring
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: alloy
+      version: "1.*"
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: monitoring
+      interval: 1h
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
+    alloy:
+      configMap:
+        content: |
+          logging {
+            level = "info"
+            format = "logfmt"
+          }
+
+          // ============================================================
+          // Kubernetes pod logs (via k8s API — no hostPath mounts needed)
+          // ============================================================
+
+          discovery.kubernetes "pods" {
+            role = "pod"
+          }
+
+          discovery.relabel "pods" {
+            targets = discovery.kubernetes.pods.targets
+
+            rule {
+              source_labels = ["__meta_kubernetes_namespace"]
+              target_label  = "namespace"
+            }
+            rule {
+              source_labels = ["__meta_kubernetes_pod_name"]
+              target_label  = "pod"
+            }
+            rule {
+              source_labels = ["__meta_kubernetes_pod_container_name"]
+              target_label  = "container"
+            }
+            rule {
+              source_labels = ["__meta_kubernetes_pod_label_app_kubernetes_io_name"]
+              target_label  = "app"
+            }
+            rule {
+              source_labels = ["__meta_kubernetes_node_name"]
+              target_label  = "node"
+            }
+          }
+
+          loki.source.kubernetes "pods" {
+            targets = discovery.relabel.pods.output
+            forward_to = [loki.write.default.receiver]
+          }
+
+          // ============================================================
+          // Host system journal logs (systemd/kernel from the node)
+          // ============================================================
+
+          loki.source.journal "host" {
+            forward_to = [loki.write.default.receiver]
+            relabel_rules = discovery.relabel.journal.rules
+            path = "/var/log/journal"
+            labels = {
+              job = "systemd-journal",
+            }
+          }
+
+          discovery.relabel "journal" {
+            targets = []
+
+            rule {
+              source_labels = ["__journal__systemd_unit"]
+              target_label  = "unit"
+            }
+            rule {
+              source_labels = ["__journal__hostname"]
+              target_label  = "node"
+            }
+            rule {
+              source_labels = ["__journal_priority_keyword"]
+              target_label  = "level"
+            }
+          }
+
+          // ============================================================
+          // Ship everything to Loki
+          // ============================================================
+          loki.write "default" {
+            endpoint {
+              url = "http://loki:3100/loki/api/v1/push"
+            }
+          }
+
+      mounts:
+        extra:
+          - name: journal
+            mountPath: /var/log/journal
+            readOnly: true
+
+    controller:
+      volumes:
+        extra:
+          - name: journal
+            hostPath:
+              path: /var/log/journal
+      tolerations:
+        - key: node-role.kubernetes.io/controle-plane
+          operator: Exists
+          effect: NoSchedule
+
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+      hosts:
+        - alloy.christophervestman.com
+      tls:
+        - secretName: alloy-tls
+          hosts:
+            - alloy.christophervestman.com
+
+    serviceMonitor:
+      enabled: true
