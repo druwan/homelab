@@ -17,6 +17,10 @@ spec:
   values:
     externalSnapshotter:
       enabled: true
+      volumeSnapshotClass:
+        create: true
+        name: csi-nfs-snapclass
+        deletionPolicy: Delete
 
     controller:
       replicas: 2
