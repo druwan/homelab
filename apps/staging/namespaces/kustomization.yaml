@@ -1,15 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - firefly.yaml
-  - garage.yaml
+  - cloudflare.yaml
+  # - firefly.yaml
+  # - garage.yaml
   - immich.yaml
   - linkwarden.yaml
   - mealie.yaml
   - media.yaml
   - n8n.yaml
   - paperless-ngx.yaml
-  - rustfs.yaml
-  - stirling-pdf.yaml
+  # - rustfs.yaml
+  # - stirling-pdf.yaml
   - tabs.yaml
   - tududi.yaml
