@@ -162,7 +162,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis:8.6.2-alpine
+          image: redis:8.6.3-alpine
           resources:
             requests:
               cpu: 100m
