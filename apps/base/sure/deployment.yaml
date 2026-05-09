@@ -1,0 +1,172 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sure
+  namespace: sure
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sure
+  template:
+    metadata:
+      labels:
+        app: sure
+    spec:
+      containers:
+        - name: sure
+          image: ghcr.io/we-promise/sure:0.7.0
+          ports:
+            - containerPort: 3000
+          securityContext:
+            allowPrivilegeEscalation: false
+          env:
+            - name: RAILS_ENV
+              value: production
+            - name: SELF_HOSTED
+              value: "true"
+            - name: RAILS_FORCE_SSL
+              value: "false"
+            - name: RAILS_ASSUME_SSL
+              value: "false"
+
+            - name: DB_HOST
+              value: sure-db-v0-rw.sure.svc.cluster.local
+            - name: DB_PORT
+              value: "5432"
+            - name: POSTGRES_DB
+              value: sure
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: sure-db-credentials
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sure-db-credentials
+                  key: password
+
+            - name: REDIS_URL
+              value: "redis://redis:6379/1"
+
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: sure-app-credentials
+                  key: secret-key-base
+
+            - name: APP_DOMAIN
+              value: sure.christophervestman.com
+
+          volumeMounts:
+            - name: app-storage
+              mountPath: /rails/storage
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+      volumes:
+        - name: app-storage
+          persistentVolumeClaim:
+            claimName: sure-app-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sure-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sure-worker
+  template:
+    metadata:
+      labels:
+        app: sure-worker
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: sure-worker
+          image: ghcr.io/we-promise/sure:0.6.9
+          command: ["bundle", "exec", "sidekiq"]
+          env:
+            - name: RAILS_ENV
+              value: production
+
+            - name: SELF_HOSTED
+              value: "true"
+
+            - name: DB_HOST
+              value: sure-db-v0-rw.sure.svc.cluster.local
+
+            - name: DB_PORT
+              value: "5432"
+
+            - name: POSTGRES_DB
+              value: sure
+
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: sure-db-credentials
+                  key: username
+
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sure-db-credentials
+                  key: password
+
+            - name: REDIS_URL
+              value: "redis://redis:6379/1"
+
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: sure-app-credentials
+                  key: secret-key-base
+
+          volumeMounts:
+            - name: app-storage
+              mountPath: /rails/storage
+
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+      volumes:
+        - name: app-storage
+          persistentVolumeClaim:
+            claimName: sure-app-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:8.6.2-alpine
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi

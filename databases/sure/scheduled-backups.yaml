@@ -1,0 +1,30 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: sure-db-daily-hexabyte
+  namespace: sure
+spec:
+  immediate: true
+  schedule: "0 30 4 * * *"
+  cluster:
+    name: sure-db-v0
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: sure-db-backup-hexabyte
+  backupOwnerReference: cluster
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: sure-db-ondemand
+  namespace: sure
+spec:
+  cluster:
+    name: sure-db-v0
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: sure-db-backup-hexabyte

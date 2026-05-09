@@ -26,5 +26,6 @@ resources:
   # - rustfs
   - sonarr
   # - stirling-pdf
+  - sure
   - tududi
   - wallos
