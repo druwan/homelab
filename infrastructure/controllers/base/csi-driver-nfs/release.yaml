@@ -14,3 +14,42 @@ spec:
         name: csi-driver-nfs
         namespace: kube-system
       interval: 24h
+  values:
+    externalSnapshotter:
+      enabled: true
+
+    controller:
+      replicas: 2
+      runOnControlPlane: true
+
+    storageClasses:
+      - name: truenas-pvc-nfs
+        parameters:
+          server: 192.168.1.83
+          share: /mnt/main/k8s/pvc
+        reclaimPolicy: Retain
+        volumeBindingMode: Immediate
+        allowVolumeExpansion: true
+        mountOptions:
+          - nfsvers=4.2
+
+      - name: truenas-media-nfs
+        parameters:
+          server: 192.168.1.83
+          share: /mnt/main/k8s/media
+        reclaimPolicy: Retain
+        volumeBindingMode: Immediate
+        allowVolumeExpansion: true
+        mountOptions:
+          - nfsvers=4.2
+
+      - name: truenas-nvme-nfs
+        parameters:
+          server: 192.168.1.83
+          share: /mnt/nvme/k8s-fast
+        reclaimPolicy: Retain
+        volumeBindingMode: Immediate
+        allowVolumeExpansion: true
+        mountOptions:
+          - nfsvers=4.2
+
