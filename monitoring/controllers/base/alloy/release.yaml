@@ -62,7 +62,16 @@ spec:
 
           loki.source.kubernetes "pods" {
             targets = discovery.relabel.pods.output
+            forward_to = [loki.process.drop_namespaces.receiver]
+          }
+
+          loki.process "drop_namespaces" {
             forward_to = [loki.write.default.receiver]
+
+            stage.drop {
+              source = "namespace"
+              expression = "^discord-bot$"
+            }
           }
 
           // ============================================================
