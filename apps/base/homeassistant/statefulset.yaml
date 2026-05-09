@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: homeassistant
+  namespace: homeassistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeassistant
+  template:
+    metadata:
+      labels:
+        app: homeassistant
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      initContainers:
+        - name: hacs-installer
+          image: ghcr.io/home-assistant/home-assistant:2026.2.1
+          securityContext:
+            privileged: true
+          command:
+            - /bin/bash
+            - -c
+            - |
+              if [ ! -d "/config/custom_components/hacs" ]; then
+                echo "Installing HACS..."
+                wget -q -O - https://get.hacs.xyz | bash -
+              else:
+                echo "HACS already installed, skipping."
+              fi
+          volumeMounts:
+            - mountPath: /config
+              name: ha-config
+      containers:
+        - name: homeassistant
+          image: ghcr.io/home-assistant/home-assistant:2026.2.1
+          securityContext:
+            privileged: true
+            capabilities:
+              add: ["NET_ADMIN", "NET_RAW"]
+          volumeMounts:
+            - mountPath: /config
+              name: ha-config
+            - mountPath: /etc/localtime
+              name: localtime
+              readOnly: true
+            - mountPath: /run/dbus
+              name: dbus
+              readOnly: true
+          env:
+            - name: TZ
+              value: Europe/Stockholm
+      volumes:
+        - name: ha-config
+          persistentVolumeClaim:
+            claimName: ha-config-pvc
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+            type: File
+        - name: dbus
+          hostPath:
+            path: /run/dbus
+            type: Directory

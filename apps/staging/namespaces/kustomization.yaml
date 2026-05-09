@@ -4,6 +4,7 @@ resources:
   - cloudflare.yaml
   # - firefly.yaml
   # - garage.yaml
+  - homeassistant.yaml
   - immich.yaml
   - linkwarden.yaml
   - mealie.yaml

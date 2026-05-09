@@ -11,6 +11,7 @@ resources:
   # - firefly
   # - garage
   - glance
+  - homeassistant
   - immich
   - its-mytabs
   - jellyfin
