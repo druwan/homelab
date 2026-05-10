@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mosquitto-config
+  namespace: homeassistant
+data:
+  mosquitto.conf: |
+    listener 1883
+    allow_anonymous true
+    listener 9001
+    protocol websockets
+    allow_anonymous true
+    persistence false
+    log_dest stdout
+

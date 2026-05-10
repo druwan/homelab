@@ -69,7 +69,7 @@ pages:
                 url: https://grafana.christophervestman.com
                 icon: sh:grafana
               - title: Home Assistant
-                url: http://192.168.1.104:8123
+                url: https://homeassistant.christophervestman.com
                 icon: sh:home-assistant
               - title: Immich
                 url: https://immich.christophervestman.com
@@ -138,5 +138,5 @@ pages:
               #   url: https://vaultwarden.christophervestman.com
               #   icon: sh:vaultwarden
               - title: Z2MQTT
-                url: http://192.168.1.104:8080
+                url: https://z2m.christophervestman.com
                 icon: sh:zigbee2mqtt
