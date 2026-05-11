@@ -6,6 +6,7 @@ resources:
   # - garage.yaml
   - homeassistant.yaml
   - immich.yaml
+  - life.yaml
   - linkwarden.yaml
   - mealie.yaml
   - media.yaml

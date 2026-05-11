@@ -1,0 +1,119 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: lifedata-db-v0
+  namespace: life
+spec:
+  description: "Postgres cluster for Apple Health import"
+  imageName: ghcr.io/cloudnative-pg/postgresql:18-minimal-trixie
+  imagePullPolicy: Always
+  inheritedMetadata:
+    labels:
+      app: lifedata-db
+      policy-type: database
+  instances: 3
+
+  postgresql:
+    extensions:
+      - name: postgis
+        image:
+          reference: ghcr.io/cloudnative-pg/postgis-extension:3.6.3-18-trixie
+        ld_library_path:
+          - system
+        env:
+          - name: GDAL_DATA
+            value: ${image_root}/share/gdal
+          - name: PROJ_DATA
+            value: ${image_root}/share/proj
+
+  storage:
+    size: 5Gi
+    storageClass: truenas-nvme-nfs
+    resizeInUseVolumes: true
+
+  walStorage:
+    size: 5Gi
+    storageClass: truenas-nvme-nfs
+
+  superuserSecret:
+    name: lifedata-db-superuser
+
+  # FRESH INSTALL: contains no backup. Have to use initdb
+  bootstrap:
+    initdb:
+      database: lifedata
+      owner: lifedata
+      secret:
+        name: lifedata-db-credentials
+
+  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  # bootstrap:
+  #   recovery:
+  #     source: lifedata-db-hexabyte
+  #     database: lifedata
+  #     owner: lifedata
+  #     secret:
+  #       name: lifedata-db-credentials
+  # externalClusters:
+  #   - name: lifedata-db-hexabyte
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: lifedata-db-backup-hexabyte
+  #         serverName: lifedata-db
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: lifedata-db-backup-hexabyte
+
+  managed:
+    services:
+      disabledDefaultServices: ["r", "ro"]
+      additional:
+        - selectorType: rw
+          serviceTemplate:
+            metadata:
+              name: lifedata-db-lb
+            spec:
+              type: LoadBalancer
+              ports:
+                - name: postgres
+                  port: 5433
+                  targetPort: 5432
+    roles:
+      - name: lifedata
+        ensure: present
+        login: true
+        createdb: false
+        passwordSecret:
+          name: lifedata-db-credentials
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: lifedata
+  namespace: life
+spec:
+  name: lifedata
+  owner: lifedata
+  cluster:
+    name: lifedata-db-v0
+  extensions:
+    - name: postgis
+      version: "3.6.3"
+    - name: postgis_topology
+    - name: fuzzystrmatch
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: lifedata-db
+  namespace: life
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: lifedata-db-v0
+  podMetricsEndpoints:
+    - port: metrics
