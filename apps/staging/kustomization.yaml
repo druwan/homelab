@@ -11,6 +11,7 @@ resources:
   # - firefly
   # - garage
   - glance
+  - health-api
   - homeassistant
   - immich
   - its-mytabs
