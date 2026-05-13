@@ -71,17 +71,7 @@ spec:
   managed:
     services:
       disabledDefaultServices: ["r", "ro"]
-      additional:
-        - selectorType: rw
-          serviceTemplate:
-            metadata:
-              name: lifedata-db-lb
-            spec:
-              type: LoadBalancer
-              ports:
-                - name: postgres
-                  port: 5433
-                  targetPort: 5432
+
     roles:
       - name: lifedata
         ensure: present
