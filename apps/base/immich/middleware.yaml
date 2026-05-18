@@ -1,0 +1,10 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: immich-buffering
+  namespace: immich
+spec:
+  buffering:
+    maxRequestBodyBytes: 0
+    memRequestBodyBytes: 536870912 # 512MB in RAM
+
