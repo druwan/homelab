@@ -8,3 +8,4 @@ resources:
   - external-secrets
   - garage
   - renovate
+  - traefik
