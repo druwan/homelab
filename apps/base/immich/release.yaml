@@ -48,6 +48,13 @@ spec:
                 value: '{{ printf "%s-valkey" .Release.Name }}'
               - name: IMMICH_MACHINE_LEARNING_URL
                 value: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+            resources:
+              requests:
+                cpu: 500m
+                memory: 512Mi
+              limits:
+                cpu: 2000m
+                memory: 4Gi
 
     immich:
       metrics:
@@ -114,6 +121,13 @@ spec:
                 TRANSFORMERS_CACHE: /cache
                 HF_XET_CACHE: /cache/huggingface-xet
                 MPLCONFIGDIR: /cache/matplotlib-config
+              resources:
+                requests:
+                  cpu: 500m
+                  memory: 1Gi
+                limits:
+                  cpu: 1500m
+                  memory: 6Gi
       persistence:
         cache:
           enabled: true

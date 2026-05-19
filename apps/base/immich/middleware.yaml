@@ -6,5 +6,5 @@ metadata:
 spec:
   buffering:
     maxRequestBodyBytes: 0
-    memRequestBodyBytes: 536870912 # 512MB in RAM
-
+    memRequestBodyBytes: 0 # 512MB in RAM
+    requestBodyInMemorySize: 0
