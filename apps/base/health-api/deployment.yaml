@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: health-api
-          image: ghcr.io/druwan/health-api:v0.2.0
+          image: ghcr.io/druwan/health-api:v0.5.2
           imagePullPolicy: Always
           ports:
             - name: http
