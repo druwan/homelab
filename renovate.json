@@ -10,14 +10,8 @@
       "/\\.yaml$/"
     ]
   },
-  "assignees": [
-    "druwan"
-  ],
   "labels": [
     "deps"
-  ],
-  "reviewers": [
-    "druwan"
   ],
   "packageRules": [
     {
