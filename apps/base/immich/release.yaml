@@ -98,7 +98,6 @@ spec:
             cert-manager.io/cluster-issuer: letsencrypt-production
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             traefik.ingress.kubernetes.io/router.tls: "true"
-            traefik.ingress.kubernetes.io/router.middlewares: immich-immich-buffering@kubernetescrd
           hosts:
             - host: immich.christophervestman.com
               paths:

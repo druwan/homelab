@@ -3,5 +3,4 @@ kind: Kustomization
 resources:
   - repository.yaml
   - storage.yaml
-  - middleware.yaml
   - release.yaml
