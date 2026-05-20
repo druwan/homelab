@@ -50,10 +50,10 @@ spec:
                 value: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
             resources:
               requests:
-                cpu: 500m
+                cpu: 250m
                 memory: 512Mi
               limits:
-                cpu: 2000m
+                cpu: 1500m
                 memory: 4Gi
 
     immich:
@@ -122,10 +122,10 @@ spec:
                 MPLCONFIGDIR: /cache/matplotlib-config
               resources:
                 requests:
-                  cpu: 500m
+                  cpu: 250m
                   memory: 1Gi
                 limits:
-                  cpu: 1500m
+                  cpu: 1000m
                   memory: 6Gi
       persistence:
         cache:
