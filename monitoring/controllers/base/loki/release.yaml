@@ -42,7 +42,6 @@ spec:
           - ReadWriteOnce
         size: 50Gi
 
-
     ingress:
       enabled: true
       ingressClassName: traefik
@@ -108,4 +107,7 @@ spec:
     patternIngester:
       enabled: false
       replicas: 0
-
+    chunksCache:
+      enabled: false
+    resultsCache:
+      enabled: false
