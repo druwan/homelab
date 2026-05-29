@@ -71,6 +71,15 @@ spec:
 
     prometheus:
       prometheusSpec:
+        retention: 7d
+        retentionSize: 5Gi
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 100m
+          limits:
+            memory: 1Gi
+            cpu: 500m
         podMonitorNamespaceSelector:
           matchLabels:
             app.kubernetes.io/component: monitoring

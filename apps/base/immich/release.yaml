@@ -90,6 +90,13 @@ spec:
               repository: ghcr.io/immich-app/immich-server
               tag: v2.1.0
               pullPolicy: Always
+      resources:
+        requests:
+          memory: 512Mi
+          cpu: 250m
+        limits:
+          cpu: 1500mi
+          memory: 2Gi
       ingress:
         main:
           enabled: true
@@ -126,7 +133,7 @@ spec:
                   memory: 1Gi
                 limits:
                   cpu: 1000m
-                  memory: 6Gi
+                  memory: 2Gi
       persistence:
         cache:
           enabled: true
