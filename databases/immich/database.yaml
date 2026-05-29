@@ -11,7 +11,7 @@ spec:
     labels:
       app: immich-db
       policy-type: database
-  instances: 3
+  instances: 1
   storage:
     size: 100Gi
     storageClass: truenas-nvme-nfs

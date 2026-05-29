@@ -11,7 +11,7 @@ spec:
     labels:
       app: linkding
       policy-type: database
-  instances: 3
+  instances: 1
   monitoring:
     enablePodMonitor: false
   storage:
