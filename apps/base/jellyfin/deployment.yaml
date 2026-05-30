@@ -19,14 +19,14 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
         runAsUser: 33
         runAsGroup: 33
-        supplementalGroups: [3100]
+        supplementalGroups: [3100, 989]
       containers:
         - image: ghcr.io/jellyfin/jellyfin:10.11.10
           name: jellyfin
           ports:
             - containerPort: 8096
           securityContext:
-            allowPrivilegeEscalation: false
+            privileged: true
           volumeMounts:
             - mountPath: /config
               name: jellyfin-config
@@ -34,6 +34,8 @@ spec:
               name: jellyfin-cache
             - mountPath: /media
               name: media
+            - mountPath: /dev/dri/renderD128
+              name: render-device
       volumes:
         - name: jellyfin-config
           persistentVolumeClaim:
@@ -44,3 +46,6 @@ spec:
         - name: media
           persistentVolumeClaim:
             claimName: media-pvc
+        - name: render-device
+          hostPath:
+            path: /dev/dri/renderD128
