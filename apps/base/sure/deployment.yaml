@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: sure
-          image: ghcr.io/we-promise/sure:0.7.0
+          image: ghcr.io/we-promise/sure:0.7.1
           ports:
             - containerPort: 3000
           securityContext:
@@ -91,7 +91,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: sure-worker
-          image: ghcr.io/we-promise/sure:0.7.0
+          image: ghcr.io/we-promise/sure:0.7.1
           command: ["bundle", "exec", "sidekiq"]
           env:
             - name: RAILS_ENV
