@@ -74,9 +74,9 @@ pages:
               - title: Immich
                 url: https://immich.christophervestman.com
                 icon: sh:immich
-              - title: It's MyTabs
-                url: https://tabs.christophervestman.com
-                icon: di:my-guitar-tabs.png
+              # - title: It's MyTabs
+              #   url: https://tabs.christophervestman.com
+              #   icon: di:my-guitar-tabs.png
               - title: Jellyfin
                 url: https://jellyfin.christophervestman.com
                 icon: sh:jellyfin
@@ -128,12 +128,12 @@ pages:
               - title: TrueNAS
                 url: http://192.168.1.83
                 icon: sh:ugreen-nas
-              - title: Tududi
-                url: https://tududi.christophervestman.com
-                icon: sh:tududi
-              - title: Wallos
-                url: https://wallos.christophervestman.com
-                icon: sh:wallos
+              # - title: Tududi
+              #   url: https://tududi.christophervestman.com
+              #   icon: sh:tududi
+              # - title: Wallos
+              #   url: https://wallos.christophervestman.com
+              #   icon: sh:wallos
               # - title: Vaultwarden
               #   url: https://vaultwarden.christophervestman.com
               #   icon: sh:vaultwarden

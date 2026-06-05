@@ -14,7 +14,7 @@ resources:
   - health-api
   - homeassistant
   - immich
-  - its-mytabs
+  # - its-mytabs
   - jellyfin
   # - linkding
   - linkwarden
@@ -28,6 +28,6 @@ resources:
   # - rustfs
   - sonarr
   # - stirling-pdf
-  - sure
-  - tududi
-  - wallos
+  # - sure
+  # - tududi
+  # - wallos
