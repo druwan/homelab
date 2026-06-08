@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: profilarr
+  name: profilarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: profilarr
+  template:
+    metadata:
+      labels:
+        app: profilarr
+    spec:
+      securityContext:
+        fsGroup: 3100
+        supplementalGroups: [3100]
+      containers:
+        - name: profilarr
+          image: ghcr.io/dictionarry-hub/profilarr:2.0.8
+          ports:
+            - containerPort: 6868
+          securityContext:
+            allowPrivilegeEscalation: true
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "3100"
+            - name: UMASK
+              value: "022"
+            - name: TZ
+              value: Europe/Stockholm
+            - name: AUTH
+              value: "off"
+            - name: ORIGIN
+              value: "https://profilarr.christophervestman.com"
+          volumeMounts:
+            - mountPath: /config
+              name: profilarr-config
+      volumes:
+        - name: profilarr-config
+          persistentVolumeClaim:
+            claimName: profilarr-config-pvc

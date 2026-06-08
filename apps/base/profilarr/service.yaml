@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: profilarr
+  name: profilarr
+spec:
+  selector:
+    app: profilarr
+  ports:
+    - port: 6868
+      targetPort: 6868
+      protocol: TCP
+  type: ClusterIP
