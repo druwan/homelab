@@ -14,12 +14,11 @@ spec:
       labels:
         app: dispatcharr
     spec:
-      securityContext:
-        fsGroup: 1000
-        supplementalGroups: [3100]
       initContainers:
         - name: fix-permissions
           image: busybox
+          securityContext:
+            runAsUser: 0
           command:
             [
               "sh",
@@ -30,12 +29,30 @@ spec:
             - mountPath: /data
               name: dispatcharr-data
       containers:
+        - name: gluetun
+          image: ghcr.io/qdm12/gluetun:v3.41.1
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN"]
+          env:
+            - name: VPN_SERVICE_PROVIDER
+              value: "protonvpn"
+            - name: VPN_TYPE
+              value: "wireguard"
+            - name: TZ
+              value: "Europe/Stockholm"
+            - name: DOT
+              value: "off"
+            - name: DNS_UPSTREAM
+              value: "1.1.1.1,8.8.8.8"
+          envFrom:
+            - secretRef:
+                name: openvpn-secrets
+
         - image: ghcr.io/dispatcharr/dispatcharr:0.26.0
           name: dispatcharr
           ports:
             - containerPort: 9191
-          securityContext:
-            privileged: true
           env:
             - name: DISPATCHARR_ENV
               value: aio
