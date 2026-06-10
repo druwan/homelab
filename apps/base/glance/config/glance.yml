@@ -59,6 +59,9 @@ pages:
               - title: ConvertX
                 url: https://convertx.christophervestman.com
                 icon: sh:convertx.png
+              - title: Dispatcharr
+                url: https://dispatcharr.christophervestman.com
+                icon: sh:dispatcharr
               # - title: Firefly
               #   url: https://firefly.christophervestman.com
               #   icon: sh:firefly-iii
@@ -98,6 +101,9 @@ pages:
               - title: pgAdmin
                 url: https://pgadmin.christophervestman.com
                 icon: sh:postgresql
+              - title: Profilarr
+                url: https://profilarr.christophervestman.com
+                icon: sh:profilarr
               - title: Prometheus
                 url: https://prometheus.christophervestman.com
                 icon: sh:prometheus
