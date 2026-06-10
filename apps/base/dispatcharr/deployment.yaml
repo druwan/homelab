@@ -15,11 +15,20 @@ spec:
         app: dispatcharr
     spec:
       securityContext:
-        fsGroup: 3100
-        fsGroupChangePolicy: OnRootMismatch
-        runAsUser: 33
-        runAsGroup: 33
-        supplementalGroups: [3100, 989]
+        fsGroup: 1000
+        supplementalGroups: [3100]
+      initContainers:
+        - name: fix-permissions
+          image: busybox
+          command:
+            [
+              "sh",
+              "-c",
+              "mkdir -p /data/db && chown -R 1000:1000 /data/db && chmod 700 /data/db",
+            ]
+          volumeMounts:
+            - mountPath: /data
+              name: dispatcharr-data
       containers:
         - image: ghcr.io/dispatcharr/dispatcharr:0.26.0
           name: dispatcharr
