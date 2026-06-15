@@ -23,7 +23,7 @@ spec:
             [
               "sh",
               "-c",
-              "mkdir -p /data/db && chown -R 1000:1000 /data/db && chmod 700 /data/db",
+              "mkdir -p /data/db && chown -R 1000:1000 /data/db && chmod 700 /data/db && find /data/db -type f -exec chmod 640 {} +",
             ]
           volumeMounts:
             - mountPath: /data
