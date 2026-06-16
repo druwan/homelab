@@ -65,7 +65,12 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: dispatcharr-data
+            - mountPath: /dev/dri/renderD128
+              name: render-device
       volumes:
         - name: dispatcharr-data
           persistentVolumeClaim:
             claimName: dispatcharr-data-pvc
+        - name: render-device
+          hostPath:
+            path: /dev/dri/renderD128
