@@ -18,7 +18,7 @@ spec:
         role: app
     spec:
       containers:
-        - image: getmeili/meilisearch:v1.43.0
+        - image: getmeili/meilisearch:v1.47.0
           name: meilisearch
           command:
             - /bin/sh
