@@ -3,10 +3,6 @@ kind: Job
 metadata:
   name: meilisearch-dump
   namespace: linkwarden
-  annotations:
-    "helm.sh/hook": pre-upgrade # runs BEFORE the Deployment is updated
-    "helm.sh/hook-weight": "-5"
-    "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   backoffLimit: 2
   template:
@@ -20,6 +16,9 @@ spec:
             - -c
             - |
               set -e
+
+              echo "Cleaning up old dumps..."
+              rm -f /meili_data/dumps/*.dump
 
               echo "Triggering dump..."
               RESPONSE=$(curl -sf -X POST http://meilisearch:7700/dumps \
@@ -44,3 +43,10 @@ spec:
                 secretKeyRef:
                   name: linkwarden-db-credentials
                   key: MEILI_MASTER_KEY
+          volumeMounts:
+            - name: meili-data
+              mountPath: /meili_data
+      volumes:
+        - name: meili-data
+          persistentVolumeClaim:
+            claimName: meili-data-pvc
