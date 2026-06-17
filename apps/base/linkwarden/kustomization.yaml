@@ -4,4 +4,4 @@ resources:
   - service.yaml
   - storage.yaml
   - deployment.yaml
-  - meili-migration.yaml
+  # - meili-migration.yaml
