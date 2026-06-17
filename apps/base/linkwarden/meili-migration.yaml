@@ -8,6 +8,8 @@ spec:
   template:
     spec:
       restartPolicy: Never
+      securityContext:
+        runAsUser: 0
       containers:
         - name: dump-creator
           image: curlimages/curl:latest
