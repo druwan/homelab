@@ -4,6 +4,7 @@ metadata:
   name: meilisearch-dump
   namespace: linkwarden
 spec:
+  ttlSecondsAfterFinished: 300
   backoffLimit: 2
   template:
     spec:
