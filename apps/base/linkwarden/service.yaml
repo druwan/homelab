@@ -12,3 +12,16 @@ spec:
     app: linkwarden
     role: app
   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: meilisearch
+  namespace: linkwarden
+spec:
+  ports:
+    - port: 7700
+  selector:
+    app: linkwarden
+    role: app
+  type: ClusterIP
