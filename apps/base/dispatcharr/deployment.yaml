@@ -49,7 +49,7 @@ spec:
             - secretRef:
                 name: openvpn-secrets
 
-        - image: ghcr.io/dispatcharr/dispatcharr:0.27.0
+        - image: ghcr.io/dispatcharr/dispatcharr:0.27.1
           name: dispatcharr
           ports:
             - containerPort: 9191
