@@ -23,7 +23,7 @@ spec:
         deletionPolicy: Delete
 
     controller:
-      replicas: 2
+      replicas: 1
       runOnControlPlane: true
 
     storageClasses:
@@ -56,4 +56,3 @@ spec:
         allowVolumeExpansion: true
         mountOptions:
           - nfsvers=4.2
-
