@@ -1,237 +1,63 @@
 # Homelab
 
-**Work in Progress** — Aiming to build a Kubernetes-based homelab using GitOps practices. This setup follows the [KubeCraft](https://www.skool.com/kubecraft) course by [Mischa van den Burg](https://github.com/mischavandenburg).
-
-I'm currently in the process of migrating my existing Docker Compose setups into Kubernetes manifests. While I intend to use Helm for some deployments, I’m primarily writing plain `.yaml` manifests to gain a deeper understanding of Kubernetes. One of the main challenges so far has been migrating persistent data (such as SQLite and PostgreSQL databases) from Docker volumes into Kubernetes-native storage.
-
----
-
-## Hardware
-
-I'm running everything on a **GMKtec G3 Plus** (Intel Twin Lake N150, 512GB SSD, 16GB RAM), with **Arch Linux** installed. Which I access via SSH.
-
-Previously,I ran **Debian 12 (Bookworm)**, which was stable and reliable. However, I switched to Arch to benefit from more up-to-date package versions and rolling releases.
-
----
-
-## Apps
-
-<table style="width:100%">
-   <tr>
-       <th style="width:25%">Logo</td>
-       <th style="width:25%">URL</td>
-       <th style="width:50%">Comment</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/actual-budget.svg"></td>
-       <td><a href="https://actualbudget.org/">Actual Budget</a></td>
-       <td>Managing my finances</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/sonarr-radarr.svg"></td>
-       <td><a href="https://trash-guides.info">Arr Stack</a></td>
-       <td>Standard PVR/Downloader stack</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/audiobookshelf.svg"></td>
-       <td><a href="https://www.audiobookshelf.org/">AudioBookshelf</a></td>
-       <td>Installed as part of the KubeCraft Homelab course.</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/bentopdf.svg"></td>
-       <td><a href="https://www.bentopdf.com/">BentoPDF</a></td>
-       <td>The PDF Toolkit built for privacy.</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://raw.githubusercontent.com/cert-manager/cert-manager/master/logo/logo.svg"></td>
-       <td><a href="https://cert-manager.io/">Cert-Manager</a></td>
-       <td>X.509 certificate management</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/postgresql.svg"></td>
-       <td><a href="https://cloudnative-pg.io/">CloudNativePG</a></td>
-       <td>PostgreSQL with PostGIS, Using pgAdmin whenever I need a GUI</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/convertx.webp"></td>
-       <td><a href="https://github.com/C4illin/ConvertX">ConvertX</a></td>
-       <td>File converter</td>
-   </tr>
-  <tr>
-       <td><img width="32" src="https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/eso-round-logo.svg"></td>
-       <td><a href="https://external-secrets.io">External Secrets Operator</a></td>
-       <td>Used to sync my secrets from Azure Key Vaults to my cluster</td>
-  </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/firefly-iii.svg"></td>
-       <td><a href="https://www.firefly-iii.org/">Firefly III</a></td>
-       <td>A free and open source personal finance manager</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/garage.webp"></td>
-       <td><a href="https://garagehq.deuxfleurs.fr/">Garage</a></td>
-       <td>Object storage service for local backups</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/glance.svg"></td>
-       <td><a href="https://github.com/glanceapp/glance/">Glance</a></td>
-       <td>Dashboard</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/home-assistant.svg"></td>
-       <td><a href="https://www.home-assistant.io/">Home Assistant</a></td>
-       <td>Smart home management</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/immich.svg"></td>
-       <td><a href="https://immich.app/">Immich</a></td>
-       <td>Photo & Video management</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/ultimate-guitar.svg"></td>
-       <td><a href="https://github.com/louislam/its-mytabs">It's MyTabs!</a></td>
-       <td>Guitar Tabs</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/jellyfin.svg"></td>
-       <td><a href="https://jellyfin.org/docs/general/installation/container">Jellyfin</a></td>
-       <td>Media server</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/grafana.svg"></td>
-       <td><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#get-helm-repository-info">Kube Prometheus Stack</a></td>
-       <td>Monitoring stack</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/linkding.svg"></td>
-       <td><a href="https://linkding.link/">Linkding</a></td>
-       <td>Bookmark manager</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/linkwarden.svg"></td>
-       <td><a href="https://docs.linkwarden.app/">Linkwarden</a></td>
-       <td>Bookmark manager</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/mealie.svg"></td>
-       <td><a href="https://docs.mealie.io/">Mealie</a></td>
-       <td>Recipe manager</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/n8n.svg"></td>
-       <td><a href="https://n8n.io/">n8n<a/></td>
-       <td>Workflow automation</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/paperless-ngx.svg"></td>
-       <td><a href="https://docs.paperless-ngx.com/">Paperless-ngx</a></td>
-       <td>Document management</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/prometheus.svg"></td>
-       <td><a href="https://prometheus.io/">Prometheus</a></td>
-       <td>Metrics and Monitoring</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/rustfs.webp"></td>
-       <td><a href="https://github.com/rustfs/rustfs">RustFS</a></td>
-       <td>Object storage service for local backups</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/seerr.svg"></td>
-       <td><a href="https://docs.seerr.dev/">Seerr</a></td>
-       <td>Open-source media request and discovery manager.</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/stirling-pdf.svg"></td>
-       <td><a href="https://docs.stirlingpdf.com">Stirling-PDF</a></td>
-       <td>PDF Application</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/traefik.svg"></td>
-       <td><a href="https://doc.traefik.io/traefik/getting-started/">Traefik</a></td>
-       <td>I initially disliked using Traefik with Docker Compose due to overly verbose files, which was likely due to misconfiguration. Kubernetes seems to offer a much cleaner setup.</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/truenas-core.svg"></td>
-       <td><a href="https://www.truenas.com/">TrueNAS</a></td>
-       <td>NAS</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/tududi.svg"></td>
-       <td><a href="https://cloud.tududi.com/">Tududi</a></td>
-       <td>A calm, open system for life and work</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wallos.svg"></td>
-       <td><a href="https://github.com/ellite/Wallos">Wallos</a></td>
-       <td>Subscriptions Dashboard</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/watchtower.svg"></td>
-       <td><a href="https://github.com/containrrr/watchtower">Watchtower</a></td>
-       <td>Replaced by Renovate/GitOps</td>
-   </tr>
-   <tr>
-       <td><img width="32" src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/zigbee2mqtt.svg"></td>
-       <td><a href="https://github.com/Koenkk/zigbee2mqtt">Zigbee2MQTT</a></td>
-       <td>Zigbee Bridge</td>
-   </tr>
-</table>
+A Kubernetes-based homelab built with GitOps practices.
 
 ![Glance](./assets/Glance.png)
 
 ---
 
-### Using Porkbun-webhook for ACME DNS01 Solver
+## Hardware
 
-Since [Porkbun](https://porkbun.com/) is not officially supported by [cert-manager](https://cert-manager.io), I’m using a webhook-based solver to enable [Let's Encrypt](https://letsencrypt.org/) certificates via DNS-01 challenges.
+| Device | Spec | Role |
+| ------ | ---- | ---- |
+| GMKtec G3 Plus | Intel Twin Lake N150 · 16GB RAM · 512GB SSD · Arch Linux |  k3s cluster |
+| Ugreen NAS DXP4800 Plus | 4x Seagate IronWolf Pro 8 TB · 64GB DDR5 RAM · 2TB NMVe Cache | Storage |
+| Raspberry Pi 5 | 8GB RAM | Pi-hole + Unbound |
 
-If I were using [Cloudflare](https://www.cloudflare.com/) as my DNS provider, this would be much simpler — I may consider switching in the future.
+---
 
-> [!IMPORTANT]
-> Migrated to Cloudflare
-> To install the Porkbun webhook:
->
-> 1. Clone the [porkbun-webhook](https://github.com/mdonoughe/porkbun-webhook) repository
-> 2. Navigate into the project directory
-> 3. Install the Helm chart:
->
-> ```bash
-> helm install porkbun-webhook ./deploy/porkbun-webhook --namespace cert-manager  --set groupName=christophervestman.com
-> ```
->
-> 1. Then, configure your cert-manager Issuer (see the infrastructure/ directory for examples).
->
-> ### Bootstrapping a new cluster
->
-> Had to redo my cluster by changing the install directory. Some of the necessities required to make it function again:
->
-> ```bash
-> #Uninstall k3s
-> /usr/local/bin/k3s-killall.sh
-> /usr/local/bin/k3s-uninstall.sh
->
-> #Reinstall with flags
-> sudo curl -sfL https://get.k3s.io | sh -s - --disable-helm-controller --data-dir=/home/k3s
->
-> #cp kubeconfig and edit server address
-> sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
->
-> flux bootstrap github --owner=druwan --repository=homelab --branch=main --path=./clusters/staging --personal
->
-> k create secret generic sops-age --namespace=flux-system --from-file=age.agekey=./age.agekey --dry-run -o yaml | k apply -f -
->
-> k apply -k infrastructure/controllers/staging/external-secrets
->
-> # Recreate secrets
-> k create secret generic azure-creds --from-literal=clientId=${AZURE_KEY_VAULT_CLIENT_ID} --from-literal=clientSecret=${AZURE_KEY_VAULT_CLIENT_VALUE} -n external-secrets
->
-> # Manually create the cert-manager namespace
-> k create namespace cert-manager
->
-> k create secret generic porkbun-secret --namespace cert-manager --from-literal=api-key=${PORKBUN_API_KEY} --from-literal=secret-key=${PORKBUN_SECRET_KEY} --dry-run=client -o yaml | k apply -f -
-> 
-> ```
->
-> 1. `cd` into the `porkbun-webhook` repo and do the install
+## Stack
+
+| Layer | Tool |
+| ---- | ---- |
+| Orchestration | k3s |
+| GitOps | Flux |
+| Ingress | Traefik |
+| Certificates | cert-manager + Cloudflare DNS01 |
+| Secrets | External Secrets Operator → Azure Key Vault |
+| Encryption | SOPS + age |
+| Databases | CloudNativePG (PostgreSQL + PostGIS) |
+| Dependency Updates | Renovate Mend |
+| Monitoring | Kube Prometheus Stack (Prometheus + Grafana) |
+
+---
+
+## Bootstrapping
+
+``` bash
+ # Uninstall k3s
+ /usr/local/bin/k3s-killall.sh
+ /usr/local/bin/k3s-uninstall.sh
+
+ # Reinstall
+ sudo curl -sfL <https://get.k3s.io> | sh -s - --disable-helm-controller --data-dir=/home/k3s
+
+ # Copy kubeconfig and update server address
+ sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+
+ # Bootstrap Flux
+ flux bootstrap github --owner=druwan --repository=homelab --branch=main --path=./clusters/staging --personal
+
+ # SOPS age key
+ k create secret generic sops-age --namespace=flux-system --from-file=age.agekey=./age.agekey --dry-run -o yaml | k apply -f -
+
+ # External Secrets
+ k apply -k infrastructure/controllers/staging/external-secrets
+ k create secret generic azure-creds \
+   --from-literal=clientId=${AZURE_KEY_VAULT_CLIENT_ID} \
+   --from-literal=clientSecret=${AZURE_KEY_VAULT_CLIENT_VALUE} \
+   -n external-secrets
+
+ # cert-manager namespace
+ k create namespace cert-manager
+ ```
