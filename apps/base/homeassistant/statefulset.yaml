@@ -17,7 +17,7 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       initContainers:
         - name: hacs-installer
-          image: ghcr.io/home-assistant/home-assistant:2026.6.4
+          image: ghcr.io/home-assistant/home-assistant:2026.7.1
           securityContext:
             privileged: true
           command:
@@ -35,7 +35,7 @@ spec:
               name: ha-config
       containers:
         - name: homeassistant
-          image: ghcr.io/home-assistant/home-assistant:2026.6.4
+          image: ghcr.io/home-assistant/home-assistant:2026.7.1
           securityContext:
             privileged: true
             capabilities:
