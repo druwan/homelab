@@ -4,7 +4,7 @@ metadata:
   name: renovate
   namespace: renovate
 spec:
-  schedule: "0 * * * *" # Every Hour
+  schedule: "0 */6 * * *" # Every 6th hour
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
