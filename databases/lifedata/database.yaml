@@ -79,6 +79,12 @@ spec:
         createdb: false
         passwordSecret:
           name: lifedata-db-credentials
+      - name: wikijs
+        ensure: present
+        login: true
+        createdb: false
+        passwordSecret:
+          name: wikijs-db-credentials
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: Database
