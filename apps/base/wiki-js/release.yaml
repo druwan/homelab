@@ -45,11 +45,10 @@ spec:
             - wiki.christophervestman.com
     postgresql:
       enabled: false
-    externalPostgresql:
-      host: lifedata-db-v0-rw.life.svc.cluster.local
-      port: 5432
-      database: wikijs
-      username: wikijs
+      postgresqlHost: lifedata-db-v0-rw.life.svc.cluster.local
+      postgresqlPort: 5432
+      postgresqlDatabase: wikijs
+      postgresqlUser: wikijs
       existingSecret: wikijs-db-credentials
       existingSecretKey: password
       ssl: false
