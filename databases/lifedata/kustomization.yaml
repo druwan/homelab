@@ -4,4 +4,5 @@ resources:
   - secrets.yaml
   - objectstore.yaml
   - database.yaml
+  - wiki-database.yaml
   - scheduled-backups.yaml
