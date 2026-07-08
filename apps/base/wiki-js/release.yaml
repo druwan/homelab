@@ -1,0 +1,55 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: wikijs
+  namespace: life
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: wiki
+      version: "2.2.24"
+      sourceRef:
+        kind: HelmRepository
+        name: requarks
+      interval: 30m
+  values:
+    image:
+      repository: docker pull ghcr.io/requarks/wiki
+      tag: 2.5.314
+      pullPolicy: IfNotPresent
+    podSecurityContext:
+      fsGroup: 3100
+    securityContext:
+      capabilities:
+        drop:
+          - ALL
+      readOnlyRootFilesystem: false
+      runAsNonRoot: true
+      runAsUser: 1000
+
+    ingress:
+      ingressClassName: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+      hosts:
+        - host: wiki.christophervestman.com
+          paths:
+            - path: "/"
+              pathType: Prefix
+      tls:
+        - secretName: wikijs-tls
+          hosts:
+            - wiki.christophervestman.com
+    postgresql:
+      enabled: false
+    externalPostgresql:
+      host: lifedata-db-v0-rw.life.svc.cluster.local
+      port: 5432
+      database: wikijs
+      username: wikijs
+      existingSecret: wikijs-db-credentials
+      existingSecretKey: password
+      ssl: false

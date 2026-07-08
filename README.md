@@ -29,6 +29,7 @@ A Kubernetes-based homelab built with GitOps practices.
 | Databases | CloudNativePG (PostgreSQL + PostGIS) |
 | Dependency Updates | Renovate Mend |
 | Monitoring | Kube Prometheus Stack (Prometheus + Grafana) |
+| Documentation | Wiki.js |
 
 ---
 

@@ -137,12 +137,15 @@ pages:
               # - title: Tududi
               #   url: https://tududi.christophervestman.com
               #   icon: sh:tududi
-              # - title: Wallos
-              #   url: https://wallos.christophervestman.com
-              #   icon: sh:wallos
               # - title: Vaultwarden
               #   url: https://vaultwarden.christophervestman.com
               #   icon: sh:vaultwarden
+              # - title: Wallos
+              #   url: https://wallos.christophervestman.com
+              #   icon: sh:wallos
+              - title: Wiki.js
+                url: https://wiki.christophervestman.com
+                icon: sh:wiki-js
               - title: Z2MQTT
                 url: https://z2m.christophervestman.com
                 icon: sh:zigbee2mqtt
