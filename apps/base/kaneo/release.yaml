@@ -26,6 +26,7 @@ spec:
           key: auth-secret
         database:
           external:
+            enabled: true
             existingSecret:
               enabled: true
               name: kaneo-db-credentials
