@@ -17,6 +17,7 @@ resources:
   - immich
   # - its-mytabs
   - jellyfin
+  - kaneo
   # - linkding
   - linkwarden
   - mealie

@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   # - firefly
   - immich
+  - kaneo
   - lifedata
   # - linkding
   - linkwarden

@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: kaneo
+  namespace: kaneo
+spec:
+  name: kaneo
+  owner: kaneo
+  cluster:
+    name: kaneo-db-v0

@@ -1,0 +1,68 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kaneo
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: kaneo
+      version: "0.4.2"
+      sourceRef:
+        kind: HelmRepository
+        name: kaneo
+  values:
+    postgresql:
+      enabled: false # CNPG handles the DB
+    podSecurityContext:
+      fsGroup: 1000
+      fsGroupChangePolicy: OnRootMismatch
+    kaneo:
+      env:
+        authSecret: ""
+        clientUrl: "https://kaneo.christophervestman.com"
+        existingSecret:
+          enabled: true
+          name: kaneo-db-credentials
+          key: auth-secret
+        database:
+          external:
+            enabled: true
+            host: ""
+            database: kaneo
+            username: kaneo
+            password: ""
+            existingSecret:
+              enabled: true
+              name: kaneo-db-credentials
+              passwordKey: postgres_uri
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        privileged: false
+        readOnlyRootFilesystem: false
+        runAsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000
+        seccompProfile:
+          type: RuntimeDefault
+    ingress:
+      enabled: true
+      className: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+      hosts:
+        - host: kaneo.christophervestman.com
+          paths:
+            - path: /
+              pathType: Prefix
+              service: kaneo
+              port: 5173
+      tls:
+        - secretName: kaneo-tls
+          hosts:
+            - kaneo.christophervestman.com
