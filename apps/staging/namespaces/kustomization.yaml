@@ -16,4 +16,4 @@ resources:
   # - stirling-pdf.yaml
   - sure.yaml
   - tabs.yaml
-  - tududi.yaml
+  # - tududi.yaml
