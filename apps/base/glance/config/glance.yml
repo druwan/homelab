@@ -134,9 +134,9 @@ pages:
               - title: TrueNAS
                 url: http://192.168.1.83
                 icon: sh:ugreen-nas
-              # - title: Tududi
-              #   url: https://tududi.christophervestman.com
-              #   icon: sh:tududi
+              - title: Tududi
+                url: https://tududi.christophervestman.com
+                icon: sh:tududi
               # - title: Vaultwarden
               #   url: https://vaultwarden.christophervestman.com
               #   icon: sh:vaultwarden

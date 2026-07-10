@@ -31,6 +31,6 @@ resources:
   - sonarr
   # - stirling-pdf
   # - sure
-  # - tududi
+  - tududi
   # - wallos
   - wiki-js
