@@ -15,7 +15,7 @@ spec:
     postgresql:
       enabled: false # CNPG handles the DB
     podSecurityContext:
-      fsGroup: 1000
+      fsGroup: 1001
       fsGroupChangePolicy: OnRootMismatch
     kaneo:
       env:
@@ -38,9 +38,9 @@ spec:
             - ALL
         privileged: false
         readOnlyRootFilesystem: false
-        runAsGroup: 1000
+        runAsGroup: 1001
         runAsNonRoot: true
-        runAsUser: 1000
+        runAsUser: 1001
         seccompProfile:
           type: RuntimeDefault
     ingress:
