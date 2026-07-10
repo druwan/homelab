@@ -19,7 +19,6 @@ spec:
       fsGroupChangePolicy: OnRootMismatch
     kaneo:
       env:
-        authSecret: ""
         clientUrl: "https://kaneo.christophervestman.com"
         existingSecret:
           enabled: true
@@ -27,11 +26,6 @@ spec:
           key: auth-secret
         database:
           external:
-            enabled: true
-            host: ""
-            database: kaneo
-            username: kaneo
-            password: ""
             existingSecret:
               enabled: true
               name: kaneo-db-credentials
