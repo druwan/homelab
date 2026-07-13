@@ -74,6 +74,9 @@ spec:
                   name: outline-db-credentials
                   key: database-uri
 
+            - name: FORCE_HTTPS
+              value: true
+
             - name: REDIS_URL
               value: "redis://outline-redis:6379"
 
