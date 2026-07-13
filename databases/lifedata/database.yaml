@@ -85,6 +85,12 @@ spec:
         createdb: false
         passwordSecret:
           name: wikijs-db-credentials
+      - name: outline
+        ensure: present
+        login: true
+        createdb: false
+        passwordSecret:
+          name: outline-db-credentials
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: Database

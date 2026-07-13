@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: outline
+  namespace: life
+spec:
+  name: outline
+  owner: outline
+  cluster:
+    name: lifedata-db-v0

@@ -5,4 +5,5 @@ resources:
   - objectstore.yaml
   - database.yaml
   - wiki-database.yaml
+  - outline-database.yaml
   - scheduled-backups.yaml
