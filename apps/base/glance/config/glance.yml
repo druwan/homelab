@@ -50,6 +50,9 @@ pages:
               # - title: Audiobookshelf
               #   url: https://audiobookshelf.christophervestman.com
               #   icon: sh:audiobookshelf
+              - title: Authentik
+                url: https://authentik.christophervestman.com
+                icon: sh:authentik
               - title: Bazarr
                 url: https://bazarr.christophervestman.com
                 icon: sh:bazarr-light
