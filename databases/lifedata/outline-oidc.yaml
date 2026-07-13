@@ -1,0 +1,23 @@
+apiVersion: v1
+data:
+    OIDC_CLIENT_ID: ENC[AES256_GCM,data:FfOSrmPYQ2556qMEzVTBBNTCdaU5VFZhXjJOkowIupIUbi2+bzRMcRvCr9/1vY0n/sWUsBZoosw=,iv:4NY2HxGOgKz1WDhFPVIQjpoYmQzrGhqKPODlLeuSvA4=,tag:PQ43xRTJpoxoRMIZkkyBcA==,type:str]
+    OIDC_CLIENT_SECRET: ENC[AES256_GCM,data:8sz6AHyFWW1it2prOn16DktF9Z77gDYrmA/h/o5TuNNFDWoOphYxYe3nFzWh3PT67gxP7hvN44aHH7mR4mjX2XJ6stwMU+a8I3ixNxxWhxJy+JGc7eBZBI1GJVd3DDChEAIIThNWMY0i1YDOWCtXCFmH50aySZ/hIYo5aClFaRhnRUguHYxqIF8+LGY+kuoMaO5kdKDxyjFju++4HAB+uK/OOvz0G0lBVMY6BA==,iv:YgTNAWhJWsmKMHZkXBk3bVOWj9yEDewpWrT1johPryE=,tag:ZiH+OEmuJdzeZ1GA2hs5Uw==,type:str]
+kind: Secret
+metadata:
+    name: outline-oidc
+    namespace: life
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBLdGd4M2gySFdCQXA2L0NM
+            QlRXc2VoR2VXZWd3T1JaNlg3MWFsZkUzeWdNCjB5ZEZoSHVDb0xQdDZmQStUZGpr
+            RTFtVDJQeEJ0SG02b1huS3dSUmEzK1UKLS0tIDVuMHhETnhGaGlyZVdaRkNXTWYy
+            eWVRZ0tCRldMdU8rb1dhSUxPQVFWME0K4uAFGJMpZC0Nyx26ybgLGJqmmwGUA3Tw
+            Z7+bSlLPwco9dyrOinfwXJNmV7MBle4Q2wnpMeLIWkk0rfYkOi+AgA==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age14l4x2993zh3lavuyc75d669889zqjzap384um9ngv08eeh9w35nqnw3jd8
+    encrypted_regex: ^(data|stringData)$
+    lastmodified: "2026-07-13T19:56:22Z"
+    mac: ENC[AES256_GCM,data:gUKCFFoBjf38efYDVqOf7a3pBjq95X0DkFCqkPGxSP6lXhsYKGGHWfgJgMKN7JQd1dNdvik+RKWUomErFUExFK8jl/HszYfWyVQu8g8kzgflHHwjf7UIn5s2JNOyD6jMA+a4mV/TNAm7f7u+xWHEzQ1dmMeH4KSMt2U8EBHhLhY=,iv:hLxA8KO1URkRev9T9qcSX12dcPaWVGzG1f359zqFHPo=,tag:Od+syvhxuXyJopz19QhSmw==,type:str]
+    version: 3.13.2
