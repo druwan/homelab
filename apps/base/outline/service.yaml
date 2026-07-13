@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: outline-redis
+  namespace: life
+spec:
+  selector:
+    app: outline-redis
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: outline
+  name: outline
+  namespace: life
+spec:
+  ports:
+    - name: http
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: outline
+    role: app
+  type: ClusterIP

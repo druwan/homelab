@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: outline-redis
+  namespace: life
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: outline-redis
+  template:
+    metadata:
+      labels:
+        app: outline-redis
+    spec:
+      containers:
+        - name: outline-redis
+          image: redis:8.8.0
+          ports:
+            - containerPort: 6379
+      restartPolicy: Always
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: outline
+    role: app
+  name: outline
+  namespace: life
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: outline
+  template:
+    metadata:
+      labels:
+        app: outline
+        role: app
+    spec:
+      containers:
+        - image: outlinewiki/outline:1.9.1
+          name: outline
+          ports:
+            - containerPort: 3000
+          securityContext:
+            allowPrivilegeEscalation: false
+          env:
+            - name: NODE_ENV
+              value: production
+
+            - name: URL
+              value: "https://outline.christophervestman.com"
+
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: outline-db-credentials
+                  key: app-secret-key
+
+            - name: UTILS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: outline-db-credentials
+                  key: app-utils-secret
+
+            - name: DEFAULT_LANGUAGE
+              value: en_US
+
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: outline-db-credentials
+                  key: database-uri
+
+            - name: REDIS_URL
+              value: "redis://outline-redis:6379"
+
+            - name: FILE_STORAGE
+              value: local
+
+            - name: FILE_STORAGE_LOCAL_ROOT_DIR
+              value: /var/lib/outline/data
+
+          volumeMounts:
+            - mountPath: /var/lib/outline/data
+              name: outline-data
+      restartPolicy: Always
+      volumes:
+        - name: outline-data
+          persistentVolumeClaim:
+            claimName: outline-data-pvc
