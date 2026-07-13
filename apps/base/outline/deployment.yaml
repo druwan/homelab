@@ -57,13 +57,13 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: outline-db-credentials
-                  key: app-secret-key
+                  key: outline-secret-key
 
             - name: UTILS_SECRET
               valueFrom:
                 secretKeyRef:
                   name: outline-db-credentials
-                  key: app-utils-secret
+                  key: outline-utils-secret
 
             - name: DEFAULT_LANGUAGE
               value: en_US
@@ -79,6 +79,21 @@ spec:
 
             - name: FILE_STORAGE
               value: local
+
+            - name: OIDC_CLIENT_ID
+              valueFrom:
+                secretKeyRef: { name: outline-oidc, key: OIDC_CLIENT_ID }
+
+            - name: OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef: { name: outline-oidc, key: OIDC_CLIENT_SECRET }
+
+            - name: OIDC_AUTH_URI
+              value: "https://authentik.christophervestman.com/application/o/authorize/"
+            - name: OIDC_TOKEN_URI
+              value: "https://authentik.christophervestman.com/application/o/token/"
+            - name: OIDC_USERINFO_URI
+              value: "https://authentik.christophervestman.com/application/o/userinfo/"
 
             - name: FILE_STORAGE_LOCAL_ROOT_DIR
               value: /var/lib/outline/data
