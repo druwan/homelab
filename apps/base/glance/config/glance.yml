@@ -101,6 +101,9 @@ pages:
               - title: n8n
                 url: https://n8n.christophervestman.com
                 icon: sh:n8n
+              - title: Outline
+                url: https://outline.christophervestman.com
+                icon: sh:outline
               - title: Paperless-ngx
                 url: https://paperless-ngx.christophervestman.com
                 icon: sh:paperless-ngx

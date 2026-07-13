@@ -23,6 +23,7 @@ resources:
   - linkwarden
   - mealie
   - n8n
+  - outline
   - paperless-ngx
   - pgadmin
   - profilarr
