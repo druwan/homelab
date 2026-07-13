@@ -1,0 +1,30 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: authentik-db-daily-hexabyte
+  namespace: authentik
+spec:
+  immediate: true
+  schedule: "0 30 3 * * *"
+  cluster:
+    name: authentik-db-v0
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: authentik-db-backup-hexabyte
+  backupOwnerReference: cluster
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: authentik-db-ondemand
+  namespace: authentik
+spec:
+  cluster:
+    name: authentik-db-v0
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: authentik-db-backup-hexabyte

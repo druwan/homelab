@@ -4,6 +4,7 @@ resources:
   - namespaces
   - actualbudget
   # - audiobookshelf
+  - authentik
   - bazarr
   - bento-pdf
   - convertx
