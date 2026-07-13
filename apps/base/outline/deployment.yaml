@@ -75,7 +75,7 @@ spec:
                   key: database-uri
 
             - name: FORCE_HTTPS
-              value: true
+              value: "true"
 
             - name: REDIS_URL
               value: "redis://outline-redis:6379"
