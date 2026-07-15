@@ -11,6 +11,7 @@ resources:
   - discord-bot
   - dispatcharr
   # - firefly
+  - flaresolverr
   # - garage
   - glance
   - health-api
