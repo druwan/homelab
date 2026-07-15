@@ -71,9 +71,9 @@ pages:
               # - title: Garage
               #   url: https://garage.christophervestman.com
               #   icon: sh:garage
-              - title: Grafana
-                url: https://grafana.christophervestman.com
-                icon: sh:grafana
+              # - title: Grafana
+              #   url: https://grafana.christophervestman.com
+              #   icon: sh:grafana
               - title: Home Assistant
                 url: https://homeassistant.christophervestman.com
                 icon: sh:home-assistant
@@ -107,15 +107,15 @@ pages:
               - title: Paperless-ngx
                 url: https://paperless-ngx.christophervestman.com
                 icon: sh:paperless-ngx
-              - title: pgAdmin
-                url: https://pgadmin.christophervestman.com
-                icon: sh:postgresql
+              # - title: pgAdmin
+              #   url: https://pgadmin.christophervestman.com
+              #   icon: sh:postgresql
               - title: Profilarr
                 url: https://profilarr.christophervestman.com
                 icon: sh:profilarr
-              - title: Prometheus
-                url: https://prometheus.christophervestman.com
-                icon: sh:prometheus
+              # - title: Prometheus
+              #   url: https://prometheus.christophervestman.com
+              #   icon: sh:prometheus
               - title: Prowlarr
                 url: https://prowlarr.christophervestman.com
                 icon: sh:prowlarr-radarr
@@ -152,9 +152,9 @@ pages:
               # - title: Wallos
               #   url: https://wallos.christophervestman.com
               #   icon: sh:wallos
-              - title: Wiki.js
-                url: https://wiki.christophervestman.com
-                icon: sh:wiki-js
+              # - title: Wiki.js
+              #   url: https://wiki.christophervestman.com
+              #   icon: sh:wiki-js
               - title: Z2MQTT
                 url: https://z2m.christophervestman.com
                 icon: sh:zigbee2mqtt
