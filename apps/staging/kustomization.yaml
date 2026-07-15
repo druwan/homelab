@@ -25,7 +25,7 @@ resources:
   - n8n
   - outline
   - paperless-ngx
-  - pgadmin
+  # - pgadmin
   - profilarr
   - prowlarr
   - qbittorrent
@@ -36,4 +36,4 @@ resources:
   # - sure
   # - tududi
   # - wallos
-  - wiki-js
+  # - wiki-js
