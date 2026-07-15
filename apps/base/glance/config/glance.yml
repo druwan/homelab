@@ -68,6 +68,9 @@ pages:
               # - title: Firefly
               #   url: https://firefly.christophervestman.com
               #   icon: sh:firefly-iii
+              - title: FlareSolverr
+                url: https://flaresolverr.christophervestman.com
+                icon: sh:flaresolverr
               # - title: Garage
               #   url: https://garage.christophervestman.com
               #   icon: sh:garage
