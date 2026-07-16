@@ -31,10 +31,6 @@ spec:
               value: wireguard
             - name: TZ
               value: Europe/Stockholm
-            - name: DOT
-              value: "off"
-            - name: DNS_UPSTREAM
-              value: "1.1.1.1,8.8.8.8"
             - name: VPN_PORT_FORWARDING
               value: "on"
             - name: PORT_FORWARD_ONLY
