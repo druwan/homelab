@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sabnzbd
+  name: sabnzbd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sabnzbd
+  template:
+    metadata:
+      labels:
+        app: sabnzbd
+    spec:
+      securityContext:
+        fsGroup: 3100
+        supplementalGroups: [3100]
+      containers:
+        - name: sabnzbd
+          image: lscr.io/linuxserver/sabnzbd:5.0.4-ls262
+          ports:
+            - containerPort: 8080
+          securityContext:
+            allowPrivilegeEscalation: false
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "3100"
+            - name: TZ
+              value: Europe/Stockholm
+          volumeMounts:
+            - mountPath: /config
+              name: sabnzbd-config
+            - mountPath: /media
+              name: media
+      volumes:
+        - name: sabnzbd-config
+          persistentVolumeClaim:
+            claimName: sabnzbd-config-pvc
+        - name: media
+          persistentVolumeClaim:
+            claimName: media-pvc

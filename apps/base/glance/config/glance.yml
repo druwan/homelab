@@ -140,6 +140,9 @@ pages:
               # - title: Stirling-PDF
               #   url: https://pdf.christophervestman.com
               #   icon: sh:stirling-pdf
+              - title: Sabnzbd
+                url: https://sabnzbd.christophervestman.com
+                icon: sh:sabnzbd
               - title: Sonarr
                 url: https://sonarr.christophervestman.com
                 icon: sh:sonarr-radarr

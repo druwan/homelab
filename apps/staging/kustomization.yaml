@@ -32,6 +32,7 @@ resources:
   - qbittorrent
   - radarr
   # - rustfs
+  - sabnzbd
   - sonarr
   # - stirling-pdf
   # - sure
