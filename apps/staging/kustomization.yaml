@@ -29,7 +29,7 @@ resources:
   # - pgadmin
   - profilarr
   - prowlarr
-  - qbittorrent
+  # - qbittorrent
   - radarr
   # - rustfs
   - sabnzbd
