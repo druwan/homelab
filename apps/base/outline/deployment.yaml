@@ -33,14 +33,14 @@ spec:
   selector:
     matchLabels:
       app: outline
-  securityContext:
-    fsGroup: 3100
   template:
     metadata:
       labels:
         app: outline
         role: app
     spec:
+      securityContext:
+        fsGroup: 3100
       containers:
         - image: outlinewiki/outline:1.9.1
           name: outline
