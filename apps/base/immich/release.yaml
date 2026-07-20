@@ -73,12 +73,6 @@ spec:
           enabled: false
     server:
       enabled: true
-      controllers:
-        main:
-          containers:
-            main:
-              repository: ghcr.io/immich-app/immich-server
-              pullPolicy: IfNotPresent
       resources:
         requests:
           memory: 512Mi
@@ -128,5 +122,3 @@ spec:
           enabled: true
           type: persistentVolumeClaim
           existingClaim: immich-machine-learning-model-cache-pvc
-          accessMode: ReadWriteMany
-          storageClass: truenas-pvc-nfs
