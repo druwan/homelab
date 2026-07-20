@@ -33,6 +33,8 @@ spec:
   selector:
     matchLabels:
       app: outline
+  securityContext:
+    fsGroup: 3100
   template:
     metadata:
       labels:
