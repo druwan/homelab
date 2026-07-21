@@ -42,7 +42,7 @@ spec:
       securityContext:
         fsGroup: 3100
       containers:
-        - image: outlinewiki/outline:1.9.1
+        - image: outlinewiki/outline:1.9.2
           name: outline
           ports:
             - containerPort: 3000
