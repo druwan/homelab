@@ -62,9 +62,9 @@ pages:
               - title: ConvertX
                 url: https://convertx.christophervestman.com
                 icon: sh:convertx.png
-              - title: Dispatcharr
-                url: https://dispatcharr.christophervestman.com
-                icon: sh:dispatcharr
+              # - title: Dispatcharr
+              #   url: https://dispatcharr.christophervestman.com
+              #   icon: sh:dispatcharr
               # - title: Firefly
               #   url: https://firefly.christophervestman.com
               #   icon: sh:firefly-iii
@@ -125,9 +125,9 @@ pages:
               # - title: qBittorrent
               #   url: https://qbittorrent.christophervestman.com
               #   icon: sh:qbittorrent
-              # - title: qui
-              #   url: https://qui.christophervestman.com
-              #   icon: sh:qui
+              - title: qui
+                url: https://qui.christophervestman.com
+                icon: sh:qui
               - title: Radarr
                 url: https://radarr.christophervestman.com
                 icon: sh:radarr
