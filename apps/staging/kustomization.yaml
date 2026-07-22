@@ -9,7 +9,7 @@ resources:
   - bento-pdf
   - convertx
   - discord-bot
-  - dispatcharr
+  # - dispatcharr
   # - firefly
   - flaresolverr
   # - garage
@@ -29,7 +29,7 @@ resources:
   # - pgadmin
   - profilarr
   - prowlarr
-  # - qbittorrent
+  - qbittorrent
   - radarr
   # - rustfs
   - sabnzbd
