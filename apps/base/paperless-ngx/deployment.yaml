@@ -72,6 +72,11 @@ spec:
               value: paperless-ngx-db-v1-rw.paperless-ngx.svc.cluster.local
             - name: PAPERLESS_DBNAME
               value: paperless
+            - name: PAPERLESS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-ngx-db-credentials
+                  key: appSecretKey
             - name: PAPERLESS_DBUSER
               valueFrom:
                 secretKeyRef:
