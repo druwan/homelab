@@ -60,6 +60,8 @@ spec:
               value: "eng+swe+sin"
             - name: PAPERLESS_CONSUMER_DELETE_DUPLICATES
               value: "true"
+            - name: PAPERLESS_FILENAME_FORMAT
+              value: "{{ created_year }}/{{ correspondent }}/{{ created }}_{{ title }}"
             - name: PAPERLESS_TIME_ZONE
               value: "Europe/Stockholm"
             - name: PAPERLESS_DBENGINE
