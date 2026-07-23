@@ -4,3 +4,4 @@ namespace: paperless-ngx
 resources:
   - ingress.yaml
   - ../../base/paperless-ngx
+  - documents-backup.yaml

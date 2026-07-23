@@ -1,0 +1,60 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: paperless-ngx-media-backup
+  namespace: paperless-ngx
+spec:
+  schedule: "30 3 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: restic-backup
+              image: restic/restic:latest
+              command: ["/bin/sh", "-c"]
+              args:
+                - |
+                  set -e
+                  REPO=/backups/paperless-ngx-media
+
+                  restic snapshots --repo "$REPO" 2>/dev/null || restic init --repo "$REPO"
+
+                  echo "=== Running backup ==="
+                  restic backup /paperless-pvc/documents/originals /paperless-pvc/documents/archive --repo "$REPO" --tag paperless-ngx --verbose
+
+                  echo "=== Pruning old snapshots ==="
+                  restic forget --repo "$REPO" --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune
+
+                  echo "=== Done ==="
+              env:
+                - name: RESTIC_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: hexabyte-credentials
+                      key: RESTIC_PASSWORD
+              volumeMounts:
+                - name: media
+                  mountPath: /paperless-pvc
+                  readOnly: true
+                - name: backups
+                  mountPath: /backups
+              resources:
+                requests:
+                  cpu: 500m
+                  memory: 512Mi
+                limits:
+                  cpu: 2000m
+                  memory: 4Gi
+          volumes:
+            - name: media
+              persistentVolumeClaim:
+                claimName: paperless-ngx-media-pvc
+            - name: backups
+              nfs:
+                server: 192.168.1.83
+                path: /mnt/main/backups
