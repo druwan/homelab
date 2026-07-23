@@ -30,6 +30,56 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: gotenberg
+  namespace: paperless-ngx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gotenberg
+  template:
+    metadata:
+      labels:
+        app: gotenberg
+    spec:
+      securityContext:
+        readOnlyRootFilesystem: false
+        allowPrivilegeEscalation: false
+        privileged: false
+        runAsUser: 1001
+      containers:
+        - name: gotenberg
+          image: gotenberg/gotenberg:8.34.0
+          env:
+            - name: CHROMIUM_DISABLE_ROUTES
+              value: "true"
+          ports:
+            - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tika
+  namespace: paperless-ngx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tika
+  template:
+    metadata:
+      labels:
+        app: tika
+    spec:
+      containers:
+        - name: tika
+          image: apache/tika:3.3.1.0-full
+          ports:
+            - containerPort: 9998
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   labels:
     app: paperless-ngx
     role: app
@@ -104,6 +154,12 @@ spec:
                 secretKeyRef:
                   name: paperless-ngx-db-credentials
                   key: adminPassword
+            - name: PAPERLESS_TIKA_ENABLED
+              value: "true"
+            - name: PAPERLESS_TIKA_ENDPOINT
+              value: "http://tika:9998"
+            - name: PAPERLESS_TIKA_GOTENBERG_ENDPOINT
+              value: "http://gotenberg:3000"
           volumeMounts:
             - mountPath: /usr/src/paperless/data
               name: paperless-ngx-data
