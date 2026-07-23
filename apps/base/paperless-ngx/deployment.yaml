@@ -59,7 +59,7 @@ spec:
             - name: PAPERLESS_OCR_LANGUAGE
               value: "eng+swe+sin"
             - name: PAPERLESS_CONSUMER_DELETE_DUPLICATES
-              value: true
+              value: "true"
             - name: PAPERLESS_TIME_ZONE
               value: "Europe/Stockholm"
             - name: PAPERLESS_DBENGINE
