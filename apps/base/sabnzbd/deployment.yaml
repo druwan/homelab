@@ -35,7 +35,7 @@ spec:
             requests:
               memory: "512Mi"
             limits:
-              memort: "1.5Gi"
+              memory: "1.5Gi"
           volumeMounts:
             - mountPath: /config
               name: sabnzbd-config
