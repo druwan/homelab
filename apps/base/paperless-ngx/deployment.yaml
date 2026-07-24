@@ -55,6 +55,12 @@ spec:
               value: "true"
           ports:
             - containerPort: 3000
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "200m"
+            limits:
+              memory: "1Gi"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -76,6 +82,12 @@ spec:
           image: apache/tika:3.3.1.0-full
           ports:
             - containerPort: 9998
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -160,6 +172,12 @@ spec:
               value: "http://tika:9998"
             - name: PAPERLESS_TIKA_GOTENBERG_ENDPOINT
               value: "http://gotenberg:3000"
+          resources:
+            requests:
+              memory: "768Mi"
+              cpu: "250m"
+            limits:
+              memory: "1.5Gi"
           volumeMounts:
             - mountPath: /usr/src/paperless/data
               name: paperless-ngx-data
