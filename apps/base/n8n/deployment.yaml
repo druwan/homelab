@@ -63,6 +63,11 @@ spec:
                   key: password
             - name: WEBHOOK_URL
               value: https://n8n.christophervestman.com/
+          resources:
+            requests:
+              memory: 320Mi
+            limits:
+              memory: 640Mi
           volumeMounts:
             - mountPath: /home/node/.n8n
               name: n8n-data

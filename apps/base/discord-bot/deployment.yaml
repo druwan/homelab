@@ -21,6 +21,11 @@ spec:
           env:
             - name: NODE_ENV
               value: production
+          resources:
+            requests:
+              memory: 192Mi
+            limits:
+              memory: 384Mi
           envFrom:
             - secretRef:
                 name: discord-bot-creds

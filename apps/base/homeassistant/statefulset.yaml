@@ -52,6 +52,11 @@ spec:
           env:
             - name: TZ
               value: Europe/Stockholm
+          resources:
+            requests:
+              memory: "512Mi"
+            limits:
+              memort: "1Gi"
       volumes:
         - name: ha-config
           persistentVolumeClaim:

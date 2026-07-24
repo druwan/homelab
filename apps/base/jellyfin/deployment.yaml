@@ -36,6 +36,11 @@ spec:
               name: media
             - mountPath: /dev/dri/renderD128
               name: render-device
+          resources:
+            requests:
+              memory: 512Mi
+            limits:
+              memory: 1Gi
       volumes:
         - name: jellyfin-config
           persistentVolumeClaim:

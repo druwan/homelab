@@ -73,6 +73,11 @@ spec:
                   name: linkwarden-db-credentials
                   key: NEXTAUTH_SECRET
 
+          resources:
+            requests:
+              memory: 384Mi
+            limits:
+              memory: 768Mi
           volumeMounts:
             - mountPath: /data/data
               name: linkwarden-data

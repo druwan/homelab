@@ -103,6 +103,12 @@ spec:
             - name: FILE_STORAGE_LOCAL_ROOT_DIR
               value: /var/lib/outline/data
 
+          resources:
+            requests:
+              memory: 320Mi
+            limits:
+              memory: 640Mi
+
           volumeMounts:
             - mountPath: /var/lib/outline/data
               name: outline-data

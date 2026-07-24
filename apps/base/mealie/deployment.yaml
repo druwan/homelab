@@ -44,6 +44,11 @@ spec:
               value: "mealie-db-v1-rw.mealie.svc.cluster.local"
             - name: TZ
               value: Europe/Stockholm
+          resources:
+            requests:
+              memory: 256Mi
+            limits:
+              memory: 512Mi
           securityContext:
             allowPrivilegeEscalation: false
           ports:

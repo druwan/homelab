@@ -36,6 +36,11 @@ spec:
               name: radarr-config
             - mountPath: /media
               name: media
+          resources:
+            requests:
+              memory: 384Mi
+            limits:
+              memory: 768Mi
       volumes:
         - name: radarr-config
           persistentVolumeClaim:

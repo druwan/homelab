@@ -18,6 +18,11 @@ spec:
     extraEnv:
       - name: TZ
         value: "Europe/Stockholm"
+    resources:
+      requests:
+        memory: 192Mi
+      limits:
+        memory: 384Mi
     config:
       persistence:
         enabled: true
