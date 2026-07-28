@@ -40,7 +40,7 @@ spec:
             requests:
               memory: 512Mi
             limits:
-              memory: 1Gi
+              memory: 2Gi
       volumes:
         - name: jellyfin-config
           persistentVolumeClaim:
