@@ -13,6 +13,8 @@ spec:
       labels:
         app: twenty-redis
     spec:
+      securityContext:
+        fsGroup: 3100
       restartPolicy: Always
       containers:
         - name: twenty-redis
@@ -52,6 +54,8 @@ spec:
       labels:
         app: twenty-worker
     spec:
+      securityContext:
+        fsGroup: 3100
       restartPolicy: Always
       containers:
         - name: twenty-worker
@@ -111,6 +115,8 @@ spec:
       labels:
         app: twenty-server
     spec:
+      securityContext:
+        fsGroup: 3100
       restartPolicy: Always
       containers:
         - name: twenty-server
