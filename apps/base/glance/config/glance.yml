@@ -42,53 +42,29 @@ pages:
                     hide: false
           - type: monitor
             cache: 1h
-            title: Apps
+            title: Productivity
             sites:
               - title: Actual Budget
                 url: https://actualbudget.christophervestman.com
                 icon: sh:actual-budget
-              # - title: Audiobookshelf
-              #   url: https://audiobookshelf.christophervestman.com
-              #   icon: sh:audiobookshelf
               - title: Authentik
                 url: https://authentik.christophervestman.com
                 icon: sh:authentik
-              - title: Bazarr
-                url: https://bazarr.christophervestman.com
-                icon: sh:bazarr-light
               - title: BentoPDF
                 url: https://pdf.christophervestman.com
                 icon: sh:bentopdf
               - title: ConvertX
                 url: https://convertx.christophervestman.com
                 icon: sh:convertx.png
-              # - title: Dispatcharr
-              #   url: https://dispatcharr.christophervestman.com
-              #   icon: sh:dispatcharr
               # - title: Firefly
               #   url: https://firefly.christophervestman.com
               #   icon: sh:firefly-iii
-              - title: FlareSolverr
-                url: https://flaresolverr.christophervestman.com
-                icon: sh:flaresolverr
-              # - title: Garage
-              #   url: https://garage.christophervestman.com
-              #   icon: sh:garage
               # - title: Grafana
               #   url: https://grafana.christophervestman.com
               #   icon: sh:grafana
               - title: Home Assistant
                 url: https://homeassistant.christophervestman.com
                 icon: sh:home-assistant
-              - title: Immich
-                url: https://immich.christophervestman.com
-                icon: sh:immich
-              # - title: It's MyTabs
-              #   url: https://tabs.christophervestman.com
-              #   icon: di:my-guitar-tabs.png
-              - title: Jellyfin
-                url: https://jellyfin.christophervestman.com
-                icon: sh:jellyfin
               - title: Kaneo
                 url: https://kaneo.christophervestman.com
                 icon: sh:kaneo
@@ -98,9 +74,6 @@ pages:
               - title: Linkwarden
                 url: https://linkwarden.christophervestman.com
                 icon: sh:linkwarden
-              - title: Mealie
-                url: https://mealie.christophervestman.com
-                icon: sh:mealie
               - title: n8n
                 url: https://n8n.christophervestman.com
                 icon: sh:n8n
@@ -113,12 +86,58 @@ pages:
               # - title: pgAdmin
               #   url: https://pgadmin.christophervestman.com
               #   icon: sh:postgresql
-              - title: Profilarr
-                url: https://profilarr.christophervestman.com
-                icon: sh:profilarr
               # - title: Prometheus
               #   url: https://prometheus.christophervestman.com
               #   icon: sh:prometheus
+              # - title: Stirling-PDF
+              #   url: https://pdf.christophervestman.com
+              #   icon: sh:stirling-pdf
+              # - title: Tududi
+              #   url: https://tududi.christophervestman.com
+              #   icon: sh:tududi
+              # - title: Vaultwarden
+              #   url: https://vaultwarden.christophervestman.com
+              #   icon: sh:vaultwarden
+              # - title: Wallos
+              #   url: https://wallos.christophervestman.com
+              #   icon: sh:wallos
+              # - title: Wiki.js
+              #   url: https://wiki.christophervestman.com
+              #   icon: sh:wiki-js
+          - type: monitor
+            cache: 1h
+            title: Media
+            sites:
+              # - title: Audiobookshelf
+              #   url: https://audiobookshelf.christophervestman.com
+              #   icon: sh:audiobookshelf
+              - title: Bazarr
+                url: https://bazarr.christophervestman.com
+                icon: sh:bazarr-light
+              # - title: Dispatcharr
+              #   url: https://dispatcharr.christophervestman.com
+              #   icon: sh:dispatcharr
+              - title: FlareSolverr
+                url: https://flaresolverr.christophervestman.com
+                icon: sh:flaresolverr
+              # - title: Garage
+              #   url: https://garage.christophervestman.com
+              #   icon: sh:garage
+              - title: Immich
+                url: https://immich.christophervestman.com
+                icon: sh:immich
+              # - title: It's MyTabs
+              #   url: https://tabs.christophervestman.com
+              #   icon: di:my-guitar-tabs.png
+              - title: Jellyfin
+                url: https://jellyfin.christophervestman.com
+                icon: sh:jellyfin
+              - title: Mealie
+                url: https://mealie.christophervestman.com
+                icon: sh:mealie
+              - title: Profilarr
+                url: https://profilarr.christophervestman.com
+                icon: sh:profilarr
               - title: Prowlarr
                 url: https://prowlarr.christophervestman.com
                 icon: sh:prowlarr-radarr
@@ -137,9 +156,6 @@ pages:
               - title: Seerr
                 url: https://seerr.christophervestman.com
                 icon: sh:seerr
-              # - title: Stirling-PDF
-              #   url: https://pdf.christophervestman.com
-              #   icon: sh:stirling-pdf
               - title: Sabnzbd
                 url: https://sabnzbd.christophervestman.com
                 icon: sh:sabnzbd
@@ -149,18 +165,6 @@ pages:
               - title: TrueNAS
                 url: http://192.168.1.83
                 icon: sh:ugreen-nas
-              # - title: Tududi
-              #   url: https://tududi.christophervestman.com
-              #   icon: sh:tududi
-              # - title: Vaultwarden
-              #   url: https://vaultwarden.christophervestman.com
-              #   icon: sh:vaultwarden
-              # - title: Wallos
-              #   url: https://wallos.christophervestman.com
-              #   icon: sh:wallos
-              # - title: Wiki.js
-              #   url: https://wiki.christophervestman.com
-              #   icon: sh:wiki-js
               - title: Z2MQTT
                 url: https://z2m.christophervestman.com
                 icon: sh:zigbee2mqtt
