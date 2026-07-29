@@ -19,6 +19,21 @@ spec:
         app: linkwarden
         role: app
     spec:
+      tolerations:
+        - key: "intermittent"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - malli
       containers:
         - image: getmeili/meilisearch:v1.49.0
           name: meilisearch
@@ -75,13 +90,21 @@ spec:
 
           resources:
             requests:
-              memory: 384Mi
+              memory: "512Mi"
+              cpu: "250m"
             limits:
-              memory: 768Mi
+              memory: "6Gi"
+              cpu: "2000m"
           volumeMounts:
-            - mountPath: /data/data
-              name: linkwarden-data
+            - name: dshm
+              mountPath: /dev/shm
+            - name: linkwarden-data
+              mountPath: /data/data
       volumes:
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 2Gi
         - name: linkwarden-data
           persistentVolumeClaim:
             claimName: linkwarden-data-pvc
