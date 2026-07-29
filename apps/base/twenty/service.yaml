@@ -26,5 +26,4 @@ spec:
       targetPort: 3000
   selector:
     app: twenty-server
-    role: app
   type: ClusterIP
