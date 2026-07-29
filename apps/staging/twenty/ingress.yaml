@@ -19,7 +19,7 @@ spec:
         paths:
           - backend:
               service:
-                name: twenty
+                name: twenty-server
                 port:
                   number: 3000
             path: /
