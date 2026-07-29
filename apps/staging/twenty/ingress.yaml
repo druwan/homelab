@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: twenty
+  namespace: twenty
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - twenty.christophervestman.com
+      secretName: twenty-tls
+  rules:
+    - host: twenty.christophervestman.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: twenty
+                port:
+                  number: 3000
+            path: /
+            pathType: Prefix

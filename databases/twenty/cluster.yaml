@@ -1,0 +1,68 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: twenty-db-v0
+  namespace: twenty
+spec:
+  description: "Postgres cluster for twenty application"
+  imageName: ghcr.io/cloudnative-pg/postgresql:18-minimal-trixie
+  imagePullPolicy: Always
+  inheritedMetadata:
+    labels:
+      app: twenty-db
+      policy-type: database
+  instances: 1
+
+  storage:
+    size: 5Gi
+    storageClass: truenas-nvme-nfs
+    resizeInUseVolumes: true
+
+  walStorage:
+    size: 5Gi
+    storageClass: truenas-nvme-nfs
+
+  superuserSecret:
+    name: twenty-db-superuser
+
+  # FRESH INSTALL: contains no backup. Have to use initdb
+  bootstrap:
+    initdb:
+      database: twenty
+      owner: twenty
+      secret:
+        name: twenty-db-credentials
+
+  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  # bootstrap:
+  #   recovery:
+  #     source: twenty-db-hexabyte
+  #     database: twenty
+  #     owner: twenty
+  #     secret:
+  #       name: twenty-db-credentials
+  # externalClusters:
+  #   - name: twenty-db-hexabyte
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: twenty-db-backup-hexabyte
+  #         serverName: twenty-db
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: twenty-db-backup-hexabyte
+
+  managed:
+    services:
+      disabledDefaultServices: ["r", "ro"]
+
+    roles:
+      - name: twenty
+        ensure: present
+        login: true
+        createdb: false
+        passwordSecret:
+          name: twenty-db-credentials

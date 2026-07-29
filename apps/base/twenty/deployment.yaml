@@ -1,0 +1,179 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: twenty-redis
+  namespace: twenty
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: twenty-redis
+  template:
+    metadata:
+      labels:
+        app: twenty-redis
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: twenty-redis
+          image: redis:8.8.1
+          args:
+            - "--maxmemory-policy"
+            - "noeviction"
+          ports:
+            - containerPort: 6379
+          readinessProbe:
+            exec:
+              command: ["redis-cli", "ping"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            exec:
+              command: ["redis-cli", "ping"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 10
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: twenty-worker
+  namespace: twenty
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: twenty-worker
+  template:
+    metadata:
+      labels:
+        app: twenty-worker
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: twenty-worker
+          image: twentycrm/twenty:v2.25.1
+          args:
+            - "yarn"
+            - "worker:prod"
+          env:
+            - name: PG_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: twenty-db-credentials
+                  key: pg_database_url
+            - name: STORAGE_TYPE
+              value: "local"
+            - name: SERVER_URL
+              value: "https://twenty.christophervestman.com"
+            - name: REDIS_URL
+              value: "redis://twenty-redis:6379"
+            - name: DISABLE_DB_MIGRATIONS # Runs on server
+              value: "true"
+            - name: DISABLE_CRON_JOBS_REGISTRATION # Runs on server
+              value: "true"
+
+            - name: ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: twenty-db-credentials
+                  key: encryption_key
+
+            # NOTE: Set to previous ENCRYPTION_KEY during a rotation
+            - name: FALLBACK_ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: twenty-db-credentials
+                  key: fallback_encryption_key
+          volumeMounts:
+            - name: twenty-data
+              mountPath: /app/packages/twenty-server/.local-storage
+      volumes:
+        - name: twenty-data
+          persistentVolumeClaim:
+            claimName: twenty-data-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: twenty-server
+  namespace: twenty
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: twenty-server
+  template:
+    metadata:
+      labels:
+        app: twenty-server
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: twenty-server
+          image: twentycrm/twenty:v2.25.1
+          env:
+            - name: PG_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: twenty-db-credentials
+                  key: pg_database_url
+            - name: NODE_PORT
+              value: "3000"
+            - name: STORAGE_TYPE
+              value: "local"
+            - name: SERVER_URL
+              value: "https://twenty.christophervestman.com"
+            - name: REDIS_URL
+              value: "redis://twenty-redis:6379"
+            - name: DISABLE_DB_MIGRATIONS
+              value: "false"
+            - name: DISABLE_CRON_JOBS_REGISTRATION
+              value: "false"
+
+            - name: ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: twenty-db-credentials
+                  key: encryption_key
+
+            # NOTE: Set to previous ENCRYPTION_KEY during a rotation
+            - name: FALLBACK_ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: twenty-db-credentials
+                  key: fallback_encryption_key
+          ports:
+            - containerPort: 3000
+          startupProbe:
+            httpGet:
+              path: "/healthz"
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 30 # 30 x 5 = 150s
+          readinessProbe:
+            httpGet:
+              path: "/healthz"
+              port: 3000
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 20
+          livenessProbe:
+            httpGet:
+              path: "/healthz"
+              port: 3000
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 10
+          volumeMounts:
+            - name: twenty-data
+              mountPath: /app/packages/twenty-server/.local-storage
+      volumes:
+        - name: twenty-data
+          persistentVolumeClaim:
+            claimName: twenty-data-pvc

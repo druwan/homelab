@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: twenty
+  namespace: twenty
+spec:
+  name: twenty
+  owner: twenty
+  cluster:
+    name: twenty-db-v0

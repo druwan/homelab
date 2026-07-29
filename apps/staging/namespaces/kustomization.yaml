@@ -16,6 +16,7 @@ resources:
   - paperless-ngx.yaml
   # - rustfs.yaml
   # - stirling-pdf.yaml
-  - sure.yaml
-  - tabs.yaml
+  # - sure.yaml
+  # - tabs.yaml
   # - tududi.yaml
+  - twenty.yaml

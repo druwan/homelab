@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: twenty-db
+  namespace: twenty
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: twenty-db-v0
+  podMetricsEndpoints:
+    - port: metrics
