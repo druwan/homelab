@@ -65,7 +65,7 @@ spec:
             - containerPort: 3000
           env:
             - name: AUTOSCROLL_TIMEOUT
-              value: 60
+              value: "60"
 
             - name: POSTGRES_PASSWORD
               valueFrom:
