@@ -181,9 +181,10 @@ spec:
           resources:
             requests:
               memory: "768Mi"
-              cpu: "250m"
+              cpu: "500m"
             limits:
-              memory: "1.5Gi"
+              memory: "4Gi"
+              cpu: "3000m"
           volumeMounts:
             - mountPath: /usr/src/paperless/data
               name: paperless-ngx-data
