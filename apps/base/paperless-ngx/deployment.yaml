@@ -180,10 +180,10 @@ spec:
               value: "http://gotenberg:3000"
           resources:
             requests:
-              memory: "768Mi"
+              memory: "1Gi"
               cpu: "500m"
             limits:
-              memory: "4Gi"
+              memory: "6Gi"
               cpu: "3000m"
           volumeMounts:
             - mountPath: /usr/src/paperless/data
