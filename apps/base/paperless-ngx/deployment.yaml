@@ -123,9 +123,9 @@ spec:
             allowPrivilegeEscalation: false
           env:
             - name: PAPERLESS_OCR_LANGUAGES
-              value: eng swe sin
+              value: eng swe
             - name: PAPERLESS_OCR_LANGUAGE
-              value: "eng+swe+sin"
+              value: "eng+swe"
             - name: PAPERLESS_CONSUMER_DELETE_DUPLICATES
               value: "true"
             - name: PAPERLESS_FILENAME_FORMAT
