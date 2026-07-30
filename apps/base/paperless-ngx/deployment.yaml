@@ -127,7 +127,7 @@ spec:
             - name: PAPERLESS_OCR_LANGUAGE
               value: "eng+swe"
             - name: PAPERLESS_READ_CACHE_TTL
-              value: 60
+              value: "60"
             - name: PAPERLESS_EMAIL_TASK_CRON
               value: "disable"
             - name: PAPERLESS_TRAIN_TASK_CRON
