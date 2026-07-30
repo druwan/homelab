@@ -42,6 +42,8 @@ spec:
       labels:
         app: gotenberg
     spec:
+      nodeSelector:
+        kubernetes.is/hostname: lemon
       securityContext:
         readOnlyRootFilesystem: false
         allowPrivilegeEscalation: false
@@ -77,6 +79,8 @@ spec:
       labels:
         app: tika
     spec:
+      nodeSelector:
+        kubernetes.is/hostname: lemon
       containers:
         - name: tika
           image: apache/tika:3.3.1.0-full
@@ -108,6 +112,8 @@ spec:
         app: paperless-ngx
         role: app
     spec:
+      nodeSelector:
+        kubernetes.is/hostname: lemon
       containers:
         - image: ghcr.io/paperless-ngx/paperless-ngx:3.0.4
           name: paperless-ngx
