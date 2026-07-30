@@ -18,7 +18,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: twenty-redis
-          image: redis:8.8.1
+          image: redis:8.10.0
           args:
             - "--maxmemory-policy"
             - "noeviction"
