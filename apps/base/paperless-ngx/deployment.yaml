@@ -183,7 +183,7 @@ spec:
               memory: "1Gi"
               cpu: "500m"
             limits:
-              memory: "5Gi"
+              memory: "6Gi"
               cpu: "3000m"
           volumeMounts:
             - mountPath: /usr/src/paperless/data
