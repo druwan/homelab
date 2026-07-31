@@ -19,7 +19,7 @@ spec:
         supplementalGroups: [3100]
       containers:
         - name: bazarr
-          image: lscr.io/linuxserver/bazarr:v1.5.5-ls336
+          image: lscr.io/linuxserver/bazarr:v1.6.0-ls356
           ports:
             - containerPort: 6767
           securityContext:
