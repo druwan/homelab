@@ -33,8 +33,10 @@ spec:
               name: kaneo-db-credentials
               passwordKey: postgres_uri
       extraEnv:
+        - KANEO_CLIENT_URL:
+          value: "https://kaneo.christophervestman.com"
         - name: KANEO_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS
-          value: true
+          value: "true"
       securityContext:
         allowPrivilegeEscalation: false
         capabilities:
