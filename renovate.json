@@ -22,6 +22,14 @@
       "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-r\\d+-ls(?<build>\\d+)$"
     },
     {
+      "description": "Handle *arr",
+      "matchPackageNames": [
+        "lscr.io/linuxserver/bazarr"
+      ],
+      "allowedVersions": "/^v?\\d+\\.\\d+\\.\\d+-ls\\d+$/",
+      "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-ls(?<build>\\d+)$"
+    },
+    {
       "description": "Enable OCI Helm chart updates for Seerr",
       "matchDatasources": [
         "oci"
