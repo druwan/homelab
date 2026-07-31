@@ -35,6 +35,11 @@ spec:
       extraEnv:
         - name: KANEO_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS
           value: "true"
+        - name: NOTIFICATION_SECRET_ENCRYPTION_KEY
+          valueFrom:
+            secretKeyRef:
+              name: kaneo-db-credentials
+              key: notification-key
       securityContext:
         allowPrivilegeEscalation: false
         capabilities:
