@@ -63,6 +63,8 @@ spec:
                   key: password
             - name: WEBHOOK_URL
               value: https://n8n.christophervestman.com/
+            - name: NODE_FUNCTION_ALLOW_BUILTIN
+              value: "Buffer, crypto"
           resources:
             requests:
               memory: 320Mi
