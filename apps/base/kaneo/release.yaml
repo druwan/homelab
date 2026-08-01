@@ -40,6 +40,18 @@ spec:
             secretKeyRef:
               name: kaneo-db-credentials
               key: notification-key
+        - name: CUSTOM_OAUTH_DISCOVERY_URL
+          value: "https://authentik.christophervestman.com/application/o/kaneo/.well-known/openid-configuration"
+        - name: CUSTOM_OAUTH_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: kaneo-db-credentials
+              key: oidc-client-id
+        - name: CUSTOM_OAUTH_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: kaneo-db-credentials
+              key: oidc-client-secret
       securityContext:
         allowPrivilegeEscalation: false
         capabilities:
