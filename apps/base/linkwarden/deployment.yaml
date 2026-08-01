@@ -92,7 +92,7 @@ spec:
                   key: NEXTAUTH_SECRET
 
             - name: NEXT_PUBLIC_AUTHENTIK_ENABLED
-              value: true
+              value: "true"
 
             - name: AUTHENTIK_ISSUER
               value: "https://authentik.christophervestman.com/application/o/linkwarden"
