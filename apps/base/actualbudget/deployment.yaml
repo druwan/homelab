@@ -24,8 +24,8 @@ spec:
             - name: ACTUAL_OPENID_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: actual-authentik-oidc,
-                  key: ACTUAL_AUTHENTIK_CLIENT_ID,
+                  name: actual-authentik-oidc
+                  key: ACTUAL_AUTHENTIK_CLIENT_ID
 
             - name: ACTUAL_OPENID_CLIENT_SECRET
               valueFrom:
