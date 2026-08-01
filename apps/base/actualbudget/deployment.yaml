@@ -34,7 +34,7 @@ spec:
                   key: ACTUAL_AUTHENTIK_CLIENT_SECRET
 
             - name: ACTUAL_OPENID_DISCOVERY_URL
-              value: "https://actualbudget.christophervestman.com/application/o/actual-budget/"
+              value: "https://authentik.christophervestman.com/application/o/actual-budget/"
             - name: ACTUAL_OPENID_SERVER_HOSTNAME
               value: "https://actualbudget.christophervestman.com/"
           ports:
