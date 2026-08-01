@@ -20,6 +20,23 @@ spec:
       containers:
         - image: ghcr.io/actualbudget/actual:26.7.0
           name: actualbudget
+          env:
+            - name: ACTUAL_OPENID_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: actual-authentik-oidc,
+                  key: ACTUAL_AUTHENTIK_CLIENT_ID,
+
+            - name: ACTUAL_OPENID_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: actual-authentik-oidc
+                  key: ACTUAL_AUTHENTIK_CLIENT_SECRET
+
+            - name: ACTUAL_OPENID_DISCOVERY_URL
+              value: "https://actualbudget.christophervestman.com/application/o/actual-budget/"
+            - name: ACTUAL_OPENID_SERVER_HOSTNAME
+              value: "https://actualbudget.christophervestman.com/"
           ports:
             - containerPort: 5006
           volumeMounts:
