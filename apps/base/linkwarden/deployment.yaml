@@ -91,6 +91,24 @@ spec:
                   name: linkwarden-db-credentials
                   key: NEXTAUTH_SECRET
 
+            - name: NEXT_PUBLIC_AUTHENTIK_ENABLED
+              value: "true"
+
+            - name: AUTHENTIK_ISSUER
+              value: "https://authentik.christophervestman.com/application/o/linkwarden"
+
+            - name: AUTHENTIK_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: linkwarden-db-credentials
+                  key: authentik-client-id
+
+            - name: AUTHENTIK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: linkwarden-db-credentials
+                  key: authentik-client-secret
+
           resources:
             requests:
               memory: "512Mi"
