@@ -44,6 +44,25 @@ spec:
               value: "mealie-db-v1-rw.mealie.svc.cluster.local"
             - name: TZ
               value: Europe/Stockholm
+            - name: OIDC_AUTH_ENABLED
+              value: "true"
+            - name: OIDC_PROVIDER_NAME
+              value: "authentik"
+            - name: OIDC_CONFIGURATION_URL
+              value: "https://authentik.christophervestman.com/application/o/mealie/.well-known/openid-configuration"
+
+            - name: OIDC_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: mealie-db-credentials
+                  key: authentik-client-id
+
+            - name: OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: mealie-db-credentials
+                  key: authentik-client-secret
+
           resources:
             requests:
               memory: 256Mi
