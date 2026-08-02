@@ -67,7 +67,7 @@ pages:
                 icon: sh:home-assistant
               - title: Kaneo
                 url: https://kaneo.christophervestman.com
-                icon: sh:kaneo
+                icon: sh:kaneo-light
               # - title: Linkding
               #   url: https://linkding.christophervestman.com
               #   icon: sh:linkding
@@ -79,7 +79,7 @@ pages:
                 icon: sh:n8n
               - title: Outline
                 url: https://outline.christophervestman.com
-                icon: sh:outline
+                icon: sh:outline-light
               - title: Paperless-ngx
                 url: https://paperless-ngx.christophervestman.com
                 icon: sh:paperless-ngx
