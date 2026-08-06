@@ -80,7 +80,7 @@ spec:
               name: media
 
         - name: qui
-          image: ghcr.io/autobrr/qui:v1.24.0
+          image: ghcr.io/autobrr/qui:v1.25.0
           env:
             - name: QUI__METRICS_ENABLED
               value: "true"
