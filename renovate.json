@@ -30,7 +30,7 @@
       "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-ls(?<build>\\d+)$"
     },
     {
-      "description": "Enable OCI Helm chart updates for Seerr",
+      "description": "Enable OCI Helm chart updates",
       "matchDatasources": [
         "oci"
       ],
@@ -38,7 +38,15 @@
         "helm"
       ],
       "extractVersion": "^(?<version>\\d+\\.\\d+\\.\\d+)$",
-      "versioning": "semver"
+      "versioning": "semver",
+      "pinDigests": true
+    },
+    {
+      "description": "Pin digests for docker/ghcr images",
+      "matchDatasources": [
+        "docker"
+      ],
+      "pinDigests": true
     }
   ]
 }
