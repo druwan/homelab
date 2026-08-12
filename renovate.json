@@ -24,7 +24,11 @@
     {
       "description": "Handle *arr",
       "matchPackageNames": [
-        "lscr.io/linuxserver/bazarr"
+        "ghcr.io/linuxserver/bazarr",
+        "ghcr.io/linuxserver/prowlarr",
+        "ghcr.io/linuxserver/radarr",
+        "ghcr.io/linuxserver/sabnzbd",
+        "ghcr.io/linuxserver/sonarr"
       ],
       "allowedVersions": "/^v?\\d+\\.\\d+\\.\\d+-ls\\d+$/",
       "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-ls(?<build>\\d+)$"

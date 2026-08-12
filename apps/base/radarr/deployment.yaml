@@ -19,7 +19,7 @@ spec:
         supplementalGroups: [3100]
       containers:
         - name: radarr
-          image: linuxserver/radarr:6.3.0
+          image: ghcr.io/linuxserver/radarr:6.3.0.10514-ls313
           ports:
             - containerPort: 7878
           securityContext:
