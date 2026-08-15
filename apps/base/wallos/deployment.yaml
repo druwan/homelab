@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: wallos
-          image: bellamy/wallos:5.4.2
+          image: bellamy/wallos:5.4.4@sha256:a6911eda064e3ebc4426a579cf60d4cf95d9d578bda523daaf032915b08504b2
           ports:
             - containerPort: 80
           env:
