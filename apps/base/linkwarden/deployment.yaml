@@ -35,7 +35,7 @@ spec:
                     values:
                       - malli
       containers:
-        - image: getmeili/meilisearch:v1.49.0
+        - image: getmeili/meilisearch:v1.53.1@sha256:8d6643d86d71fad6ad3cba92cde7ccfce9e4d6c384bda67598eb553571c32431
           name: meilisearch
           command:
             - /bin/sh
