@@ -15,7 +15,7 @@ spec:
         app: its-mytabs
     spec:
       containers:
-        - image: louislam/its-mytabs:1.6.2
+        - image: louislam/its-mytabs:1.7.0@sha256:2e478d3170bdbec11c9c3a6ff58fd5a2ba80c119fd78fe4b0e9f4f475b6356f8
           name: its-mytabs
           ports:
             - containerPort: 47777
