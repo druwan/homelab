@@ -19,7 +19,7 @@ spec:
         supplementalGroups: [3100]
       containers:
         - name: sabnzbd
-          image: ghcr.io/linuxserver/sabnzbd:5.1.0-ls266@sha256:b0f9755d795913bd26ae3f3a12805668ab0681ab847a7624568559c573fc7cae
+          image: ghcr.io/linuxserver/sabnzbd:5.1.0-ls267@sha256:e79d3fd9282b7fa51a3382cec9fdcc4cf736f46c9d43d188193e3ce1c7accbcd
           ports:
             - containerPort: 8080
           securityContext:
