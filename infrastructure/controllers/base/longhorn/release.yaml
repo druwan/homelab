@@ -24,7 +24,7 @@ spec:
     persistence:
       defaultClass: true
       defaultClassReplicaCount: 1
-      defaultVolumeBindingMode: WaitForFirstConsumer
+      volumeBindingMode: "WaitForFirstConsumer"
       reclaimPolicy: Retain
     longhornManager:
       log:
