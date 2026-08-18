@@ -6,5 +6,6 @@ resources:
   - cloudnativepg
   - csi-driver-nfs
   - external-secrets
+  - longhorn
   - renovate
   - traefik
