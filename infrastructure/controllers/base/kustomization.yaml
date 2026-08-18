@@ -7,5 +7,6 @@ resources:
   - csi-driver-nfs
   - external-secrets
   - garage
+  - longhorn
   - renovate
   - traefik

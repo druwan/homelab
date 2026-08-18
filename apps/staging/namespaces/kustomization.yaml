@@ -10,6 +10,7 @@ resources:
   - kaneo.yaml
   - life.yaml
   - linkwarden.yaml
+  - longhorn-system.yaml
   - mealie.yaml
   - media.yaml
   - n8n.yaml
