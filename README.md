@@ -41,16 +41,18 @@ A Kubernetes-based homelab built with GitOps practices.
  /usr/local/bin/k3s-uninstall.sh
 
  # Reinstall
- sudo curl -sfL <https://get.k3s.io> | sh -s - --disable-helm-controller --data-dir=/home/k3s
+ sudo curl -sfL <https://get.k3s.io> | sh -s - --disable-helm-controller
 
  # Copy kubeconfig and update server address
  sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 
  # Bootstrap Flux
- flux bootstrap github --owner=druwan --repository=homelab --branch=main --path=./clusters/staging --personal
+ flux bootstrap github --owner=druwan --repository=homelab \
+    --branch=main --path=./clusters/staging --personal
 
  # SOPS age key
- k create secret generic sops-age --namespace=flux-system --from-file=age.agekey=./age.agekey --dry-run -o yaml | k apply -f -
+ k create secret generic sops-age --namespace=flux-system \
+    --from-file=age.agekey=./age.agekey --dry-run -o yaml | k apply -f -
 
  # External Secrets
  k apply -k infrastructure/controllers/staging/external-secrets
