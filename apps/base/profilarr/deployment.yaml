@@ -48,4 +48,4 @@ spec:
       volumes:
         - name: profilarr-config
           persistentVolumeClaim:
-            claimName: profilarr-config-pvc
+            claimName: profilarr-config-pvc-v2

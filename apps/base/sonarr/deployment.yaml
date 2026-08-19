@@ -44,7 +44,7 @@ spec:
       volumes:
         - name: sonarr-config
           persistentVolumeClaim:
-            claimName: sonarr-config-pvc
+            claimName: sonarr-config-pvc-v2
         - name: media
           persistentVolumeClaim:
             claimName: media-pvc

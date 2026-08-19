@@ -44,7 +44,7 @@ spec:
       volumes:
         - name: radarr-config
           persistentVolumeClaim:
-            claimName: radarr-config-pvc
+            claimName: radarr-config-pvc-v2
         - name: media
           persistentVolumeClaim:
             claimName: media-pvc
