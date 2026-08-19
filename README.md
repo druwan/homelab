@@ -47,6 +47,13 @@ A Kubernetes-based homelab built with GitOps practices.
  # Reinstall
  sudo curl -sfL <https://get.k3s.io> | sh -s - --disable-helm-controller
 
+ # After longhorn is installed, edit /etc/systemd/system/k3s.service
+ # add --disable local-storage
+ ExecStart=/usr/local/bin/k3s \
+    server \
+    '--disable-helm-controller' \
+    '--disable' 'local-storage'
+
  # Copy kubeconfig and update server address
  sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 
