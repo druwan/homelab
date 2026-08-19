@@ -101,7 +101,7 @@ spec:
       volumes:
         - name: qbittorrent-config
           persistentVolumeClaim:
-            claimName: qbittorrent-config-pvc
+            claimName: qbittorrent-config-pvc-v2
         - name: media
           persistentVolumeClaim:
             claimName: media-pvc

@@ -35,4 +35,4 @@ spec:
       volumes:
         - name: convertx-data
           persistentVolumeClaim:
-            claimName: convertx-data-pvc
+            claimName: convertx-data-pvc-v2

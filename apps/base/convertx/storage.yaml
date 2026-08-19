@@ -9,3 +9,15 @@ spec:
   resources:
     requests:
       storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: convertx-data-pvc-v2
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce

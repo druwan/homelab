@@ -9,3 +9,15 @@ spec:
   storageClassName: truenas-pvc-nfs
   accessModes:
     - ReadWriteOnce
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: qbittorrent-config-pvc-v2
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce

@@ -44,7 +44,7 @@ spec:
       volumes:
         - name: sabnzbd-config
           persistentVolumeClaim:
-            claimName: sabnzbd-config-pvc
+            claimName: sabnzbd-config-pvc-v2
         - name: media
           persistentVolumeClaim:
             claimName: media-pvc
