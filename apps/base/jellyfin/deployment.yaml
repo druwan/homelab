@@ -44,10 +44,10 @@ spec:
       volumes:
         - name: jellyfin-config
           persistentVolumeClaim:
-            claimName: jellyfin-config-pvc
+            claimName: jellyfin-config-pvc-v2
         - name: jellyfin-cache
           persistentVolumeClaim:
-            claimName: jellyfin-cache-pvc
+            claimName: jellyfin-cache-pvc-v2
         - name: media
           persistentVolumeClaim:
             claimName: media-pvc

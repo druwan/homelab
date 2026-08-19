@@ -16,21 +16,21 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: jellyfin-config-pvc
+  name: jellyfin-config-pvc-v2
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: truenas-pvc-nfs
+  storageClassName: longhorn
   resources:
     requests:
-      storage: 10Gi
+      storage: 8Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: jellyfin-cache-pvc
+  name: jellyfin-cache-pvc-v2
 spec:
-  storageClassName: truenas-nvme-nfs
+  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
   resources:
