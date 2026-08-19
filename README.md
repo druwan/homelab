@@ -40,6 +40,10 @@ A Kubernetes-based homelab built with GitOps practices.
  /usr/local/bin/k3s-killall.sh
  /usr/local/bin/k3s-uninstall.sh
 
+ # Enable iscsid for longhorn
+ systemctl enable iscsid
+ systemctl start iscsid
+
  # Reinstall
  sudo curl -sfL <https://get.k3s.io> | sh -s - --disable-helm-controller
 
