@@ -44,7 +44,7 @@ spec:
       volumes:
         - name: bazarr-config
           persistentVolumeClaim:
-            claimName: bazarr-config-pvc
+            claimName: bazarr-config-pvc-v2
         - name: media
           persistentVolumeClaim:
             claimName: media-pvc
