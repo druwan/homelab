@@ -9,3 +9,16 @@ spec:
   storageClassName: truenas-pvc-nfs
   accessModes:
     - ReadWriteOnce
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bazarr-config-pvc-v2
+  namespace: media
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
