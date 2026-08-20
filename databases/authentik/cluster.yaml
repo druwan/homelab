@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: authentik-db-v0
+  name: authentik-db-v1
   namespace: authentik
 spec:
   description: "Postgres cluster for authentik application"
@@ -14,24 +14,46 @@ spec:
   instances: 1
 
   storage:
-    size: 5Gi
-    storageClass: truenas-nvme-nfs
+    size: 2Gi
+    storageClass: longhorn
     resizeInUseVolumes: true
 
   walStorage:
-    size: 5Gi
-    storageClass: truenas-nvme-nfs
+    size: 2Gi
+    storageClass: longhorn
 
   superuserSecret:
     name: authentik-db-superuser
 
-  # FRESH INSTALL: contains no backup. Have to use initdb
+  # # FRESH INSTALL: contains no backup. Have to use initdb
+  # bootstrap:
+  #   initdb:
+  #     database: authentik
+  #     owner: authentik
+  #     secret:
+  #       name: authentik-db-credentials
+
+  # Bootstrap from an previous deployment
   bootstrap:
-    initdb:
-      database: authentik
-      owner: authentik
-      secret:
-        name: authentik-db-credentials
+    pg_basebackup:
+      source: authentik-db-v0
+
+  externalClusters:
+    - name: authentik-db-v0
+      connectionParameters:
+        host: authentik-db-v0-rw.authentik.svc.cluster.local
+        user: streaming_replica
+        dbname: authentik
+        sslmode: verify-ca
+      sslKey:
+        name: authentik-db-v0-replication
+        key: tls.key
+      sslCert:
+        name: authentik-db-v0-replication
+        key: tls.crt
+      sslRootCert:
+        name: authentik-db-v0-ca
+        key: ca.crt
 
   # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   # bootstrap:
