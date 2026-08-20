@@ -31,4 +31,4 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: z2m-data-pvc
+            claimName: z2m-data-pvc-v2

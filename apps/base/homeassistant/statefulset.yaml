@@ -60,7 +60,7 @@ spec:
       volumes:
         - name: ha-config
           persistentVolumeClaim:
-            claimName: ha-config-pvc
+            claimName: ha-config-pvc-v2
         - name: localtime
           hostPath:
             path: /etc/localtime
