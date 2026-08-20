@@ -135,6 +135,9 @@ pages:
               - title: Jellyfin
                 url: https://jellyfin.christophervestman.com
                 icon: sh:jellyfin
+              - title: Longhorn
+                url: https://longhorn.christophervestman.com
+                icon: sh:rancher-longhorn
               - title: Mealie
                 url: https://mealie.christophervestman.com
                 icon: sh:mealie
