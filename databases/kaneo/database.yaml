@@ -7,4 +7,4 @@ spec:
   name: kaneo
   owner: kaneo
   cluster:
-    name: kaneo-db-v0
+    name: kaneo-db-v1

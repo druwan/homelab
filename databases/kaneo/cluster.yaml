@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: kaneo-db-v0
+  name: kaneo-db-v1
   namespace: kaneo
 spec:
   description: "Postgres cluster for Kaneo application"
@@ -14,24 +14,46 @@ spec:
   instances: 1
 
   storage:
-    size: 5Gi
-    storageClass: truenas-nvme-nfs
+    size: 2Gi
+    storageClass: longhorn
     resizeInUseVolumes: true
 
   walStorage:
-    size: 5Gi
-    storageClass: truenas-nvme-nfs
+    size: 2Gi
+    storageClass: longhorn
 
   superuserSecret:
     name: kaneo-db-superuser
 
-  # FRESH INSTALL: contains no backup. Have to use initdb
+  # # FRESH INSTALL: contains no backup. Have to use initdb
+  # bootstrap:
+  #   initdb:
+  #     database: kaneo
+  #     owner: kaneo
+  #     secret:
+  #       name: kaneo-db-credentials
+
+  # Bootstrap from a previous deployment
   bootstrap:
-    initdb:
-      database: kaneo
-      owner: kaneo
-      secret:
-        name: kaneo-db-credentials
+    pg_basebackup:
+      source: kaneo-db-v0
+
+  externalClusters:
+    - name: kaneo-db-v0
+      connectionParameters:
+        host: kaneo-db-v0-rw.kaneo.svc.cluster.local
+        user: streaming_replica
+        dbname: kaneo
+        sslmode: verify-ca
+      sslKey:
+        name: kaneo-db-v0-replication
+        key: tls.key
+      sslCert:
+        name: kaneo-db-v0-replication
+        key: tls.crt
+      sslRootCert:
+        name: kaneo-db-v0-ca
+        key: ca.crt
 
   # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   # bootstrap:
