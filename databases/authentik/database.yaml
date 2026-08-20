@@ -7,4 +7,4 @@ spec:
   name: authentik
   owner: authentik
   cluster:
-    name: authentik-db-v0
+    name: authentik-db-v1

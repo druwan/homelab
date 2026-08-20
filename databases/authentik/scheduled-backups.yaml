@@ -7,7 +7,7 @@ spec:
   immediate: true
   schedule: "0 30 3 * * *"
   cluster:
-    name: authentik-db-v0
+    name: authentik-db-v1
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
@@ -22,7 +22,7 @@ metadata:
   namespace: authentik
 spec:
   cluster:
-    name: authentik-db-v0
+    name: authentik-db-v1
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
