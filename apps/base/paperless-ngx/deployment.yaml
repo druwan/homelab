@@ -121,8 +121,6 @@ spec:
         app: paperless-ngx
         role: app
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: lemon
       tolerations:
         - key: "dedicated"
           operator: "Equal"
@@ -215,8 +213,8 @@ spec:
               memory: "1Gi"
               cpu: "500m"
             limits:
-              memory: "6Gi"
-              cpu: "3000m"
+              memory: "3Gi"
+              cpu: "2000m"
           volumeMounts:
             - mountPath: /usr/src/paperless/data
               name: paperless-ngx-data
