@@ -121,6 +121,8 @@ spec:
         app: paperless-ngx
         role: app
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: satsumas
       tolerations:
         - key: "dedicated"
           operator: "Equal"
