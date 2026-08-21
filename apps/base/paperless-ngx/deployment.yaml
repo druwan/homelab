@@ -159,7 +159,7 @@ spec:
             - name: PAPERLESS_REDIS
               value: "redis://redis:6379"
             - name: PAPERLESS_DBHOST
-              value: paperless-ngx-db-v1-rw.paperless-ngx.svc.cluster.local
+              value: paperless-ngx-db-v2-rw.paperless-ngx.svc.cluster.local
             - name: PAPERLESS_DBNAME
               value: paperless
             - name: PAPERLESS_SECRET_KEY
@@ -230,13 +230,13 @@ spec:
       volumes:
         - name: paperless-ngx-data
           persistentVolumeClaim:
-            claimName: paperless-ngx-data-pvc
+            claimName: paperless-ngx-data-pvc-v2
         - name: paperless-ngx-media
           persistentVolumeClaim:
-            claimName: paperless-ngx-media-pvc
+            claimName: paperless-ngx-media-pvc-v2
         - name: paperless-ngx-export
           persistentVolumeClaim:
-            claimName: paperless-ngx-export-pvc
+            claimName: paperless-ngx-export-pvc-v2
         - name: paperless-ngx-consume
           persistentVolumeClaim:
-            claimName: paperless-ngx-consume-pvc
+            claimName: paperless-ngx-consume-pvc-v2
