@@ -41,7 +41,7 @@ spec:
                   name: mealie-db-credentials
                   key: username
             - name: POSTGRES_SERVER
-              value: "mealie-db-v1-rw.mealie.svc.cluster.local"
+              value: "mealie-db-v2-rw.mealie.svc.cluster.local"
             - name: TZ
               value: Europe/Stockholm
             - name: OIDC_AUTH_ENABLED
@@ -78,4 +78,4 @@ spec:
       volumes:
         - name: mealie-data
           persistentVolumeClaim:
-            claimName: mealie-data-pvc
+            claimName: mealie-data-pvc-v2
