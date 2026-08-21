@@ -27,9 +27,21 @@ spec:
       defaultClassReplicaCount: 1
       volumeBindingMode: "WaitForFirstConsumer"
       reclaimPolicy: Retain
+    longhornDriver:
+      tolerations:
+        - key: dedicated
+          operator: Equal
+          value: paperless
+          effect: NoSchedule
+
     longhornManager:
       log:
         format: json
+      tolerations:
+        - key: dedicated
+          operator: Equal
+          value: paperless
+          effect: NoSchedule
     csi:
       attacherReplicaCount: 1
       provisionerReplicaCount: 1
