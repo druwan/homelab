@@ -8,7 +8,7 @@ spec:
   immediate: true
   schedule: "0 15 0 * * *"
   cluster:
-    name: n8n-db-v1
+    name: n8n-db-v2
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
@@ -23,7 +23,7 @@ metadata:
   namespace: n8n
 spec:
   cluster:
-    name: n8n-db-v1
+    name: n8n-db-v2
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io

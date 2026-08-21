@@ -1,0 +1,102 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: n8n-db-v2
+  namespace: n8n
+spec:
+  description: "Postgres cluster for n8n"
+  imageName: ghcr.io/cloudnative-pg/postgis:17-3.5
+  imagePullPolicy: Always
+  inheritedMetadata:
+    labels:
+      app: n8n-db
+      policy-type: database
+  instances: 1
+  storage:
+    size: 2Gi
+    storageClass: longhorn
+    resizeInUseVolumes: true
+
+  walStorage:
+    size: 2Gi
+    storageClass: longhorn
+
+  superuserSecret:
+    name: n8n-db-superuser
+
+  # FRESH INSTALL: contains no backup. Have to use initdb
+  # bootstrap:
+  #   initdb:
+  #     database: n8n
+  #     owner: n8n
+  #     secret:
+  #       name: n8n-db-credentials
+  #     postInitTemplateSQL:
+  #       - CREATE EXTENSION fuzzystrmatch;
+  #       - CREATE EXTENSION postgis;
+  #       - CREATE EXTENSION postgis_raster;
+  #       - CREATE EXTENSION postgis_tiger_geocoder;
+  #       - CREATE EXTENSION postgis_topology;
+
+  bootstrap:
+    pg_basebackup:
+      source: n8n-db-v1
+
+  externalClusters:
+    - name: n8n-db-v1
+      connectionParameters:
+        host: n8n-db-v1-rw.n8n.svc.cluster.local
+        user: streaming_replica
+        dbname: n8n
+        sslmode: verify-ca
+      sslKey:
+        name: n8n-db-v1-replication
+        key: tls.key
+      sslCert:
+        name: n8n-db-v1-replication
+        key: tls.crt
+      sslRootCert:
+        name: n8n-db-v1-ca
+        key: ca.crt
+
+  # # DISTASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  # bootstrap:
+  #   recovery:
+  #     source: n8n-db-hexabyte
+  #     database: n8n
+  #     owner: n8n
+  #     secret:
+  #       name: n8n-db-credentials
+  #
+  # externalClusters:
+  #   - name: n8n-db-hexabyte
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: n8n-db-backup-hexabyte
+  #         serverName: n8n-db
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: n8n-db-backup-hexabyte
+
+  managed:
+    services:
+      disabledDefaultServices: ["ro", "r"]
+      additional:
+        - selectorType: rw
+          serviceTemplate:
+            metadata:
+              name: n8n-db-lb
+            spec:
+              type: LoadBalancer
+
+    roles:
+      - name: n8n
+        ensure: present
+        login: true
+        createdb: false
+        passwordSecret:
+          name: n8n-db-credentials
