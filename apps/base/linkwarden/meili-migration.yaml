@@ -52,4 +52,4 @@ spec:
       volumes:
         - name: meili-data
           persistentVolumeClaim:
-            claimName: meili-data-pvc
+            claimName: meili-data-pvc-v2
