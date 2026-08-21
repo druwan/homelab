@@ -1,0 +1,91 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: mealie-db-v2
+  namespace: mealie
+spec:
+  description: Postgres Cluster for Mealie
+  imageName: ghcr.io/cloudnative-pg/postgresql:18-minimal-trixie
+  imagePullPolicy: Always
+  inheritedMetadata:
+    labels:
+      app: mealie-db
+      policy-type: database
+  instances: 1
+
+  storage:
+    size: 2Gi
+    storageClass: longhorn
+    resizeInUseVolumes: true
+
+  walStorage:
+    size: 2Gi
+    storageClass: longhorn
+
+  superuserSecret:
+    name: mealie-db-superuser
+
+  # FRESH INSTALL: contains no backup. Have to use initdb
+  # bootstrap:
+  #   initdb:
+  #     database: mealie
+  #     owner: mealie
+  #     secret:
+  #       name: mealie-db-credentials
+
+  # Upgrade Major version
+  bootstrap:
+    initdb:
+      import:
+        type: monolith
+        databases:
+          - mealie
+        roles:
+          - mealie
+        source:
+          externalCluster: mealie-db-v1
+
+  externalClusters:
+    - name: mealie-db-v1
+      connectionParameters:
+        host: mealie-db-v1-rw.mealie.svc.cluster.local
+        user: postgres
+        dbname: postgres
+        sslmode: prefer
+      password:
+        name: mealie-db-superuser
+        key: password
+
+  # # DISTASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  # bootstrap:
+  #   recovery:
+  #     source: mealie-db-hexabyte
+  #     database: mealie
+  #     owner: mealie
+  #     secret:
+  #       name: mealie-db-credentials
+  #
+  # externalClusters:
+  #   - name: mealie-db-hexabyte
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: mealie-db-backup-hexabyte
+  #         serverName: mealie-db
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: mealie-db-backup-hexabyte
+
+  managed:
+    services:
+      disabledDefaultServices: ["ro", "r"]
+    roles:
+      - name: mealie
+        ensure: present
+        login: true
+        createdb: false
+        passwordSecret:
+          name: mealie-db-credentials

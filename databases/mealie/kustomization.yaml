@@ -4,4 +4,6 @@ resources:
   - secrets.yaml
   - objectstore.yaml
   - database.yaml
+  - cluster.yaml
+  - podmonitor.yaml
   - scheduled-backups.yaml
