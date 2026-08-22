@@ -81,7 +81,7 @@ spec:
     services:
       disabledDefaultServices: ["r", "ro"]
     roles:
-      - name: paperless-ngx
+      - name: paperless
         ensure: present
         login: true
         createdb: false

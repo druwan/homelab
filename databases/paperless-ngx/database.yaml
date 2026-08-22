@@ -4,7 +4,7 @@ metadata:
   name: paperless-ngx
   namespace: paperless-ngx
 spec:
-  name: paperless-ngx
-  owner: paperless-ngx
+  name: paperless
+  owner: paperless
   cluster:
     name: paperless-ngx-db-v2
