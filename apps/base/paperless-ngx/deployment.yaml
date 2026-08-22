@@ -25,7 +25,7 @@ spec:
       volumes:
         - name: paperless-redis-broker-data
           persistentVolumeClaim:
-            claimName: paperless-redis-broker-data-pvc
+            claimName: paperless-redis-broker-data-pvc-v3
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -122,7 +122,7 @@ spec:
         role: app
     spec:
       nodeSelector:
-        kubernetes.io/hostname: satsumas
+        kubernetes.io/hostname: lemon
       tolerations:
         - key: "dedicated"
           operator: "Equal"
@@ -215,8 +215,8 @@ spec:
               memory: "1Gi"
               cpu: "500m"
             limits:
-              memory: "3Gi"
-              cpu: "2000m"
+              memory: "6Gi"
+              cpu: "3000m"
           volumeMounts:
             - mountPath: /usr/src/paperless/data
               name: paperless-ngx-data
@@ -230,13 +230,13 @@ spec:
       volumes:
         - name: paperless-ngx-data
           persistentVolumeClaim:
-            claimName: paperless-ngx-data-pvc-v2
+            claimName: paperless-ngx-data-pvc-v3
         - name: paperless-ngx-media
           persistentVolumeClaim:
-            claimName: paperless-ngx-media-pvc-v2
+            claimName: paperless-ngx-media-pvc-v3
         - name: paperless-ngx-export
           persistentVolumeClaim:
-            claimName: paperless-ngx-export-pvc-v2
+            claimName: paperless-ngx-export-pvc-v3
         - name: paperless-ngx-consume
           persistentVolumeClaim:
-            claimName: paperless-ngx-consume-pvc-v2
+            claimName: paperless-ngx-consume-pvc-v3
