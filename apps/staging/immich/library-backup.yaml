@@ -54,7 +54,7 @@ spec:
           volumes:
             - name: library
               persistentVolumeClaim:
-                claimName: immich-library
+                claimName: immich-library-pvc-v2
             - name: backups
               nfs:
                 server: 192.168.1.83

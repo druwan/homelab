@@ -3,5 +3,7 @@ kind: Kustomization
 resources:
   - secrets.yaml
   - objectstore.yaml
+  - cluster.yaml
   - database.yaml
+  - podmonitor.yaml
   - scheduled-backups.yaml

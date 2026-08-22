@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: immich-db
+  namespace: immich
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: immich-db-v2
+  podMetricsEndpoints:
+    - port: metrics

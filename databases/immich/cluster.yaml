@@ -1,29 +1,30 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: immich-db-v1
+  name: immich-db-v2
   namespace: immich
 spec:
   description: "Postgres cluster for Immich"
   imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17-1.1.1
-  postgresql:
-    shared_preload_libraries:
-      - "vchord.so"
-
   imagePullPolicy: Always
   inheritedMetadata:
     labels:
       app: immich-db
       policy-type: database
   instances: 1
+
+  postgresql:
+    shared_preload_libraries:
+      - "vchord.so"
+
   storage:
-    size: 100Gi
-    storageClass: truenas-nvme-nfs
+    size: 10Gi
+    storageClass: longhorn
     resizeInUseVolumes: true
 
   walStorage:
-    size: 10Gi
-    storageClass: truenas-nvme-nfs
+    size: 2Gi
+    storageClass: longhorn
 
   superuserSecret:
     name: immich-db-superuser
@@ -41,21 +42,42 @@ spec:
   #       - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
   #       - CREATE EXTENSION IF NOT EXISTS pg_trgm CASCADE;
 
-  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   bootstrap:
-    recovery:
-      source: immich-db-hexabyte
-      database: immich
-      owner: immich
-      secret:
-        name: immich-db-credentials
+    pg_basebackup:
+      source: immich-db-v1
+
   externalClusters:
-    - name: immich-db-hexabyte
-      plugin:
-        name: barman-cloud.cloudnative-pg.io
-        parameters:
-          barmanObjectName: immich-db-backup-hexabyte
-          serverName: immich-db
+    - name: immich-db-v1
+      connectionParameters:
+        host: immich-db-v1-rw.immich.svc.cluster.local
+        user: streaming_replica
+        dbname: immich
+        sslmode: verify-ca
+      sslKey:
+        name: immich-db-v1-replication
+        key: tls.key
+      sslCert:
+        name: immich-db-v1-replication
+        key: tls.crt
+      sslRootCert:
+        name: immich-db-v1-ca
+        key: ca.crt
+
+  # # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  # bootstrap:
+  #   recovery:
+  #     source: immich-db-hexabyte
+  #     database: immich
+  #     owner: immich
+  #     secret:
+  #       name: immich-db-credentials
+  # externalClusters:
+  #   - name: immich-db-hexabyte
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: immich-db-backup-hexabyte
+  #         serverName: immich-db
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
@@ -73,15 +95,3 @@ spec:
         createdb: false
         passwordSecret:
           name: immich-db-credentials
----
-apiVersion: monitoring.coreos.com/v1
-kind: PodMonitor
-metadata:
-  name: immich-db
-  namespace: immich
-spec:
-  selector:
-    matchLabels:
-      cnpg.io/cluster: immich-db-v1
-  podMetricsEndpoints:
-    - port: metrics

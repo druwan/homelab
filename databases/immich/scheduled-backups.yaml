@@ -7,7 +7,7 @@ spec:
   immediate: true
   schedule: "0 30 3 * * *"
   cluster:
-    name: immich-db-v1
+    name: immich-db-v2
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
@@ -22,7 +22,7 @@ metadata:
   namespace: immich
 spec:
   cluster:
-    name: immich-db-v1
+    name: immich-db-v2
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
