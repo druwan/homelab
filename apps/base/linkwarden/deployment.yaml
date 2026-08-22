@@ -19,6 +19,8 @@ spec:
         app: linkwarden
         role: app
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: satsumas
       tolerations:
         - key: "intermittent"
           operator: "Equal"
