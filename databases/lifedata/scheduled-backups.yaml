@@ -7,7 +7,7 @@ spec:
   immediate: true
   schedule: "0 30 3 * * *"
   cluster:
-    name: lifedata-db-v0
+    name: lifedata-db-v1
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
@@ -22,7 +22,7 @@ metadata:
   namespace: life
 spec:
   cluster:
-    name: lifedata-db-v0
+    name: lifedata-db-v1
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io

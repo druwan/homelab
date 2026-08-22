@@ -1,10 +1,10 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: lifedata-db-v0
+  name: lifedata-db-v1
   namespace: life
 spec:
-  description: "Postgres cluster for Apple Health import"
+  description: "Postgres cluster for life namespace"
   imageName: ghcr.io/cloudnative-pg/postgresql:18-minimal-trixie
   imagePullPolicy: Always
   inheritedMetadata:
@@ -13,38 +13,59 @@ spec:
       policy-type: database
   instances: 1
 
-  postgresql:
-    extensions:
-      - name: postgis
-        image:
-          reference: ghcr.io/cloudnative-pg/postgis-extension:3.6.3-18-trixie
-        ld_library_path:
-          - system
-        env:
-          - name: GDAL_DATA
-            value: ${image_root}/share/gdal
-          - name: PROJ_DATA
-            value: ${image_root}/share/proj
+  # postgresql:
+  #   extensions:
+  #     - name: postgis
+  #       image:
+  #         reference: ghcr.io/cloudnative-pg/postgis-extension:3.6.3-18-trixie
+  #       ld_library_path:
+  #         - system
+  #       env:
+  #         - name: GDAL_DATA
+  #           value: ${image_root}/share/gdal
+  #         - name: PROJ_DATA
+  #           value: ${image_root}/share/proj
 
   storage:
-    size: 5Gi
-    storageClass: truenas-nvme-nfs
+    size: 2Gi
+    storageClass: longhorn
     resizeInUseVolumes: true
 
   walStorage:
-    size: 5Gi
-    storageClass: truenas-nvme-nfs
+    size: 2Gi
+    storageClass: longhorn
 
   superuserSecret:
     name: lifedata-db-superuser
 
-  # FRESH INSTALL: contains no backup. Have to use initdb
+  # # FRESH INSTALL: contains no backup. Have to use initdb
+  # bootstrap:
+  #   initdb:
+  #     database: lifedata
+  #     owner: lifedata
+  #     secret:
+  #       name: lifedata-db-credentials
+
   bootstrap:
-    initdb:
-      database: lifedata
-      owner: lifedata
-      secret:
-        name: lifedata-db-credentials
+    pg_basebackup:
+      source: lifedata-db-v0
+
+  externalClusters:
+    - name: lifedata-db-v0
+      connectionParameters:
+        host: lifedata-db-v0-rw.life.svc.cluster.local
+        user: streaming_replica
+        dbname: lifedata
+        sslmode: verify-ca
+      sslKey:
+        name: lifedata-db-v0-replication
+        key: tls.key
+      sslCert:
+        name: lifedata-db-v0-replication
+        key: tls.crt
+      sslRootCert:
+        name: lifedata-db-v0-ca
+        key: ca.crt
 
   # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   # bootstrap:
@@ -91,31 +112,3 @@ spec:
         createdb: false
         passwordSecret:
           name: outline-db-credentials
----
-apiVersion: postgresql.cnpg.io/v1
-kind: Database
-metadata:
-  name: lifedata
-  namespace: life
-spec:
-  name: lifedata
-  owner: lifedata
-  cluster:
-    name: lifedata-db-v0
-  extensions:
-    - name: postgis
-      version: "3.6.3"
-    - name: postgis_topology
-    - name: fuzzystrmatch
----
-apiVersion: monitoring.coreos.com/v1
-kind: PodMonitor
-metadata:
-  name: lifedata-db
-  namespace: life
-spec:
-  selector:
-    matchLabels:
-      cnpg.io/cluster: lifedata-db-v0
-  podMetricsEndpoints:
-    - port: metrics

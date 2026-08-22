@@ -1,0 +1,15 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: lifedata
+  namespace: life
+spec:
+  name: lifedata
+  owner: lifedata
+  cluster:
+    name: lifedata-db-v1
+  extensions:
+    - name: postgis
+      version: "3.6.3"
+    - name: postgis_topology
+    - name: fuzzystrmatch

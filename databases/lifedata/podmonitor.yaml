@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: lifedata-db
+  namespace: life
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: lifedata-db-v1
+  podMetricsEndpoints:
+    - port: metrics

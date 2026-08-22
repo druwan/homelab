@@ -3,7 +3,9 @@ kind: Kustomization
 resources:
   - secrets.yaml
   - objectstore.yaml
-  - database.yaml
-  - wiki-database.yaml
-  - outline-database.yaml
+  - cluster.yaml
+  - database-life.yaml
+  - database-outline.yaml
+  - database-wikijs.yaml
+  - podmonitor.yaml
   - scheduled-backups.yaml

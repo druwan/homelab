@@ -7,4 +7,4 @@ spec:
   name: outline
   owner: outline
   cluster:
-    name: lifedata-db-v0
+    name: lifedata-db-v1

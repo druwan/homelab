@@ -116,4 +116,4 @@ spec:
       volumes:
         - name: outline-data
           persistentVolumeClaim:
-            claimName: outline-data-pvc
+            claimName: outline-data-pvc-v1
