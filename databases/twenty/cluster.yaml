@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: twenty-db-v0
+  name: twenty-db-v1
   namespace: twenty
 spec:
   description: "Postgres cluster for twenty application"
@@ -14,24 +14,45 @@ spec:
   instances: 1
 
   storage:
-    size: 5Gi
-    storageClass: truenas-nvme-nfs
+    size: 2Gi
+    storageClass: longhorn
     resizeInUseVolumes: true
 
   walStorage:
-    size: 5Gi
-    storageClass: truenas-nvme-nfs
+    size: 2Gi
+    storageClass: longhorn
 
   superuserSecret:
     name: twenty-db-superuser
 
-  # FRESH INSTALL: contains no backup. Have to use initdb
+  # # FRESH INSTALL: contains no backup. Have to use initdb
+  # bootstrap:
+  #   initdb:
+  #     database: twenty
+  #     owner: twenty
+  #     secret:
+  #       name: twenty-db-credentials
+
   bootstrap:
-    initdb:
-      database: twenty
-      owner: twenty
-      secret:
-        name: twenty-db-credentials
+    pg_basebackup:
+      source: twenty-db-v0
+
+  externalClusters:
+    - name: twenty-db-v0
+      connectionParameters:
+        host: twenty-db-v0-rw.twenty.svc.cluster.local
+        user: streaming_replica
+        dbname: twenty
+        sslmode: verify-ca
+      sslKey:
+        name: twenty-db-v0-replication
+        key: tls.key
+      sslCert:
+        name: twenty-db-v0-replication
+        key: tls.crt
+      sslRootCert:
+        name: twenty-db-v0-ca
+        key: ca.crt
 
   # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   # bootstrap:

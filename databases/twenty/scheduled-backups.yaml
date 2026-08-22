@@ -7,7 +7,7 @@ spec:
   immediate: true
   schedule: "0 30 4 * * *"
   cluster:
-    name: twenty-db-v0
+    name: twenty-db-v1
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
@@ -22,7 +22,7 @@ metadata:
   namespace: twenty
 spec:
   cluster:
-    name: twenty-db-v0
+    name: twenty-db-v1
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io

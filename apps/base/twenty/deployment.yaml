@@ -98,7 +98,7 @@ spec:
       volumes:
         - name: twenty-data
           persistentVolumeClaim:
-            claimName: twenty-data-pvc
+            claimName: twenty-data-pvc-v1
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -182,4 +182,4 @@ spec:
       volumes:
         - name: twenty-data
           persistentVolumeClaim:
-            claimName: twenty-data-pvc
+            claimName: twenty-data-pvc-v1

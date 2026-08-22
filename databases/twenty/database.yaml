@@ -7,4 +7,4 @@ spec:
   name: twenty
   owner: twenty
   cluster:
-    name: twenty-db-v0
+    name: twenty-db-v1
