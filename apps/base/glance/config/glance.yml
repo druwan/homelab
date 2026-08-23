@@ -53,9 +53,9 @@ pages:
               - title: BentoPDF
                 url: https://pdf.christophervestman.com
                 icon: sh:bentopdf
-              - title: ConvertX
-                url: https://convertx.christophervestman.com
-                icon: sh:convertx.png
+              # - title: ConvertX
+              #   url: https://convertx.christophervestman.com
+              #   icon: sh:convertx.png
               # - title: Firefly
               #   url: https://firefly.christophervestman.com
               #   icon: sh:firefly-iii
@@ -92,6 +92,9 @@ pages:
               # - title: Stirling-PDF
               #   url: https://pdf.christophervestman.com
               #   icon: sh:stirling-pdf
+              - title: Tranmute
+                url: https://transmute.christophervestman.com
+                icon: sh:transmute
               # - title: Tududi
               #   url: https://tududi.christophervestman.com
               #   icon: sh:tududi

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: transmute
+  name: transmute
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transmute
+  template:
+    metadata:
+      labels:
+        app: transmute
+    spec:
+      securityContext:
+        fsGroup: 3100
+        runAsUser: 1000
+        runAsGroup: 1000
+        supplementalGroups: [3100]
+      containers:
+        - image: ghcr.io/transmute-app/transmute:v2.0.0
+          name: transmute
+          ports:
+            - name: http
+              containerPort: 3313
+          securityContext:
+            allowPrivilegeEscalation: false
+          volumeMounts:
+            - mountPath: /app/data
+              name: transmute-data
+          env:
+            - name: APP_URL
+              value: "https://transmute.christophervestman.com"
+          readinessProbe:
+            httpGet:
+              path: /api/health/ready
+              port: http
+            initialDelaySeconds: 40
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 3
+          imagePullPolicy: Always
+      volumes:
+        - name: transmute-data
+          persistentVolumeClaim:
+            claimName: transmute-data-pvc
