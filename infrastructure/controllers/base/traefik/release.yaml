@@ -1,0 +1,35 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: traefik
+      version: "41.x"
+      sourceRef:
+        kind: HelmRepository
+        name: traefik
+        namespace: flux-system
+  values:
+    providers:
+      kubernetesGateway:
+        enabled: true
+    gateway:
+      enabled: true
+      listeners:
+        websecure:
+          port: 8443
+          protocol: HTTPS
+          namespacePolicy: All
+          certificateRefs:
+            - kind: Secret
+              name: wildcard-tls
+    ports:
+      websecure:
+        transport:
+          respondingTimeouts:
+            readTimeout: 600s
+            idleTimeout: 600s
