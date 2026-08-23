@@ -9,8 +9,6 @@ spec:
     providers:
       kubernetesGateway:
         enabled: true
-    gateway:
-      enabled: false
     ports:
       websecure:
         transport:
