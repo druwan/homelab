@@ -23,7 +23,8 @@ spec:
         websecure:
           port: 8443
           protocol: HTTPS
-          namespacePolicy: All
+          namespacePolicy:
+            from: All
           certificateRefs:
             - kind: Secret
               name: wildcard-tls
