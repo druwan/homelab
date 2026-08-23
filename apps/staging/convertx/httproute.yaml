@@ -3,9 +3,11 @@ kind: HTTPRoute
 metadata:
   name: convertx
   namespace: media
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+      sectionName: websecure
   hostnames:
     - convertx.christophervestman.com
   rules:
