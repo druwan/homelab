@@ -6,7 +6,7 @@ resources:
   # - audiobookshelf
   - authentik
   - bazarr
-  - bento-pdf
+  # - bento-pdf
   # - convertx
   - discord-bot
   # - dispatcharr
@@ -29,14 +29,14 @@ resources:
   # - pgadmin
   - profilarr
   - prowlarr
-  - qbittorrent
+  # - qbittorrent
   - radarr
   # - rustfs
   - sabnzbd
   - sonarr
   # - stirling-pdf
   # - sure
-  - transmute
+  # - transmute
   # - tududi
   - twenty
   # - wallos
