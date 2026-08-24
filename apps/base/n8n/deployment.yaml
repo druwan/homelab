@@ -65,9 +65,9 @@ spec:
               value: "Buffer, crypto"
           resources:
             requests:
-              memory: 320Mi
+              memory: 512Mi
             limits:
-              memory: 640Mi
+              memory: 1Gi
           volumeMounts:
             - mountPath: /home/node/.n8n
               name: n8n-data
