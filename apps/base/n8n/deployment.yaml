@@ -41,8 +41,6 @@ spec:
               value: http
             - name: N8N_PROXY_HOPS
               value: "1"
-            - name: N8N_RUNNERS_ENABLED
-              value: "true"
             - name: N8N_SECURE_COOKIE
               value: "false"
             - name: NODE_ENV
@@ -61,7 +59,7 @@ spec:
                 secretKeyRef:
                   name: n8n-db-credentials
                   key: password
-            - name: WEBHOOK_URL
+            - name: N8N_WEBHOOK_URL
               value: https://n8n.christophervestman.com/
             - name: NODE_FUNCTION_ALLOW_BUILTIN
               value: "Buffer, crypto"
