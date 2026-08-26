@@ -59,7 +59,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: twenty-worker
-          image: twentycrm/twenty:v2.34.0@sha256:f74062278ff7c95457b27621e0ff752b8bd0fde0de7b038398fb15fef8f16f7a
+          image: twentycrm/twenty:v2.35.0@sha256:a8ab7d34ac102a3c75d4538f917b57ab3f3f853a2afcdf01b4e6fcb7dec2cd6f
           args:
             - "yarn"
             - "worker:prod"
@@ -120,7 +120,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: twenty-server
-          image: twentycrm/twenty:v2.34.0@sha256:f74062278ff7c95457b27621e0ff752b8bd0fde0de7b038398fb15fef8f16f7a
+          image: twentycrm/twenty:v2.35.0@sha256:a8ab7d34ac102a3c75d4538f917b57ab3f3f853a2afcdf01b4e6fcb7dec2cd6f
           env:
             - name: PG_DATABASE_URL
               valueFrom:
