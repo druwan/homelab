@@ -93,6 +93,9 @@ spec:
               valueFrom:
                 secretKeyRef: { name: outline-oidc, key: OIDC_CLIENT_SECRET }
 
+            - name: OIDC_SCOPES
+              value: "openid profile email offline_access"
+
             - name: OIDC_AUTH_URI
               value: "https://authentik.christophervestman.com/application/o/authorize/"
             - name: OIDC_TOKEN_URI
