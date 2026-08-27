@@ -129,7 +129,7 @@ spec:
           value: "paperless"
           effect: "NoSchedule"
       containers:
-        - image: ghcr.io/paperless-ngx/paperless-ngx:3.0.5
+        - image: ghcr.io/paperless-ngx/paperless-ngx:3.1.0@sha256:49eba766581b9134cfa6b584b9eb718355fb9cfbd44b2a7c9c72a427d4891648
           name: paperless-ngx
           ports:
             - containerPort: 8000
