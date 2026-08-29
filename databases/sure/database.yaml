@@ -32,7 +32,7 @@ spec:
   #     secret:
   #       name: sure-db-credentials
 
-  DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   bootstrap:
     recovery:
       source: sure-db-hexabyte
@@ -46,7 +46,7 @@ spec:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: sure-db-backup-hexabyte
-          serverName: sure-db
+          serverName: sure-db-v0
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
