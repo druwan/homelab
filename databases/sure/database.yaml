@@ -7,4 +7,4 @@ spec:
   name: sure
   owner: sure
   cluster:
-    name: sure-db-restore
+    name: sure-db-v0

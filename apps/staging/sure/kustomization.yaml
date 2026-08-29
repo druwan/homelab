@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: sure
 resources:
   - ../../base/sure
-  - ingress.yaml
+  - httproute.yaml

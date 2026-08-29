@@ -13,6 +13,10 @@ spec:
       labels:
         app: sure
     spec:
+      restartPolicy: Always
+      securityContext:
+        fsGroup: 3100
+        supplementalGroups: [3100]
       containers:
         - name: sure
           image: ghcr.io/we-promise/sure:0.7.3
@@ -31,7 +35,7 @@ spec:
               value: "false"
 
             - name: DB_HOST
-              value: sure-db-restore-rw.sure.svc.cluster.local
+              value: sure-db-v0-rw.sure.svc.cluster.local
             - name: DB_PORT
               value: "5432"
             - name: POSTGRES_DB
@@ -89,6 +93,9 @@ spec:
         app: sure-worker
     spec:
       restartPolicy: Always
+      securityContext:
+        fsGroup: 3100
+        supplementalGroups: [3100]
       containers:
         - name: sure-worker
           image: ghcr.io/we-promise/sure:0.7.3

@@ -6,6 +6,6 @@ metadata:
 spec:
   selector:
     matchLabels:
-      cnpg.io/cluster: sure-db-restore
+      cnpg.io/cluster: sure-db-v0
   podMetricsEndpoints:
     - port: metrics
