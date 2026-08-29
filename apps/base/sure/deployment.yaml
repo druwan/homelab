@@ -31,7 +31,7 @@ spec:
               value: "false"
 
             - name: DB_HOST
-              value: sure-db-v0-rw.sure.svc.cluster.local
+              value: sure-db-restore-rw.sure.svc.cluster.local
             - name: DB_PORT
               value: "5432"
             - name: POSTGRES_DB
