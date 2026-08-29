@@ -46,14 +46,13 @@ spec:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: sure-db-backup-hexabyte
-          serverName: sure-db-v0
+          serverName: sure-db
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
         barmanObjectName: sure-db-backup-hexabyte
-        walArchiveCheck: skip
 
   managed:
     services:
