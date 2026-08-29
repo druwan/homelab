@@ -15,7 +15,6 @@ spec:
         - path:
             type: PathPrefix
             value: /
-    - host: sure.christophervestman.com
       backendRefs:
         - name: sure
           port: 3000
