@@ -40,6 +40,8 @@ spec:
       owner: sure
       secret:
         name: sure-db-credentials
+      recoveryTarget:
+        backupID: "20260603T043000"
   externalClusters:
     - name: sure-db-hexabyte
       plugin:
