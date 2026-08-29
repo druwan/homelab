@@ -7,7 +7,7 @@ spec:
   immediate: true
   schedule: "0 30 4 * * *"
   cluster:
-    name: sure-db-v0
+    name: sure-db-restore
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
@@ -22,7 +22,7 @@ metadata:
   namespace: sure
 spec:
   cluster:
-    name: sure-db-v0
+    name: sure-db-restore
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io

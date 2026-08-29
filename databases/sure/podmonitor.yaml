@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: sure-db
+  namespace: sure
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: sure-db-restore
+  podMetricsEndpoints:
+    - port: metrics
