@@ -25,28 +25,28 @@ spec:
     name: sure-db-superuser
 
   # FRESH INSTALL: contains no backup. Have to use initdb
-  bootstrap:
-    initdb:
-      database: sure
-      owner: sure
-      secret:
-        name: sure-db-credentials
-
-  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   # bootstrap:
-  #   recovery:
-  #     source: sure-db-hexabyte
+  #   initdb:
   #     database: sure
   #     owner: sure
   #     secret:
   #       name: sure-db-credentials
-  # externalClusters:
-  #   - name: sure-db-hexabyte
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: sure-db-backup-hexabyte
-  #         serverName: sure-db
+
+  DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  bootstrap:
+    recovery:
+      source: sure-db-hexabyte
+      database: sure
+      owner: sure
+      secret:
+        name: sure-db-credentials
+  externalClusters:
+    - name: sure-db-hexabyte
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: sure-db-backup-hexabyte
+          serverName: sure-db
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
