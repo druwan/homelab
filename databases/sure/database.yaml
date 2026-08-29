@@ -53,6 +53,7 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: sure-db-backup-hexabyte
+        walArchiveCheck: skip
 
   managed:
     services:
