@@ -21,6 +21,9 @@ spec:
     kaneo:
       env:
         clientUrl: "https://kaneo.christophervestman.com"
+        corsOrigins:
+          - "https://kaneo.christophervestman.com"
+          - "https://claude.ai"
         existingSecret:
           enabled: true
           name: kaneo-db-credentials
