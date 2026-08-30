@@ -44,9 +44,9 @@ pages:
             cache: 1h
             title: Productivity
             sites:
-              - title: Actual Budget
-                url: https://actualbudget.christophervestman.com
-                icon: sh:actual-budget
+              # - title: Actual Budget
+              #   url: https://actualbudget.christophervestman.com
+              #   icon: sh:actual-budget
               - title: Authentik
                 url: https://authentik.christophervestman.com
                 icon: sh:authentik
