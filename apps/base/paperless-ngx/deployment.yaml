@@ -200,7 +200,7 @@ spec:
               value: "http://gotenberg:3000"
 
             - name: PAPERLESS_THREADS_PER_WORKER
-              value: 1
+              value: "1"
 
             - name: PAPERLESS_APPS
               value: "allauth.socialaccount.providers.openid_connect"
