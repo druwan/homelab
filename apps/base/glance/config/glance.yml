@@ -101,9 +101,9 @@ pages:
               # - title: Tududi
               #   url: https://tududi.christophervestman.com
               #   icon: sh:tududi
-              - title: Twenty
-                url: https://twenty.christophervestman.com
-                icon: sh:twenty-crm
+              # - title: Twenty
+              #   url: https://twenty.christophervestman.com
+              #   icon: sh:twenty-crm
               # - title: Vaultwarden
               #   url: https://vaultwarden.christophervestman.com
               #   icon: sh:vaultwarden
