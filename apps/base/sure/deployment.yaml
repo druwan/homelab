@@ -19,7 +19,7 @@ spec:
         supplementalGroups: [3100]
       containers:
         - name: sure
-          image: ghcr.io/we-promise/sure:0.7.3
+          image: ghcr.io/we-promise/sure:0.7.4@sha256:391b2c52acfe538065a41cdd1c9755f90d95ba17a2c06e9b6438b12098df3f3a
           ports:
             - containerPort: 3000
           securityContext:
@@ -98,7 +98,7 @@ spec:
         supplementalGroups: [3100]
       containers:
         - name: sure-worker
-          image: ghcr.io/we-promise/sure:0.7.3
+          image: ghcr.io/we-promise/sure:0.7.4@sha256:391b2c52acfe538065a41cdd1c9755f90d95ba17a2c06e9b6438b12098df3f3a
           command: ["bundle", "exec", "sidekiq"]
           env:
             - name: RAILS_ENV
