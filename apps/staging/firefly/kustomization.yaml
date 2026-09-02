@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
   - secrets.yaml
   - ../../base/firefly
-  - ingress.yaml
+  - httproute.yaml
   - cronjob.yaml
