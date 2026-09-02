@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: stirling-pdf
 resources:
   - ../../base/stirling-pdf
-  - ./ingress.yaml
+  - ./httproute.yaml
