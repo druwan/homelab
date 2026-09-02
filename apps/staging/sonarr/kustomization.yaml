@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: media
 resources:
   - ../../base/sonarr
-  - ./ingress.yaml
+  - ./httproute.yaml
