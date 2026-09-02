@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: media
 resources:
   - ../../base/sabnzbd
-  - ./ingress.yaml
+  - ./httproute.yaml
