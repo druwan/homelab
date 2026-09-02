@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: rustfs
 resources:
   - ../../base/rustfs
-  - ./ingress.yaml
+  - ./httproute.yaml
