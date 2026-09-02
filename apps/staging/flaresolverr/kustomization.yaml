@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: media
 resources:
   - ../../base/flaresolverr
-  - ./ingress.yaml
+  - ./httproute.yaml
