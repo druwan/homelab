@@ -4,4 +4,4 @@ namespace: actualbudget
 resources:
   - ./secrets.yaml
   - ../../base/actualbudget
-  - ./ingress.yaml
+  - ./httproute.yaml
