@@ -3,5 +3,5 @@ kind: Kustomization
 namespace: pgadmin
 resources:
   - ../../base/pgadmin
-  - ingress.yaml
+  - httproute.yaml
   - pgadmin-container-env.yaml
