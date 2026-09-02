@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: wallos
 resources:
   - ../../base/wallos
-  - ./ingress.yaml
+  - ./httproute.yaml
