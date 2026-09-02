@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: tabs
 resources:
   - ../../base/its-mytabs
-  - ./ingress.yaml
+  - ./httproute.yaml
