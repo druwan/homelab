@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: media
 resources:
   - ../../base/prowlarr
-  - ./ingress.yaml
+  - ./httproute.yaml
