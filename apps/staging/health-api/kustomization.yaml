@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: life
 resources:
   - ../../base/health-api/
-  - ingress.yaml
+  - httproute.yaml
