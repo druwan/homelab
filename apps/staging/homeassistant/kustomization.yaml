@@ -5,4 +5,4 @@ resources:
   - ../../base/homeassistant
   - ../../base/mosquitto
   - ../../base/zigbee2mqtt
-  - ./ingress.yaml
+  - ./httproute.yaml
