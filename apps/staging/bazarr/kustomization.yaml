@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: media
 resources:
   - ../../base/bazarr
-  - ./ingress.yaml
+  - ./httproute.yaml
