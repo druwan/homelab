@@ -4,5 +4,4 @@ namespace: media
 resources:
   - ./secrets.yaml
   - ../../base/convertx
-  # - ./ingress.yaml
   - ./httproute.yaml
