@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: media
 resources:
   - ../../base/profilarr
-  - ./ingress.yaml
+  - ./httproute.yaml
