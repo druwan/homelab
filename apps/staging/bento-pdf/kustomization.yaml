@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: bento-pdf
 resources:
   - ../../base/bento-pdf
-  - ./ingress.yaml
+  - ./httproute.yaml
