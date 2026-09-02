@@ -4,4 +4,4 @@ namespace: media
 resources:
   - secrets.yaml
   - ../../base/qbittorrent
-  - ./ingress.yaml
+  - ./httproute.yaml
