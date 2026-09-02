@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: glance
 resources:
   - ../../base/glance
-  - ./ingress.yaml
+  - ./httproute.yaml
