@@ -4,4 +4,4 @@ namespace: tududi
 resources:
   - ./secrets.yaml
   - ../../base/tududi
-  - ./ingress.yaml
+  - ./httproute.yaml
