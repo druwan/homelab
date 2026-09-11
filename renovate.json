@@ -5,6 +5,8 @@
       "\\.yaml$"
     ]
   },
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
   "flux": {
     "managerFilePatterns": [
       "/\\.yaml$/"
