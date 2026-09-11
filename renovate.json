@@ -17,6 +17,13 @@
   ],
   "packageRules": [
     {
+      "description": "Group all images sourced from immich-app/immich into one PR",
+      "matchSourceUrls": [
+        "https://github.com/immich-app/immich"
+      ],
+      "groupName": "immich"
+    },
+    {
       "description": "Only allow proper semver tags for LinuxServer/qBittorrent",
       "matchPackageNames": [
         "ghcr.io/linuxserver/qbittorrent"
