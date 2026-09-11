@@ -117,6 +117,9 @@ pages:
             cache: 1h
             title: Media
             sites:
+              - title: Adguard Home
+                url: https://adguardhome.christophervestman.com
+                icon: sh:adguard-home
               # - title: Audiobookshelf
               #   url: https://audiobookshelf.christophervestman.com
               #   icon: sh:audiobookshelf
