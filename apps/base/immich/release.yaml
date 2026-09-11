@@ -106,7 +106,7 @@ spec:
             main:
               image:
                 repository: ghcr.io/immich-app/immich-machine-learning
-                tag: v3.1.0
+                tag: v3.2.0@sha256:f8b2869891c861a58dde969d86e7ea8a186e6059a55886632ee3249e51fb574a
                 pullPolicy: IfNotPresent
               env:
                 TRANSFORMERS_CACHE: /cache
