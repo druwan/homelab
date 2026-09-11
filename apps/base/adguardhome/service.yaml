@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: adguardhome
+spec:
+  type: ClusterIP
+  selector:
+    app: adguardhome
+  ports:
+    - name: init
+      port: 3000
+      targetPort: init
+      protocol: TCP
+    - name: webui
+      port: 80
+      targetPort: webui
+      protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adguardhome-dns
+spec:
+  type: LoadBalancer
+  selector:
+    app: adguardhome
+  ports:
+    - name: dns-tcp
+      port: 53
+      targetPort: 53
+      protocol: TCP
+
+    - name: dns-udp
+      port: 53
+      targetPort: 53
+      protocol: UDP

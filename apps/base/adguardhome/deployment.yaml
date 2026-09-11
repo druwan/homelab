@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: adguardhome
+  name: adguardhome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adguardhome
+  template:
+    metadata:
+      labels:
+        app: adguardhome
+    spec:
+      enableServiceLinks: false
+      securityContext:
+        fsGroup: 3100
+        supplementalGroups: [3100]
+      containers:
+        - name: adguardhome
+          image: adguard/adguardhome:v0.107.79
+          command: ["sh", "-c", "umask 0077 && /opt/adguardhome/AdGuardHome"]
+          securityContext:
+            capabilities:
+              add: ["NET_BIND_SERVICE"]
+          ports:
+            - name: init
+              containerPort: 3000
+            - name: webui
+              containerPort: 80
+            - name: dns-tcp
+              containerPort: 53
+              protocol: TCP
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+          volumeMounts:
+            - name: adguardhome-config
+              mountPath: /opt/adguardhome/conf
+            - name: adguardhome-work
+              mountPath: /opt/adguardhome/work
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+      volumes:
+        - name: adguardhome-config
+          persistentVolumeClaim:
+            claimName: adguardhome-conf-pvc
+        - name: adguardhome-work
+          persistentVolumeClaim:
+            claimName: adguardhome-work-pvc

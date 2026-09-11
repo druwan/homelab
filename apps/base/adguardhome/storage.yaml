@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: adguardhome-conf-pvc
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: adguardhome-work-pvc
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce

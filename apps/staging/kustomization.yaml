@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - namespaces
   # - actualbudget
+  - adguardhome
   # - audiobookshelf
   - authentik
   - bazarr
