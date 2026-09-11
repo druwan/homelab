@@ -27,7 +27,7 @@ spec:
           main:
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: v3.1.0
+              tag: v3.2.0@sha256:ae13784ffcfcce8f4178113eb6661602a1fd1912f3d539880b8ac0dd95fc8ac2
               pullPolicy: IfNotPresent
             env:
               - name: DB_HOSTNAME
