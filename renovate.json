@@ -31,16 +31,23 @@
       "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-r\\d+-ls(?<build>\\d+)$"
     },
     {
-      "description": "Handle *arr",
+      "description": "Handle *arr (3-segment version)",
       "matchPackageNames": [
         "ghcr.io/linuxserver/bazarr",
-        "ghcr.io/linuxserver/prowlarr",
-        "ghcr.io/linuxserver/radarr",
-        "ghcr.io/linuxserver/sabnzbd",
-        "ghcr.io/linuxserver/sonarr"
+        "ghcr.io/linuxserver/sabnzbd"
       ],
       "allowedVersions": "/^v?\\d+\\.\\d+\\.\\d+-ls\\d+$/",
       "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-ls(?<build>\\d+)$"
+    },
+    {
+      "description": "Handle *arr (4-segment version)",
+      "matchPackageNames": [
+        "ghcr.io/linuxserver/prowlarr",
+        "ghcr.io/linuxserver/radarr",
+        "ghcr.io/linuxserver/sonarr"
+      ],
+      "allowedVersions": "/^v?\\d+\\.\\d+\\.\\d+\\.\\d+-ls\\d+$/",
+      "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)-ls(?<revision>\\d+)$"
     },
     {
       "description": "Enable OCI Helm chart updates",
