@@ -68,8 +68,8 @@ A Kubernetes-based homelab built with GitOps practices.
  # External Secrets
  k apply -k infrastructure/controllers/staging/external-secrets
  k create secret generic azure-creds \
-   --from-literal=clientId=${AZURE_KEY_VAULT_CLIENT_ID} \
-   --from-literal=clientSecret=${AZURE_KEY_VAULT_CLIENT_VALUE} \
+   --from-literal=clientId=${AZURE_KEY_VAULT_APP_ID} \
+   --from-literal=clientSecret=${AZURE_KEY_VAULT_SECRET_VALUE} \
    -n external-secrets
 
  # cert-manager namespace
