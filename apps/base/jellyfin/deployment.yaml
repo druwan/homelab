@@ -17,8 +17,8 @@ spec:
       securityContext:
         fsGroup: 3100
         fsGroupChangePolicy: OnRootMismatch
-        runAsUser: 1000
-        runAsGroup: 1000
+        runAsUser: 33
+        runAsGroup: 33
         supplementalGroups: [3100, 989, 1000]
       containers:
         - image: ghcr.io/jellyfin/jellyfin:12.1@sha256:008ec8024bdaaa6f0a3f0de468e185633eeba9d67c56936e8dbf5ef6b8d6200f
