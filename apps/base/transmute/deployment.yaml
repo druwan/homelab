@@ -20,7 +20,7 @@ spec:
         runAsGroup: 1000
         supplementalGroups: [3100]
       containers:
-        - image: ghcr.io/transmute-app/transmute:v2.0.0
+        - image: ghcr.io/transmute-app/transmute:2.1.0@sha256:6e652284edfa61ab53a1ca2c1ff502ce6d89a055d33e3f3fa7482ea867d29cde
           name: transmute
           ports:
             - name: http
