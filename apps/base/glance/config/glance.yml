@@ -155,6 +155,7 @@ pages:
                 icon: sh:profilarr
               - title: Prowlarr
                 url: https://prowlarr.christophervestman.com
+                check-url: http://prowlarr.media.svc.cluster.local:9696/ping
                 icon: sh:prowlarr-radarr
               # - title: qBittorrent
               #   url: https://qbittorrent.christophervestman.com
@@ -164,6 +165,7 @@ pages:
               #   icon: sh:qui
               - title: Radarr
                 url: https://radarr.christophervestman.com
+                check-url: http://radarr.media.svc.cluster.local:7878/ping
                 icon: sh:radarr
               # - title: RustFS
               #   url: https://rustfs.christophervestman.com
@@ -176,6 +178,7 @@ pages:
                 icon: sh:sabnzbd
               - title: Sonarr
                 url: https://sonarr.christophervestman.com
+                check-url: http://sonarr.media.svc.cluster.local:8989/ping
                 icon: sh:sonarr-radarr
               - title: TrueNAS
                 url: http://192.168.1.83
