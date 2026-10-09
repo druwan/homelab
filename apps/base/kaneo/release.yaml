@@ -43,6 +43,23 @@ spec:
             secretKeyRef:
               name: kaneo-db-credentials
               key: notification-key
+        - name: GITHUB_APP_ID
+          valueFrom:
+            secretKeyRef:
+              name: kaneo-db-credentials
+              key: gh-app-id
+        - name: GITHUB_APP_NAME
+          value: kaneo-druwan
+        - name: GITHUB_WEBHOOK_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: kaneo-db-credentials
+              key: gh-webhook-secret
+        - name: GITHUB_PRIVATE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: kaneo-db-credentials
+              key: gh-private-key
         - name: CUSTOM_OAUTH_DISCOVERY_URL
           value: "https://authentik.christophervestman.com/application/o/kaneo/.well-known/openid-configuration"
         - name: CUSTOM_OAUTH_CLIENT_ID
