@@ -55,7 +55,7 @@ spec:
             secretKeyRef:
               name: kaneo-db-credentials
               key: gh-webhook-secret
-        - name: GITHUB_PRIVATE_KEY
+        - name: GITHUB_PRIVATE_KEY_BASE64
           valueFrom:
             secretKeyRef:
               name: kaneo-db-credentials
