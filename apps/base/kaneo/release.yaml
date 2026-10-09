@@ -43,6 +43,16 @@ spec:
             secretKeyRef:
               name: kaneo-db-credentials
               key: notification-key
+        - name: GITHUB_OAUTH_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: kaneo-db-credentials
+              key: gh-oauth-client-id
+        - name: GITHUB_OAUTH_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: kaneo-db-credentials
+              key: gh-oauth-client-secret
         - name: GITHUB_APP_ID
           valueFrom:
             secretKeyRef:
