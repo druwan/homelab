@@ -12,4 +12,4 @@ resources:
   - n8n
   - paperless-ngx
   - sure
-  - twenty
+  # - twenty
