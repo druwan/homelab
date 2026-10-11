@@ -47,9 +47,9 @@ pages:
               # - title: Actual Budget
               #   url: https://actualbudget.christophervestman.com
               #   icon: sh:actual-budget
-              # - title: Authentik
-              #   url: https://authentik.christophervestman.com
-              #   icon: sh:authentik
+              - title: Authentik
+                url: https://authentik.christophervestman.com
+                icon: sh:authentik
               # - title: BentoPDF
               #   url: https://pdf.christophervestman.com
               #   icon: sh:bentopdf

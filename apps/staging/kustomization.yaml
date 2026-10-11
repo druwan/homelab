@@ -5,7 +5,7 @@ resources:
   # - actualbudget
   # - adguardhome
   # - audiobookshelf
-  # - authentik
+  - authentik
   - bazarr
   # - bento-pdf
   # - convertx
