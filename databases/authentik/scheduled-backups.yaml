@@ -22,7 +22,7 @@ metadata:
   namespace: authentik
 spec:
   cluster:
-    name: authentik-db-v1
+    name: authentik-db-v2
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io

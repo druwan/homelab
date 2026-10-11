@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: authentik-db-v1
+  name: authentik-db-v2
   namespace: authentik
 spec:
   description: "Postgres cluster for authentik application"
@@ -34,42 +34,42 @@ spec:
   #       name: authentik-db-credentials
 
   # Bootstrap from an previous deployment
-  bootstrap:
-    pg_basebackup:
-      source: authentik-db-v0
-
-  externalClusters:
-    - name: authentik-db-v0
-      connectionParameters:
-        host: authentik-db-v0-rw.authentik.svc.cluster.local
-        user: streaming_replica
-        dbname: authentik
-        sslmode: verify-ca
-      sslKey:
-        name: authentik-db-v0-replication
-        key: tls.key
-      sslCert:
-        name: authentik-db-v0-replication
-        key: tls.crt
-      sslRootCert:
-        name: authentik-db-v0-ca
-        key: ca.crt
+  # bootstrap:
+  #   pg_basebackup:
+  #     source: authentik-db-v0
+  #
+  # externalClusters:
+  #   - name: authentik-db-v0
+  #     connectionParameters:
+  #       host: authentik-db-v0-rw.authentik.svc.cluster.local
+  #       user: streaming_replica
+  #       dbname: authentik
+  #       sslmode: verify-ca
+  #     sslKey:
+  #       name: authentik-db-v0-replication
+  #       key: tls.key
+  #     sslCert:
+  #       name: authentik-db-v0-replication
+  #       key: tls.crt
+  #     sslRootCert:
+  #       name: authentik-db-v0-ca
+  #       key: ca.crt
 
   # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
-  # bootstrap:
-  #   recovery:
-  #     source: authentik-db-hexabyte
-  #     database: authentik
-  #     owner: authentik
-  #     secret:
-  #       name: authentik-db-credentials
-  # externalClusters:
-  #   - name: authentik-db-hexabyte
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: authentik-db-backup-hexabyte
-  #         serverName: authentik-db
+  bootstrap:
+    recovery:
+      source: authentik-db-hexabyte
+      database: authentik
+      owner: authentik
+      secret:
+        name: authentik-db-credentials
+  externalClusters:
+    - name: authentik-db-hexabyte
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: authentik-db-backup-hexabyte
+          serverName: authentik-db-v1
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
