@@ -1,0 +1,30 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: silo-db-daily-hexabyte
+  namespace: media
+spec:
+  immediate: true
+  schedule: "0 30 4 * * *"
+  cluster:
+    name: silo-db-v0
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: silo-db-backup-hexabyte
+  backupOwnerReference: cluster
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: silo-db-ondemand
+  namespace: media
+spec:
+  cluster:
+    name: silo-db-v0
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: silo-db-backup-hexabyte

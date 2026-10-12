@@ -1,0 +1,55 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: meilisearch-dump
+  namespace: media
+spec:
+  ttlSecondsAfterFinished: 300
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      securityContext:
+        runAsUser: 0
+      containers:
+        - name: dump-creator
+          image: curlimages/curl:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -e
+
+              echo "Cleaning up old dumps..."
+              rm -f /meili_data/dumps/*.dump
+
+              echo "Triggering dump..."
+              RESPONSE=$(curl -sf -X POST http://silo-meili:7700/dumps \
+                -H "Authorization: Bearer $MEILI_MASTER_KEY")
+              TASK_UID=$(echo "$RESPONSE" | grep -o '"taskUid":[0-9]*' | grep -o '[0-9]*')
+
+              echo "Waiting for task $TASK_UID to complete..."
+              while true; do
+                STATUS=$(curl -sf "http://silo-meili:7700/tasks/$TASK_UID" \
+                  -H "Authorization: Bearer $MEILI_MASTER_KEY" \
+                  | grep -o '"status":"[^"]*"' | grep -o '[^"]*"$' | tr -d '"')
+                echo "Status: $STATUS"
+                case "$STATUS" in
+                  succeeded) echo "Dump created successfully!"; exit 0 ;;
+                  failed)    echo "Dump failed!"; exit 1 ;;
+                esac
+                sleep 3
+              done
+          env:
+            - name: MEILI_MASTER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: silo-db-credentials
+                  key: MEILI_MASTER_KEY
+          volumeMounts:
+            - name: meili-data
+              mountPath: /meili_data
+      volumes:
+        - name: meili-data
+          persistentVolumeClaim:
+            claimName: silo-meili-data-pvc-v1

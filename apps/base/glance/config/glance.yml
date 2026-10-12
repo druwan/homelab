@@ -170,12 +170,15 @@ pages:
               # - title: RustFS
               #   url: https://rustfs.christophervestman.com
               #   icon: sh:rustfs
-              - title: Seerr
-                url: https://seerr.christophervestman.com
-                icon: sh:seerr
               - title: Sabnzbd
                 url: https://sabnzbd.christophervestman.com
                 icon: sh:sabnzbd
+              - title: Seerr
+                url: https://seerr.christophervestman.com
+                icon: sh:seerr
+              - title: Silo
+                url: https://silo.christophervestman.com
+                icon: sh:silo-media-server
               - title: Sonarr
                 url: https://sonarr.christophervestman.com
                 check-url: http://sonarr.media.svc.cluster.local:8989/ping

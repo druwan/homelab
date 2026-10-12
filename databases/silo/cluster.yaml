@@ -1,0 +1,97 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: silo-db-v0
+  namespace: media
+spec:
+  description: "Postgres cluster for Silo server"
+  imageName: ghcr.io/cloudnative-pg/postgresql:18-minimal-trixie
+  imagePullPolicy: Always
+  inheritedMetadata:
+    labels:
+      app: silo-db
+      policy-type: database
+  instances: 1
+
+  postgresql:
+    extensions:
+      - name: pgvector
+        image:
+          # renovate: suite=trixie-pgdg depName=postgresql-18-pgvector
+          reference: ghcr.io/cloudnative-pg/pgvector:0.8.7-18-trixie
+
+  storage:
+    size: 2Gi
+    storageClass: longhorn
+    resizeInUseVolumes: true
+
+  walStorage:
+    size: 2Gi
+    storageClass: longhorn
+
+  superuserSecret:
+    name: silo-db-superuser
+
+  # FRESH INSTALL: contains no backup. Have to use initdb
+  bootstrap:
+    initdb:
+      database: silo
+      owner: silo
+      secret:
+        name: silo-db-credentials
+
+  # # Bootstrap from a previous deployment
+  # bootstrap:
+  #   pg_basebackup:
+  #     source: silo-db-v0
+  #
+  # externalClusters:
+  #   - name: silo-db-v0
+  #     connectionParameters:
+  #       host: silo-db-v0-rw.silo.svc.cluster.local
+  #       user: streaming_replica
+  #       dbname: silo
+  #       sslmode: verify-ca
+  #     sslKey:
+  #       name: silo-db-v0-replication
+  #       key: tls.key
+  #     sslCert:
+  #       name: silo-db-v0-replication
+  #       key: tls.crt
+  #     sslRootCert:
+  #       name: silo-db-v0-ca
+  #       key: ca.crt
+
+  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  # bootstrap:
+  #   recovery:
+  #     source: silo-db-hexabyte
+  #     database: silo
+  #     owner: silo
+  #     secret:
+  #       name: silo-db-credentials
+  # externalClusters:
+  #   - name: silo-db-hexabyte
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: silo-db-backup-hexabyte
+  #         serverName: silo-db
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: silo-db-backup-hexabyte
+
+  managed:
+    services:
+      disabledDefaultServices: ["r", "ro"]
+
+    roles:
+      - name: silo
+        ensure: present
+        login: true
+        createdb: false
+        passwordSecret:
+          name: silo-db-credentials

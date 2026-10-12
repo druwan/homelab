@@ -1,0 +1,149 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: silo-redis
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: silo-redis
+  template:
+    metadata:
+      labels:
+        app: silo-redis
+    spec:
+      containers:
+        - name: silo-redis
+          image: redis:8.10.2-alpine
+          ports:
+            - containerPort: 6379
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: silo-meili
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: silo-meili
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: silo-meili
+    spec:
+      containers:
+        - name: silo-meili
+          image: getmeili/meilisearch:v1.54.3
+          command:
+            - /bin/sh
+            - -euc
+            - |
+              if [ -z "${MEILI_MASTER_KEY:-}" ]; then
+                echo "MEILI_MASTER_KEY is required" >&2
+                exit 1
+              fi
+              DUMP=$(ls -t /meili_data/dumps/*.dump 2>/dev/null | head -1)
+              if [ -n "$DUMP" ]; then
+                echo "Found dump: $DUMP - importing..."
+                rm -rf /meili_data/data.ms
+                exec /bin/meilisearch --import-dump "$DUMP"
+              else
+                echo "No dump found - starting fresh"
+                exec /bin/meilisearch
+              fi
+          ports:
+            - containerPort: 7700
+          env:
+            - name: MEILI_MASTER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: silo-db-credentials
+                  key: silo_meili_master_key
+          volumeMounts:
+            - name: meili-data
+              mountPath: /meili_data
+      volumes:
+        - name: meili-data
+          persistentVolumeClaim:
+            claimName: silo-meili-data-pvc-v1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: silo
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: silo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: silo
+    spec:
+      containers:
+        - name: silo
+          image: ghcr.io/silo-server/silo-server:build-1328
+          env:
+            - name: MODE
+              value: "integrated"
+            - name: PORT
+              value: "8080"
+            - name: JF_PORT
+              value: "8096"
+            - name: REDIS_URL
+              value: "redis://silo-redis:6379"
+            - name: SILO_PLUGIN_CACHE_DIR
+              value: "/var/lib/silo/plugins"
+            - name: POSTGRES_TUNE
+              value: "off"
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: silo-db-credentials
+                  key: silo_secret_key
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: silo-db-credentials
+                  key: postgres_uri
+          ports:
+            - name: app
+              containerPort: 8080
+            - name: jellyfin
+              containerPort: 8096
+          volumeMounts:
+            - name: silo-data
+              mountPath: /var/lib/silo/plugins
+              subPath: plugins
+            - name: silo-data
+              mountPath: /var/lib/silo/artwork
+              subPath: artwork
+            - name: silo-data
+              mountPath: /var/lib/silo/compat
+              subPath: compat
+            - name: silo-data
+              mountPath: /tmp/silo-transcode
+              subPath: transcode
+            - name: silo-data
+              mountPath: /catalog-seeds
+              subPath: catalog-seeds
+              readOnly: true
+            - name: media
+              mountPath: /mnt/media
+              readOnly: true
+      volumes:
+        - name: silo-data
+          persistentVolumeClaim:
+            claimName: silo-data-pvc-v1
+        - name: media
+          persistentVolumeClaim:
+            claimName: media-pvc

@@ -11,5 +11,6 @@ resources:
   - mealie
   - n8n
   - paperless-ngx
+  - silo
   - sure
   # - twenty
