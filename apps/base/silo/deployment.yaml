@@ -47,18 +47,12 @@ spec:
                 echo "MEILI_MASTER_KEY is required" >&2
                 exit 1
               fi
-              DUMP=$(ls -t /meili_data/dumps/*.dump 2>/dev/null | head -1)
-              if [ -n "$DUMP" ]; then
-                echo "Found dump: $DUMP - importing..."
-                rm -rf /meili_data/data.ms
-                exec /bin/meilisearch --import-dump "$DUMP"
-              else
-                echo "No dump found - starting fresh"
-                exec /bin/meilisearch
-              fi
+              exec /bin/meilisearch
           ports:
             - containerPort: 7700
           env:
+            - name: MEILI_UPGRADE
+              value: "false"
             - name: MEILI_MASTER_KEY
               valueFrom:
                 secretKeyRef:
