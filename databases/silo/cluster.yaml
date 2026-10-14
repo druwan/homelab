@@ -21,7 +21,7 @@ spec:
           reference: ghcr.io/cloudnative-pg/pgvector:0.8.7-18-trixie
 
   storage:
-    size: 4Gi
+    size: 8Gi
     storageClass: longhorn
     resizeInUseVolumes: true
 
