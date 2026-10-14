@@ -15,6 +15,21 @@
   "labels": [
     "deps"
   ],
+  "customManagers": [
+    {
+      "description": "Track silo-server build",
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/\\.yaml$/"
+      ],
+      "matchStrings": [
+        "image: ghcr\\.io/silo-server/silo-server:build-(?<currentValue>\\d+)"
+      ],
+      "depNameTemplate": "ghcr.io/silo-server/silo-server",
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "regex:^build-(?<major>\\d+)$"
+    }
+  ],
   "packageRules": [
     {
       "description": "Group all images sourced from immich-app/immich into one PR",
