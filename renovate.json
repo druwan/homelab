@@ -23,7 +23,7 @@
         "/\\.yaml$/"
       ],
       "matchStrings": [
-        "image: ghcr\\.io/silo-server/silo-server:build-(?<currentValue>\\d+)"
+        "image: ghcr\\.io/silo-server/silo-server:(?<currentValue>build-\\d+)"
       ],
       "depNameTemplate": "ghcr.io/silo-server/silo-server",
       "datasourceTemplate": "docker",
@@ -82,6 +82,16 @@
         "docker"
       ],
       "pinDigests": true
+    },
+    {
+      "description": "Ignore silo-server",
+      "matchManagers": [
+        "kubernetes"
+      ],
+      "matchPackageNames": [
+        "ghcr.io/silo-server/silo-server"
+      ],
+      "enabled": false
     }
   ]
 }
