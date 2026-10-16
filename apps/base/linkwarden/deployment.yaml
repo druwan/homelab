@@ -43,16 +43,11 @@ spec:
             - /bin/sh
             - -c
             - |
-              DUMP=$(ls -t /meili_data/dumps/*.dump 2>/dev/null | head -1)
-              if [ -n "$DUMP" ]; then
-                echo "Found dump: $DUMP — importing..."
-                rm -rf /meili_data/data.ms
-                exec meilisearch --import-dump "$DUMP"
-              else
-                echo "No dump found — starting fresh"
-                exec meilisearch
-              fi
+              echo "Starting meilisearch..."
+              exec meilisearch
           env:
+            - name: MEILI_UPGRADE_DB
+              value: "false"
             - name: MEILI_MASTER_KEY
               valueFrom:
                 secretKeyRef:
