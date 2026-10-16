@@ -51,7 +51,7 @@ spec:
           ports:
             - containerPort: 7700
           env:
-            - name: MEILI_UPGRADE
+            - name: MEILI_UPGRADE_DB
               value: "false"
             - name: MEILI_MASTER_KEY
               valueFrom:
