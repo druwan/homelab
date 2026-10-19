@@ -85,7 +85,7 @@ spec:
     spec:
       containers:
         - name: silo
-          image: ghcr.io/silo-server/silo-server:build-1518
+          image: ghcr.io/silo-server/silo-server:build-1526
           env:
             - name: MODE
               value: "integrated"
