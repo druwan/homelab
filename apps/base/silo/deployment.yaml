@@ -93,8 +93,19 @@ spec:
               value: "8080"
             - name: JF_PORT
               value: "8096"
+            - name: ENABLE_REDIS
+              value: "true"
             - name: REDIS_URL
               value: "redis://silo-redis:6379"
+            - name: SILO_SEARCH_PROVIDER
+              value: "meilisearch"
+            - name: SILO_MEILISEARCH_URL
+              value: http://silo-meili:7700
+            - name: SILO_MEILISEARCH_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: silo-db-credentials
+                  key: silo_meili_master_key
             - name: SILO_PLUGIN_CACHE_DIR
               value: "/var/lib/silo/plugins"
             - name: POSTGRES_TUNE
