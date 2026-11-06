@@ -17,7 +17,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: tududi
-          image: chrisvel/tududi:1.15.0@sha256:a4991c5a896bbc7a596ac6a46f08feff9e8b50a9aa8e93cd4964f1f5fe98bbc3
+          image: chrisvel/tududi:1.15.1@sha256:2b15d6b8ce51c61253cc9b588fa19abce6ce939565ff9683ffd56a1ab251b015
           ports:
             - containerPort: 3002
           env:
