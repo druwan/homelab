@@ -83,9 +83,13 @@ spec:
       labels:
         app: silo
     spec:
+      securityContext:
+        supplementalGroups: [3100, 989, 1000]
       containers:
         - name: silo
           image: ghcr.io/silo-server/silo-server:build-2056
+          securityContext:
+            privileged: true
           env:
             - name: MODE
               value: "integrated"
@@ -145,6 +149,8 @@ spec:
             - name: media
               mountPath: /mnt/media
               readOnly: true
+            - name: render-device
+              mountPath: /dev/dri
       volumes:
         - name: silo-data
           persistentVolumeClaim:
@@ -152,3 +158,6 @@ spec:
         - name: media
           persistentVolumeClaim:
             claimName: media-pvc
+        - name: render-device
+          hostPath:
+            path: /dev/dri
