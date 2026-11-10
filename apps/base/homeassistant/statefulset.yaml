@@ -15,24 +15,6 @@ spec:
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
-      initContainers:
-        - name: hacs-installer
-          image: ghcr.io/home-assistant/home-assistant:2026.11.1@sha256:6785d1eca68747a524c156faae1b139ed415c07357386ae6fe17291986e59e82
-          securityContext:
-            privileged: true
-          command:
-            - /bin/bash
-            - -c
-            - |
-              if [ ! -d "/config/custom_components/hacs" ]; then
-                echo "Installing HACS..."
-                wget -q -O - https://get.hacs.xyz | bash -
-              else:
-                echo "HACS already installed, skipping."
-              fi
-          volumeMounts:
-            - mountPath: /config
-              name: ha-config
       containers:
         - name: homeassistant
           image: ghcr.io/home-assistant/home-assistant:2026.11.1@sha256:6785d1eca68747a524c156faae1b139ed415c07357386ae6fe17291986e59e82
