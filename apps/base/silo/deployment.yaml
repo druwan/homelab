@@ -87,7 +87,7 @@ spec:
         supplementalGroups: [3100, 989, 1000]
       containers:
         - name: silo
-          image: ghcr.io/silo-server/silo-server:build-2148
+          image: ghcr.io/silo-server/silo-server:build-2154
           securityContext:
             privileged: true
           env:
