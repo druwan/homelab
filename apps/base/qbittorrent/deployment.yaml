@@ -62,7 +62,7 @@ spec:
               protocol: UDP
 
         - name: qbittorrent
-          image: ghcr.io/linuxserver/qbittorrent:5.1.4@sha256:c9990949e968e99333f47f49da7d16e81ba6e1469c8c46807a65b984c9e8b6ff
+          image: ghcr.io/linuxserver/qbittorrent:5.3.0@sha256:3d4c4545d51a690a0df15a2ff99038823a88a9822df8e794526447b9afbd7384
           env:
             - name: PUID
               value: "1000"
