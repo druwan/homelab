@@ -1,26 +1,26 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "kubernetes": {
-    "fileMatch": [
-      "\\.yaml$"
-    ]
-  },
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
-  "flux": {
-    "managerFilePatterns": [
-      "/\\.yaml$/"
-    ]
-  },
   "labels": [
     "deps"
   ],
+  "kubernetes": {
+    "managerFilePatterns": [
+      "/\\.ya?ml$/"
+    ]
+  },
+  "flux": {
+    "managerFilePatterns": [
+      "/\\.ya?ml$/"
+    ]
+  },
   "customManagers": [
     {
       "description": "Track silo-server build",
       "customType": "regex",
       "managerFilePatterns": [
-        "/\\.yaml$/"
+        "/\\.ya?ml$/"
       ],
       "matchStrings": [
         "image: ghcr\\.io/silo-server/silo-server:(?<currentValue>build-\\d+)"
@@ -32,56 +32,41 @@
   ],
   "packageRules": [
     {
-      "description": "Group all images sourced from immich-app/immich into one PR",
-      "matchSourceUrls": [
-        "https://github.com/immich-app/immich"
+      "description": "Group Immich (server + ml)",
+      "matchPackageNames": [
+        "/^ghcr\\.io/immich-app//"
       ],
       "groupName": "immich"
     },
     {
-      "description": "Only allow proper semver tags for LinuxServer/qBittorrent",
+      "description": "Only allow major/minor for noisy packages",
       "matchPackageNames": [
-        "ghcr.io/linuxserver/qbittorrent"
+        "/kube-prometheus-stack$/"
       ],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-r\\d+-ls(?<build>\\d+)$"
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "enabled": false
     },
     {
-      "description": "Handle *arr (3-segment version)",
+      "description": "Pin *arr digests",
       "matchPackageNames": [
-        "ghcr.io/linuxserver/bazarr",
-        "ghcr.io/linuxserver/sabnzbd"
+        "/^ghcr\\.io/linuxserver//"
       ],
-      "allowedVersions": "/^v?\\d+\\.\\d+\\.\\d+-ls\\d+$/",
-      "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-ls(?<build>\\d+)$"
-    },
-    {
-      "description": "Handle *arr (4-segment version)",
-      "matchPackageNames": [
-        "ghcr.io/linuxserver/prowlarr",
-        "ghcr.io/linuxserver/radarr",
-        "ghcr.io/linuxserver/sonarr"
-      ],
-      "allowedVersions": "/^v?\\d+\\.\\d+\\.\\d+\\.\\d+-ls\\d+$/",
-      "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)-ls(?<revision>\\d+)$"
-    },
-    {
-      "description": "Enable OCI Helm chart updates",
-      "matchDatasources": [
-        "oci"
-      ],
-      "matchManagers": [
-        "helm"
-      ],
-      "extractVersion": "^(?<version>\\d+\\.\\d+\\.\\d+)$",
-      "versioning": "semver",
       "pinDigests": true
     },
     {
-      "description": "Pin digests for docker/ghcr images",
-      "matchDatasources": [
-        "docker"
+      "description": "Group linuxserver digest-only rebuilds",
+      "matchPackageNames": [
+        "/^ghcr\\.io/linuxserver//"
       ],
-      "pinDigests": true
+      "matchUpdateTypes": [
+        "digest"
+      ],
+      "groupName": "linuxserver rebuilds",
+      "schedule": [
+        "* * * * 0"
+      ]
     },
     {
       "description": "Ignore silo-server",
