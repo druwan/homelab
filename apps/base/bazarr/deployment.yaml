@@ -19,7 +19,7 @@ spec:
         supplementalGroups: [3100]
       containers:
         - name: bazarr
-          image: ghcr.io/linuxserver/bazarr:v1.6.2-ls371@sha256:7ef0e58216900dbce30b123e0eb65f5cb30e36f126de9474acdd2022fb069c54
+          image: ghcr.io/linuxserver/bazarr:v1.6.2
           ports:
             - containerPort: 6767
           securityContext:
