@@ -19,7 +19,7 @@ spec:
         supplementalGroups: [3100]
       containers:
         - name: prowlarr
-          image: ghcr.io/linuxserver/prowlarr:2.7.0
+          image: ghcr.io/linuxserver/prowlarr:2.7.0@sha256:6660787a99b2e58203539583663c973b48979fc00ff2cb78dc0ea17429e1f6ef
           ports:
             - containerPort: 9696
           securityContext:
