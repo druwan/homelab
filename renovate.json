@@ -78,5 +78,26 @@
       ],
       "enabled": false
     }
+  ],
+  "ignorePaths": [
+    "apps/*/actualbudget/*",
+    "apps/*/adguardhome/*",
+    "apps/*/audiobookshelf/*",
+    "apps/*/bento-pdf/*",
+    "apps/*/convertx/*",
+    "apps/*/dispatcharr/*",
+    "apps/*/firefly/*",
+    "apps/*/flaresolverr/*",
+    "apps/*/its-mytabs/*",
+    "apps/*/linkding/*",
+    "apps/*/pgadmin/*",
+    "apps/*/qbittorrent/*",
+    "apps/*/rustfs/*",
+    "apps/*/stirling-pdf/*",
+    "apps/*/transmute/*",
+    "apps/*/tududi/*",
+    "apps/*/twenty/*",
+    "apps/*/wallos/*",
+    "apps/*/wiki-js/*"
   ]
 }
