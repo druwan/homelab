@@ -39,16 +39,6 @@
       "groupName": "immich"
     },
     {
-      "description": "Only allow major/minor for noisy packages",
-      "matchPackageNames": [
-        "/kube-prometheus-stack$/"
-      ],
-      "matchUpdateTypes": [
-        "patch"
-      ],
-      "enabled": false
-    },
-    {
       "description": "Pin *arr digests",
       "matchPackageNames": [
         "/^ghcr\\.io/linuxserver//"
