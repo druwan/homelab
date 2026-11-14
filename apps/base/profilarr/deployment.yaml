@@ -32,7 +32,7 @@ spec:
             - name: UMASK
               value: "022"
             - name: TZ
-              value: Europe/Stockholm
+              value: "Europe/Stockholm"
             - name: AUTH
               value: "off"
             - name: ORIGIN
