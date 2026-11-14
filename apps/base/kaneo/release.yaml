@@ -82,6 +82,24 @@ spec:
         #     secretKeyRef:
         #       name: kaneo-db-credentials
         #       key: oidc-client-secret
+        - name: S3_ENDPOINT
+          value: "https://s3.hexabyte.se"
+        - name: S3_BUCKET
+          value: "kaneo-uploads"
+        - name: S3_REGION
+          value: "ume1"
+        - name: S3_FORCE_PATH_STYLE
+          value: "true"
+        - name: S3_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: hexabyte-credentials
+              key: ACCESS_KEY_ID
+        - name: S3_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: hexabyte-credentials
+              key: ACCESS_SECRET_KEY
       securityContext:
         allowPrivilegeEscalation: false
         capabilities:
