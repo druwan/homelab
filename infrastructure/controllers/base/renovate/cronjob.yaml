@@ -5,11 +5,20 @@ metadata:
   namespace: renovate
 spec:
   schedule: "0 */6 * * *" # Every 6th hour
+  timeZone: "Europe/Stockholm"
   concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 3600
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
   jobTemplate:
     spec:
+      backoffLimit: 0
+      ttlSecondsAfterFinished: 86400
       template:
         spec:
+          restartPolicy: Never
+          securityContext:
+            fsGroup: 12021
           containers:
             - name: renovate
               image: renovate/renovate:latest
@@ -20,4 +29,10 @@ spec:
                     name: renovate-bot-secret
                 - configMapRef:
                     name: renovate-configmap
-          restartPolicy: Never
+              volumeMounts:
+                - name: cache
+                  mountPath: /tmp/renovate
+          volumes:
+            - name: cache
+              persistentVolumeClaim:
+                claimName: renovate-cache
