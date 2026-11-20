@@ -82,11 +82,38 @@ spec:
             - name: REDIS_URL
               value: "redis://outline-redis:6379"
 
-            - name: FILE_STORAGE
-              value: local
-
             - name: FILE_STORAGE_LOCAL_ROOT_DIR
               value: /var/lib/outline/data
+
+            - name: FILE_STORAGE
+              value: "s3"
+
+            - name: AWS_REGION
+              value: "ume1"
+
+            - name: AWS_S3_FORCE_PATH_STYLE
+              value: "true"
+
+            - name: AWS_S3_UPLOAD_BUCKET_NAME
+              value: "outline-uploads"
+
+            - name: AWS_S3_BUCKET_URL
+              value: "https://s3.hexabyte.se/outline-uploads"
+
+            - name: FILE_STORAGE_UPLOAD_MAX_SIZE
+              value: "26214400"
+
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: hexabyte-credentials
+                  key: ACCESS_KEY_ID
+
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: hexabyte-credentials
+                  key: ACCESS_SECRET_KEY
 
             - name: OIDC_CLIENT_ID
               valueFrom:
