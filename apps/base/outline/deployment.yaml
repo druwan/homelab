@@ -97,8 +97,8 @@ spec:
             - name: AWS_S3_UPLOAD_BUCKET_NAME
               value: "outline-uploads"
 
-            - name: AWS_S3_BUCKET_URL
-              value: "https://s3.hexabyte.se/outline-uploads"
+            - name: AWS_S3_UPLOAD_BUCKET_URL
+              value: "https://s3.hexabyte.se"
 
             - name: FILE_STORAGE_UPLOAD_MAX_SIZE
               value: "26214400"
