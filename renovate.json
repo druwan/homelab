@@ -51,7 +51,7 @@
     {
       "description": "Group linuxserver digest-only rebuilds",
       "matchPackageNames": [
-        "/^ghcr\\.io/linuxserver//"
+        "/^(docker\\.io/)?linuxserver//"
       ],
       "matchUpdateTypes": [
         "digest"
