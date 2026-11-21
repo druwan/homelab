@@ -11,6 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: seerr
+      interval: 24h
   values:
     image:
       pullPolicy: IfNotPresent

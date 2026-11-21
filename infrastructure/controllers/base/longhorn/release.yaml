@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: longhorn
         namespace: longhorn-system
-      interval: 12h
+      interval: 24h
   values:
     defaultSettings:
       defaultDataPath: /var/lib/longhorn

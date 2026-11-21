@@ -12,6 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: authentik
+      interval: 24h
   values:
     global:
       securityContext:

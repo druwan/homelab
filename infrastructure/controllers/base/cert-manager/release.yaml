@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: jetstack
         namespace: cert-manager
-      interval: 12h
+      interval: 24h
   values:
     crds:
       enabled: true

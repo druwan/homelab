@@ -12,6 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kaneo
+      interval: 24h
   values:
     postgresql:
       enabled: false # CNPG handles the DB

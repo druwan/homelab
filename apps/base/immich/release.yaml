@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: immich
         namespace: immich
-      interval: 30m
+      interval: 24h
   install:
     crds: Create
   upgrade:
