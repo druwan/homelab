@@ -19,7 +19,7 @@ spec:
         supplementalGroups: [3100]
       containers:
         - name: sabnzbd
-          image: linuxserver/sabnzbd:5.1.3
+          image: linuxserver/sabnzbd:5.1.3@sha256:d225bbab93f54784c115a3b1d89711e469b1969c9f32aa6ebb11fb03b5804431
           ports:
             - containerPort: 8080
           securityContext:
