@@ -35,6 +35,14 @@
   ],
   "packageRules": [
     {
+      "description": "Immich versions from GitHub (ghcr too large)",
+      "matchPackageNames": [
+        "/^ghcr\\.io/immich-app/immich-(server|machine-learning)$/"
+      ],
+      "overrideDatasource": "github-releases",
+      "overridePackageName": "immich-app/immich"
+    },
+    {
       "description": "Group Immich (server + ml)",
       "matchPackageNames": [
         "/^ghcr\\.io/immich-app//"
