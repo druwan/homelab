@@ -3,6 +3,9 @@
   "extends": [
     "config:recommended"
   ],
+  "dependencyDashboard": {
+    "enabled": false
+  },
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "labels": [
