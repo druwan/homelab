@@ -44,7 +44,7 @@
     {
       "description": "Pin *arr digests",
       "matchPackageNames": [
-        "/^ghcr\\.io/linuxserver//"
+        "/^(docker\\.io/)?linuxserver//"
       ],
       "pinDigests": true
     },
