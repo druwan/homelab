@@ -6,7 +6,7 @@ metadata:
 spec:
   description: "Postgres cluster for n8n"
   imageName: ghcr.io/cloudnative-pg/postgis:17-3.5
-  imagePullPolicy: Always
+  imagePullPolicy: IfNotPresent
   inheritedMetadata:
     labels:
       app: n8n-db

@@ -5,7 +5,7 @@ metadata:
   namespace: firefly
 spec:
   description: "Postgres cluster for Firefly III"
-  imagePullPolicy: Always
+  imagePullPolicy: IfNotPresent
   inheritedMetadata:
     labels:
       app: firefly-db

@@ -6,7 +6,7 @@ metadata:
 spec:
   description: Postgres cluster for linkding app
   imageName: ghcr.io/cloudnative-pg/postgresql:17.6-minimal-trixie
-  imagePullPolicy: Always
+  imagePullPolicy: IfNotPresent
   inheritedMetadata:
     labels:
       app: linkding

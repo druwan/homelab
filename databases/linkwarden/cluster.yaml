@@ -6,7 +6,7 @@ metadata:
 spec:
   description: "Postgres cluster for Linkwarden"
   imageName: ghcr.io/cloudnative-pg/postgresql:18-minimal-trixie
-  imagePullPolicy: Always
+  imagePullPolicy: IfNotPresent
   inheritedMetadata:
     labels:
       app: linkwarden-db
