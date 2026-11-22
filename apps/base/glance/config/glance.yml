@@ -129,9 +129,9 @@ pages:
               # - title: Dispatcharr
               #   url: https://dispatcharr.christophervestman.com
               #   icon: sh:dispatcharr
-              # - title: FlareSolverr
-              #   url: https://flaresolverr.christophervestman.com
-              #   icon: sh:flaresolverr
+              - title: FlareSolverr
+                url: https://flaresolverr.christophervestman.com
+                icon: sh:flaresolverr
               # - title: Garage
               #   url: https://garage.christophervestman.com
               #   icon: sh:garage
