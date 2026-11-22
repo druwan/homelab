@@ -93,6 +93,7 @@
     "apps/*/firefly/*",
     "apps/*/its-mytabs/*",
     "apps/*/linkding/*",
+    "apps/*/linkwarden/*",
     "apps/*/pgadmin/*",
     "apps/*/qbittorrent/*",
     "apps/*/rustfs/*",

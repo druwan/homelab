@@ -7,7 +7,7 @@ resources:
   - kaneo
   - lifedata
   # - linkding
-  - linkwarden
+  # - linkwarden
   - mealie
   - n8n
   - paperless-ngx

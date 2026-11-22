@@ -22,7 +22,7 @@ resources:
   - jellyfin
   - kaneo
   # - linkding
-  - linkwarden
+  # - linkwarden
   - mealie
   - n8n
   - outline
