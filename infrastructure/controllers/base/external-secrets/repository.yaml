@@ -4,7 +4,7 @@ metadata:
   name: external-secrets
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 24h
   url: https://charts.external-secrets.io
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
@@ -13,7 +13,7 @@ metadata:
   name: external-secrets
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 24h
   ref:
     tag: v2.15.0
   url: https://github.com/external-secrets/external-secrets
