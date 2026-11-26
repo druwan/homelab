@@ -6,3 +6,17 @@ metadata:
 spec:
   interval: 24h
   url: https://traefik.github.io/charts
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: gateway-api
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v1.7.0
+  url: https://github.com/kubernetes-sigs/gateway-api
+  ignore: |
+    /*
+    !/config/crd/
