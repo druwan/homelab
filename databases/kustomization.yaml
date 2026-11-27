@@ -10,7 +10,7 @@ resources:
   # - linkwarden
   - mealie
   # - n8n
-  # - paperless-ngx
+  - paperless-ngx
   # - silo
   # - sure
   # - twenty

@@ -33,49 +33,51 @@ spec:
   #     secret:
   #       name: paperless-ngx-db-credentials
 
+  # bootstrap:
+  #   initdb:
+  #     import:
+  #       type: monolith
+  #       databases:
+  #         - paperless
+  #       roles:
+  #         - paperless
+  #       source:
+  #         externalCluster: paperless-ngx-db-v1
+  #
+  # externalClusters:
+  #   - name: paperless-ngx-db-v1
+  #     connectionParameters:
+  #       host: paperless-ngx-db-v1-rw.paperless-ngx.svc.cluster.local
+  #       user: postgres
+  #       dbname: postgres
+  #       sslmode: prefer
+  #     password:
+  #       name: paperless-ngx-db-superuser
+  #       key: password
+
+  # DISTASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   bootstrap:
-    initdb:
-      import:
-        type: monolith
-        databases:
-          - paperless
-        roles:
-          - paperless
-        source:
-          externalCluster: paperless-ngx-db-v1
+    recovery:
+      source: paperless-ngx-db-hexabyte
+      database: paperless
+      owner: paperless
+      secret:
+        name: paperless-ngx-db-credentials
 
   externalClusters:
-    - name: paperless-ngx-db-v1
-      connectionParameters:
-        host: paperless-ngx-db-v1-rw.paperless-ngx.svc.cluster.local
-        user: postgres
-        dbname: postgres
-        sslmode: prefer
-      password:
-        name: paperless-ngx-db-superuser
-        key: password
-
-  # # DISTASTER RECOVERY: Once a backup exists, replace the initdb with the block below
-  # bootstrap:
-  #   recovery:
-  #     source: paperless-ngx-db-hexabyte
-  #     database: paperless
-  #     owner: paperless
-  #     secret:
-  #       name: paperless-ngx-db-credentials
-  # externalClusters:
-  #   - name: paperless-ngx-db-hexabyte
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: paperless-ngx-db-backup-hexabyte
-  #         serverName: paperless-ngx-db
+    - name: paperless-ngx-db-hexabyte
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: paperless-ngx-db-backup-hexabyte
+          serverName: paperless-ngx-db-v2
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
         barmanObjectName: paperless-ngx-db-backup-hexabyte
+        serverName: paperless-ngx-db-v3
 
   managed:
     services:
