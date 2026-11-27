@@ -32,13 +32,13 @@ spec:
   superuserSecret:
     name: silo-db-superuser
 
-  # FRESH INSTALL: contains no backup. Have to use initdb
-  bootstrap:
-    initdb:
-      database: silo
-      owner: silo
-      secret:
-        name: silo-db-credentials
+  # # FRESH INSTALL: contains no backup. Have to use initdb
+  # bootstrap:
+  #   initdb:
+  #     database: silo
+  #     owner: silo
+  #     secret:
+  #       name: silo-db-credentials
 
   # # Bootstrap from a previous deployment
   # bootstrap:
@@ -62,27 +62,29 @@ spec:
   #       name: silo-db-v0-ca
   #       key: ca.crt
 
-  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
-  # bootstrap:
-  #   recovery:
-  #     source: silo-db-hexabyte
-  #     database: silo
-  #     owner: silo
-  #     secret:
-  #       name: silo-db-credentials
-  # externalClusters:
-  #   - name: silo-db-hexabyte
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: silo-db-backup-hexabyte
-  #         serverName: silo-db
+  DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  bootstrap:
+    recovery:
+      source: silo-db-hexabyte
+      database: silo
+      owner: silo
+      secret:
+        name: silo-db-credentials
+
+  externalClusters:
+    - name: silo-db-hexabyte
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: silo-db-backup-hexabyte
+          serverName: silo-db-v0
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
         barmanObjectName: silo-db-backup-hexabyte
+        serverName: silo-db-v1
 
   managed:
     services:
