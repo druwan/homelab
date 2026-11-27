@@ -10,7 +10,7 @@ A Kubernetes-based homelab built with GitOps practices.
 
 | Device | Spec | Role |
 | ------ | ---- | ---- |
-| GMKtec G3 Plus | Intel Twin Lake N150 · 16GB RAM · 512GB SSD · Arch Linux |  k3s cluster |
+| GMKtec G3 Plus | Intel Twin Lake N150 · 16GB RAM · 512GB SSD · Arch Linux | k3s cluster |
 | Ugreen NAS DXP4800 Plus | 4x Seagate IronWolf Pro 8 TB · 64GB DDR5 RAM · 2TB NMVe Cache | Storage |
 | Raspberry Pi 5 | 8GB RAM | Pi-hole + Unbound |
 
@@ -36,8 +36,9 @@ A Kubernetes-based homelab built with GitOps practices.
 ## Bootstrapping
 
 ``` bash
- # Uninstall k3s
+ # Stop all k3s
  /usr/local/bin/k3s-killall.sh
+ # Uninstall k3s
  /usr/local/bin/k3s-uninstall.sh
 
  # Enable iscsid for longhorn
@@ -58,12 +59,12 @@ A Kubernetes-based homelab built with GitOps practices.
  sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 
  # Bootstrap Flux
- flux bootstrap github --owner=druwan --repository=homelab \
-    --branch=main --path=./clusters/staging --personal
+ GITHUB_TOKEN=$FLUX_GITHUB_TOKEN flux bootstrap github --owner=druwan \
+  --repository=homelab --branch=main --path=./clusters/staging --personal
 
  # SOPS age key
  k create secret generic sops-age --namespace=flux-system \
-    --from-file=age.agekey=./age.agekey --dry-run -o yaml | k apply -f -
+    --from-file=age.agekey=./age.agekey --dry-run=client -o yaml | k apply -f -
 
  # External Secrets
  k apply -k infrastructure/controllers/staging/external-secrets
