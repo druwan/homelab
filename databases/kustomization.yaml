@@ -12,5 +12,5 @@ resources:
   - n8n
   - paperless-ngx
   # - silo
-  # - sure
+  - sure
   # - twenty
