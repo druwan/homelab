@@ -1,4 +1,64 @@
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: paperless-redis-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: truenas-nvme-nfs
+  mountOptions:
+    - nfsvers=4.2
+  claimRef:
+    name: paperless-redis-broker-data-pvc-v3
+    namespace: paperless-ngx
+  nfs:
+    server: 192.168.1.83
+    path: /mnt/nvme/k8s-fast/pvc-46b4de9e-c9fb-424c-b7b0-d20a2bd65b01
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: paperless-data-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: truenas-nvme-nfs
+  mountOptions:
+    - nfsvers=4.2
+  claimRef:
+    name: paperless-ngx-data-pvc-v3
+    namespace: paperless-ngx
+  nfs:
+    server: 192.168.1.83
+    path: /mnt/nvme/k8s-fast/pvc-45301424-58d4-4d50-a376-08ef0eea6a5d
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: paperless-media-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: truenas-nvme-nfs
+  mountOptions:
+    - nfsvers=4.2
+  claimRef:
+    name: paperless-ngx-media-pvc-v3
+    namespace: paperless-ngx
+  nfs:
+    server: 192.168.1.83
+    path: /mnt/nvme/k8s-fast/pvc-c026d4a1-8fa4-457a-8ff3-facaea7471f3
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: paperless-redis-broker-data-pvc-v3
@@ -10,6 +70,7 @@ spec:
   resources:
     requests:
       storage: 1Gi
+  volumeName: paperless-redis-pv
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -23,6 +84,7 @@ spec:
   resources:
     requests:
       storage: 5Gi
+  volumeName: paperless-data-pv
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -36,6 +98,7 @@ spec:
   resources:
     requests:
       storage: 5Gi
+  volumeName: paperless-media-pv
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
