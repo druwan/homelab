@@ -16,7 +16,7 @@ resources:
   # - garage
   - glance
   - health-api
-  # - homeassistant
+  - homeassistant
   # - immich
   # - its-mytabs
   # - jellyfin
