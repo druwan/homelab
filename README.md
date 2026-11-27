@@ -53,7 +53,8 @@ A Kubernetes-based homelab built with GitOps practices.
  ExecStart=/usr/local/bin/k3s \
     server \
     '--disable-helm-controller' \
-    '--disable' 'local-storage'
+    '--disable' 'local-storage' \
+    '--disable' 'traefik'
 
  # Copy kubeconfig and update server address
  sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
