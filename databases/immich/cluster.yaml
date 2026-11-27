@@ -42,48 +42,50 @@ spec:
   #       - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
   #       - CREATE EXTENSION IF NOT EXISTS pg_trgm CASCADE;
 
+  # bootstrap:
+  #   pg_basebackup:
+  #     source: immich-db-v1
+  #
+  # externalClusters:
+  #   - name: immich-db-v1
+  #     connectionParameters:
+  #       host: immich-db-v1-rw.immich.svc.cluster.local
+  #       user: streaming_replica
+  #       dbname: immich
+  #       sslmode: verify-ca
+  #     sslKey:
+  #       name: immich-db-v1-replication
+  #       key: tls.key
+  #     sslCert:
+  #       name: immich-db-v1-replication
+  #       key: tls.crt
+  #     sslRootCert:
+  #       name: immich-db-v1-ca
+  #       key: ca.crt
+
+  # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   bootstrap:
-    pg_basebackup:
-      source: immich-db-v1
+    recovery:
+      source: immich-db-hexabyte
+      database: immich
+      owner: immich
+      secret:
+        name: immich-db-credentials
 
   externalClusters:
-    - name: immich-db-v1
-      connectionParameters:
-        host: immich-db-v1-rw.immich.svc.cluster.local
-        user: streaming_replica
-        dbname: immich
-        sslmode: verify-ca
-      sslKey:
-        name: immich-db-v1-replication
-        key: tls.key
-      sslCert:
-        name: immich-db-v1-replication
-        key: tls.crt
-      sslRootCert:
-        name: immich-db-v1-ca
-        key: ca.crt
-
-  # # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
-  # bootstrap:
-  #   recovery:
-  #     source: immich-db-hexabyte
-  #     database: immich
-  #     owner: immich
-  #     secret:
-  #       name: immich-db-credentials
-  # externalClusters:
-  #   - name: immich-db-hexabyte
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: immich-db-backup-hexabyte
-  #         serverName: immich-db
+    - name: immich-db-hexabyte
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: immich-db-backup-hexabyte
+          serverName: immich-db-v2
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
         barmanObjectName: immich-db-backup-hexabyte
+        serverName: immich-db-v3
 
   managed:
     services:

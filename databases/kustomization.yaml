@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - authentik
   # - firefly
-  # - immich
+  - immich
   - kaneo
   - lifedata
   # - linkding
