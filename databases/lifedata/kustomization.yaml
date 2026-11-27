@@ -7,5 +7,5 @@ resources:
   - database-life.yaml
   - database-outline.yaml
   - database-wikijs.yaml
-  - podmonitor.yaml
+  # - podmonitor.yaml
   - scheduled-backups.yaml

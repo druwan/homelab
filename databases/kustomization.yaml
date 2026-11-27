@@ -5,7 +5,7 @@ resources:
   # - firefly
   # - immich
   # - kaneo
-  # - lifedata
+  - lifedata
   # - linkding
   # - linkwarden
   - mealie
