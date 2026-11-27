@@ -6,6 +6,6 @@ resources:
   - cluster.yaml
   - database-life.yaml
   - database-outline.yaml
-  - database-wikijs.yaml
+  # - database-wikijs.yaml
   # - podmonitor.yaml
   - scheduled-backups.yaml
