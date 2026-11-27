@@ -9,18 +9,18 @@ resources:
   # - bazarr
   # - bento-pdf
   # - convertx
-  # - discord-bot
+  - discord-bot
   # - dispatcharr
   # - firefly
-  # - flaresolverr
+  - flaresolverr
   # - garage
-  # - glance
-  # - health-api
+  - glance
+  - health-api
   # - homeassistant
   # - immich
   # - its-mytabs
   # - jellyfin
-  # - kaneo
+  - kaneo
   # - linkding
   # - linkwarden
   - mealie
