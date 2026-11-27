@@ -17,7 +17,7 @@ resources:
   - glance
   - health-api
   - homeassistant
-  # - immich
+  - immich
   # - its-mytabs
   - jellyfin
   - kaneo

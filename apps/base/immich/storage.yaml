@@ -1,4 +1,24 @@
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: immich-library-pv
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: truenas-nvme-nfs
+  mountOptions:
+    - nfsvers=4.2
+  claimRef:
+    name: immich-library-pvc-v2
+    namespace: immich
+  nfs:
+    server: 192.168.1.83
+    path: /mnt/nvme/k8s-fast/pvc-7c71be42-c927-464f-8156-4772cddef3cd
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: immich-library-pvc-v2
@@ -10,6 +30,7 @@ spec:
     requests:
       storage: 1Ti
   storageClassName: truenas-nvme-nfs
+  volumeName: immich-library-pv
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
