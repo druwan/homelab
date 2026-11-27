@@ -4,4 +4,3 @@ resources:
   - deploy-crds.yaml
   - repository.yaml
   - release.yaml
-  - wildcard-certificate.yaml
