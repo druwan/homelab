@@ -38,49 +38,50 @@ spec:
   #       - CREATE EXTENSION postgis_tiger_geocoder;
   #       - CREATE EXTENSION postgis_topology;
 
-  bootstrap:
-    pg_basebackup:
-      source: n8n-db-v1
-
-  externalClusters:
-    - name: n8n-db-v1
-      connectionParameters:
-        host: n8n-db-v1-rw.n8n.svc.cluster.local
-        user: streaming_replica
-        dbname: n8n
-        sslmode: verify-ca
-      sslKey:
-        name: n8n-db-v1-replication
-        key: tls.key
-      sslCert:
-        name: n8n-db-v1-replication
-        key: tls.crt
-      sslRootCert:
-        name: n8n-db-v1-ca
-        key: ca.crt
-
-  # # DISTASTER RECOVERY: Once a backup exists, replace the initdb with the block below
   # bootstrap:
-  #   recovery:
-  #     source: n8n-db-hexabyte
-  #     database: n8n
-  #     owner: n8n
-  #     secret:
-  #       name: n8n-db-credentials
+  #   pg_basebackup:
+  #     source: n8n-db-v1
   #
   # externalClusters:
-  #   - name: n8n-db-hexabyte
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: n8n-db-backup-hexabyte
-  #         serverName: n8n-db
+  #   - name: n8n-db-v1
+  #     connectionParameters:
+  #       host: n8n-db-v1-rw.n8n.svc.cluster.local
+  #       user: streaming_replica
+  #       dbname: n8n
+  #       sslmode: verify-ca
+  #     sslKey:
+  #       name: n8n-db-v1-replication
+  #       key: tls.key
+  #     sslCert:
+  #       name: n8n-db-v1-replication
+  #       key: tls.crt
+  #     sslRootCert:
+  #       name: n8n-db-v1-ca
+  #       key: ca.crt
+
+  # DISTASTER RECOVERY: Once a backup exists, replace the initdb with the block below
+  bootstrap:
+    recovery:
+      source: n8n-db-hexabyte
+      database: n8n
+      owner: n8n
+      secret:
+        name: n8n-db-credentials
+
+  externalClusters:
+    - name: n8n-db-hexabyte
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: n8n-db-backup-hexabyte
+          serverName: n8n-db-v2 # RESTORE FROM
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
         barmanObjectName: n8n-db-backup-hexabyte
+        serverName: n8n-db-v3 # ARCHIVE TO
 
   managed:
     services:

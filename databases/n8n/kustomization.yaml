@@ -5,5 +5,5 @@ resources:
   - objectstore.yaml
   - cluster.yaml
   - database.yaml
-  - podmonitor.yaml
+  # - podmonitor.yaml
   - scheduled-backups.yaml

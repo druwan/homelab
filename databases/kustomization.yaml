@@ -9,7 +9,7 @@ resources:
   # - linkding
   # - linkwarden
   - mealie
-  # - n8n
+  - n8n
   - paperless-ngx
   # - silo
   # - sure
