@@ -6,38 +6,38 @@ resources:
   # - adguardhome
   # - audiobookshelf
   - authentik
-  - bazarr
+  # - bazarr
   # - bento-pdf
   # - convertx
-  - discord-bot
+  # - discord-bot
   # - dispatcharr
   # - firefly
-  - flaresolverr
+  # - flaresolverr
   # - garage
-  - glance
-  - health-api
-  - homeassistant
-  - immich
+  # - glance
+  # - health-api
+  # - homeassistant
+  # - immich
   # - its-mytabs
-  - jellyfin
-  - kaneo
+  # - jellyfin
+  # - kaneo
   # - linkding
   # - linkwarden
   - mealie
-  - n8n
-  - outline
-  - paperless-ngx
+  # - n8n
+  # - outline
+  # - paperless-ngx
   # - pgadmin
-  - profilarr
-  - prowlarr
+  # - profilarr
+  # - prowlarr
   # - qbittorrent
-  - radarr
+  # - radarr
   # - rustfs
-  - sabnzbd
-  - silo
-  - sonarr
+  # - sabnzbd
+  # - silo
+  # - sonarr
   # - stirling-pdf
-  - sure
+  # - sure
   # - transmute
   # - tududi
   # - twenty
