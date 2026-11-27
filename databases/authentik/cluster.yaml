@@ -69,13 +69,14 @@ spec:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: authentik-db-backup-hexabyte
-          serverName: authentik-db-v1
+          serverName: authentik-db-v2
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
         barmanObjectName: authentik-db-backup-hexabyte
+        serverName: authentik-db-v3
 
   managed:
     services:
