@@ -25,7 +25,7 @@ resources:
   # - linkwarden
   - mealie
   # - n8n
-  # - outline
+  - outline
   # - paperless-ngx
   # - pgadmin
   # - profilarr
