@@ -6,7 +6,7 @@ resources:
   # - adguardhome
   # - audiobookshelf
   - authentik
-  # - bazarr
+  - bazarr
   # - bento-pdf
   # - convertx
   - discord-bot
@@ -19,7 +19,7 @@ resources:
   - homeassistant
   # - immich
   # - its-mytabs
-  # - jellyfin
+  - jellyfin
   - kaneo
   # - linkding
   # - linkwarden
@@ -28,14 +28,14 @@ resources:
   - outline
   # - paperless-ngx
   # - pgadmin
-  # - profilarr
-  # - prowlarr
+  - profilarr
+  - prowlarr
   # - qbittorrent
-  # - radarr
+  - radarr
   # - rustfs
-  # - sabnzbd
-  # - silo
-  # - sonarr
+  - sabnzbd
+  - silo
+  - sonarr
   # - stirling-pdf
   - sure
   # - transmute
