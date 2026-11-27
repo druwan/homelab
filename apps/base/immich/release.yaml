@@ -57,7 +57,7 @@ spec:
                 memory: 4Gi
     immich:
       metrics:
-        enabled: true
+        enabled: false
       persistence:
         library:
           existingClaim: immich-library-pvc-v2
