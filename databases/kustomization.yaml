@@ -4,7 +4,7 @@ resources:
   - authentik
   # - firefly
   # - immich
-  # - kaneo
+  - kaneo
   - lifedata
   # - linkding
   # - linkwarden
