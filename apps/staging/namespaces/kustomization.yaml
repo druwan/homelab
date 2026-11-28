@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - adguardhome.yaml
+  # - adguardhome.yaml
   - authentik.yaml
   - cloudflare.yaml
   # - firefly.yaml
@@ -10,7 +10,7 @@ resources:
   - immich.yaml
   - kaneo.yaml
   - life.yaml
-  - linkwarden.yaml
+  # - linkwarden.yaml
   - longhorn-system.yaml
   - mealie.yaml
   - media.yaml
