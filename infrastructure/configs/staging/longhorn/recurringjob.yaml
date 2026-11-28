@@ -10,4 +10,4 @@ spec:
   retain: 8 # save 8 copies per volume
   concurrency: 1 # backup on volume at a time
   groups:
-    - backup # Only volumes in backup group
+    - default # All volumes
