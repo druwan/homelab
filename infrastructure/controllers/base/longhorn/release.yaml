@@ -8,17 +8,18 @@ spec:
   chart:
     spec:
       chart: longhorn
-      version: "1.*"
+      version: "1.13.*"
       sourceRef:
         kind: HelmRepository
         name: longhorn
         namespace: longhorn-system
       interval: 24h
   values:
+    defaultBackupStore:
+      backupTarget: nfs://192.168.1.83:/mnt/main/backups/longhorn
     defaultSettings:
       defaultDataPath: /var/lib/longhorn
       defaultReplicaCount: 1
-      backupTarget: nfs://192.168.1.83:/mnt/main/backups/longhorn
       replicaSoftAntiAffinity: true
       storageMinimalAvailablePercentage: 15
     persistence:
