@@ -6,7 +6,7 @@ metadata:
   namespace: paperless-ngx
 spec:
   immediate: true
-  schedule: "0 45 1 * * *"
+  schedule: "0 45 0 * * *"
   cluster:
     name: paperless-ngx-db-v2
   method: plugin

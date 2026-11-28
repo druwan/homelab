@@ -5,7 +5,7 @@ metadata:
   namespace: immich
 spec:
   immediate: true
-  schedule: "0 30 3 * * *"
+  schedule: "0 30 0 * * *"
   cluster:
     name: immich-db-v2
   method: plugin
