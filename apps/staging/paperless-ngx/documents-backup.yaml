@@ -15,7 +15,7 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: restic-backup
-              image: restic/restic:latest
+              image: restic/restic:0.20.0
               command: ["/bin/sh", "-c"]
               args:
                 - |
@@ -25,10 +25,23 @@ spec:
                   restic snapshots --repo "$REPO" 2>/dev/null || restic init --repo "$REPO"
 
                   echo "=== Running backup ==="
-                  restic backup /paperless-pvc/documents/originals /paperless-pvc/documents/archive --repo "$REPO" --tag paperless-ngx --verbose
+                  restic backup \
+                    --repo "$REPO" \
+                    --host paperless \
+                    --tag paperless-ngx \
+                    /paperless-pvc/documents/originals \
+                    /paperless-pvc/documents/archive \
+                    --verbose
 
                   echo "=== Pruning old snapshots ==="
-                  restic forget --repo "$REPO" --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune
+                  restic forget \
+                    --repo "$REPO" \
+                    --tag paperless-ngx \
+                    --group-by tags \
+                    --keep-daily 7 \
+                    --keep-weekly 4 \
+                    --keep-monthly 6 \
+                    --dry-run
 
                   echo "=== Done ==="
               env:
