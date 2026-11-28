@@ -33,48 +33,50 @@ spec:
   #     secret:
   #       name: twenty-db-credentials
 
-  bootstrap:
-    pg_basebackup:
-      source: twenty-db-v0
-
-  externalClusters:
-    - name: twenty-db-v0
-      connectionParameters:
-        host: twenty-db-v0-rw.twenty.svc.cluster.local
-        user: streaming_replica
-        dbname: twenty
-        sslmode: verify-ca
-      sslKey:
-        name: twenty-db-v0-replication
-        key: tls.key
-      sslCert:
-        name: twenty-db-v0-replication
-        key: tls.crt
-      sslRootCert:
-        name: twenty-db-v0-ca
-        key: ca.crt
+  # bootstrap:
+  #   pg_basebackup:
+  #     source: twenty-db-v0
+  #
+  # externalClusters:
+  #   - name: twenty-db-v0
+  #     connectionParameters:
+  #       host: twenty-db-v0-rw.twenty.svc.cluster.local
+  #       user: streaming_replica
+  #       dbname: twenty
+  #       sslmode: verify-ca
+  #     sslKey:
+  #       name: twenty-db-v0-replication
+  #       key: tls.key
+  #     sslCert:
+  #       name: twenty-db-v0-replication
+  #       key: tls.crt
+  #     sslRootCert:
+  #       name: twenty-db-v0-ca
+  #       key: ca.crt
 
   # DISASTER RECOVERY: Once a backup exists, replace the initdb with the block below
-  # bootstrap:
-  #   recovery:
-  #     source: twenty-db-hexabyte
-  #     database: twenty
-  #     owner: twenty
-  #     secret:
-  #       name: twenty-db-credentials
-  # externalClusters:
-  #   - name: twenty-db-hexabyte
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: twenty-db-backup-hexabyte
-  #         serverName: twenty-db
+  bootstrap:
+    recovery:
+      source: twenty-db-hexabyte
+      database: twenty
+      owner: twenty
+      secret:
+        name: twenty-db-credentials
+
+  externalClusters:
+    - name: twenty-db-hexabyte
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: twenty-db-backup-hexabyte
+          serverName: twenty-db-v1 # Restore FROM
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
         barmanObjectName: twenty-db-backup-hexabyte
+        serverName: twenty-db-v2 # acrhive new backups TO
 
   managed:
     services:

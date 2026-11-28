@@ -13,4 +13,4 @@ resources:
   - paperless-ngx
   - silo
   - sure
-  # - twenty
+  - twenty
