@@ -33,7 +33,7 @@ spec:
                     --repo "$REPO" --host immich --tag immich --verbose
 
                   restic forget --repo "$REPO" --tag immich --group-by tags \
-                    --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune --dry-run
+                    --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune
 
                   echo "=== Done ==="
               env:
